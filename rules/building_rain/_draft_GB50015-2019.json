@@ -25,7 +25,7 @@
       ]
     },
     "subject": "roof_design_rain_flow",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -50,7 +50,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.2",
@@ -63,7 +66,7 @@
     "rule_type": "constructive",
     "statement": "设计暴雨强度应按当地或相邻地区暴雨强度公式计算确定。",
     "subject": "design_storm_intensity_source",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -83,7 +86,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.3",
@@ -99,7 +105,7 @@
     "comparator": "==",
     "value": 5,
     "unit": "min",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -119,7 +125,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.4",
@@ -165,7 +174,7 @@
     "rule_type": "categorical",
     "statement": "建筑的雨水排水管道工程与溢流设施的排水能力应根据建筑物的重要程度、屋面特征等按下列规定确定：1 一般建筑的总排水能力不应小于10a重现期的雨水量；2 重要公共建筑、高层建筑的总排水能力不应小于50a重现期的雨水量；3 当屋面无外檐天沟或无直接散水条件且采用溢流管道系统时，总排水能力不应小于100a重现期的雨水量；4 满管压力流排水系统雨水排水管道工程的设计重现期宜采用10a；5 工业厂房屋面雨水排水管道工程与溢流设施的总排水能力设计重现期应根据生产工艺、重要程度等因素确定。",
     "subject": "total_drainage_capacity_recurrence",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -187,7 +196,11 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不应",
+    "blocks_production": true,
+    "safety_critical": true
   },
   {
     "rule_id": "GB50015-2019-5.2.6",
@@ -203,7 +216,7 @@
     "comparator": "==",
     "value": 1.0,
     "unit": "ratio",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -228,7 +241,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.7",
@@ -244,7 +260,7 @@
     "comparator": "==",
     "value": 0.5,
     "unit": "ratio",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -264,7 +280,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.8",
@@ -277,7 +296,7 @@
     "rule_type": "prohibition",
     "statement": "天沟、檐沟排水不得流经变形缝和防火墙。",
     "subject": "gutter_crossing_deformation_joint",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -297,7 +316,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.9",
@@ -386,7 +408,7 @@
     "comparator": ">=",
     "value": 100,
     "unit": "mm",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -412,7 +434,11 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不应",
+    "blocks_production": true,
+    "safety_critical": true
   },
   {
     "rule_id": "GB50015-2019-5.2.11",
@@ -425,7 +451,7 @@
     "rule_type": "constructive",
     "statement": "建筑屋面雨水排水工程应设置溢流孔口或溢流管系等溢流设施，且溢流排水不得危害建筑设施和行人安全。",
     "subject": "overflow_facility_required",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -457,7 +483,11 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应设置",
+    "blocks_production": true,
+    "safety_critical": true
   },
   {
     "rule_id": "GB50015-2019-5.2.12",
@@ -496,7 +526,7 @@
     "rule_type": "categorical",
     "statement": "屋面雨水排水管道系统设计流态应符合下列规定：1 檐沟外排水宜按重力流系统设计；2 高层建筑屋面雨水排水宜按重力流系统设计；3 长天沟外排水宜按满管压力流设计；4 工业厂房、库房、公共建筑的大型屋面雨水排水宜按满管压力流设计；5 在风沙大、粉尘大、降雨量小地区不宜采用满管压力流排水系统。",
     "subject": "system_flow_state_selection",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -520,7 +550,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应符合",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.15",
@@ -536,7 +569,7 @@
     "comparator": ">=",
     "value": 50,
     "unit": "mm",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -556,7 +589,11 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true,
+    "safety_critical": true
   },
   {
     "rule_id": "GB50015-2019-5.2.16",
@@ -569,7 +606,7 @@
     "rule_type": "constructive",
     "statement": "屋面排水系统应设置雨水斗，不同排水特征的屋面雨水排水系统应选用相应的雨水斗。",
     "subject": "rainhead_type_match_flow_state",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -589,7 +626,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应设置",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.17",
@@ -613,7 +653,7 @@
       ]
     },
     "subject": "rainhead_count",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -633,7 +673,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.18",
@@ -682,7 +725,7 @@
     "rule_type": "prohibition",
     "statement": "除土建专业允许外，雨水管道不得敷设在结构层或结构柱内。",
     "subject": "pipe_in_structure_layer",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -705,7 +748,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.22",
@@ -718,7 +764,7 @@
     "rule_type": "prohibition",
     "statement": "裙房屋面的雨水应单独排放，不得汇入高层建筑屋面排水管道系统。",
     "subject": "podium_roof_separate_discharge",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -738,7 +784,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.23",
@@ -873,7 +922,24 @@
           68
         ]
       ],
-      "interpolation": "none"
+      "interpolation": "none",
+      "_TEMPORARY_metrics": {
+        "_TEMPORARY_note": "rows[0]='最大设计排水流量(L/s)'、rows[1]='斗前水深(mm)' 是两个异量纲指标，靠位置约定维持隐含语义。具名表达如下，S-3 后应改用 metrics 字段。",
+        "by_diameter_mm": {
+          "75": {
+            "max_discharge_lps": 7.1,
+            "head_depth_mm": 48
+          },
+          "100": {
+            "max_discharge_lps": 7.4,
+            "head_depth_mm": 50
+          },
+          "150": {
+            "max_discharge_lps": 13.7,
+            "head_depth_mm": 68
+          }
+        }
+      }
     },
     "mandatory_level": "reference",
     "applies_to": {
@@ -904,7 +970,7 @@
     "comparator": "==",
     "value": 0.8,
     "unit": "ratio",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -924,7 +990,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.34-3",
@@ -940,7 +1009,7 @@
     "comparator": ">=",
     "value": 0,
     "unit": "ratio",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -960,7 +1029,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.2.38",
@@ -974,35 +1046,53 @@
     "statement": "建筑雨水管道的最小管径和横管的最小设计坡度，宜按表5.2.38确定。表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度：建筑外墙雨落水管 铸铁管/钢管 75、塑料管 75；雨水排水立管 铸铁管/钢管 100、塑料管 110；重力流排水悬吊管、埋地管 铸铁管/钢管 100、塑料管 110，横管最小设计坡度 0.010(铸铁钢管)/0.005(塑料管)；满管压力流屋面排水悬吊支管 铸铁管/钢管 50、塑料管 50，横管最小设计坡度 0.000。注：表中铸铁管管径为公称直径，括号内数据为塑料管外径。",
     "subject": "rain_pipe_min_diameter_and_slope",
     "lookup_table": {
-      "x_axis_label": "管别",
-      "y_axis_label": "铸铁管/钢管最小管径 (mm)",
-      "rows": [
-        "建筑外墙雨落水管",
-        "雨水排水立管",
-        "重力流排水悬吊管、埋地管",
-        "满管压力流屋面排水悬吊支管"
+      "x_axis_label": "TEMPORARY_STRUCTURE__SEE_FILE_HEADER — 行=管别，列=管材类别（规范原表为二维）",
+      "y_axis_label": "最小管径 (mm)",
+      "rows": [],
+      "columns": [],
+      "values": [],
+      "interpolation": "none",
+      "_TEMPORARY_entries": [
+        {
+          "key": "建筑外墙雨落水管",
+          "values": {
+            "铸铁管_钢管": 75,
+            "塑料管": 75
+          },
+          "min_slope": null
+        },
+        {
+          "key": "雨水排水立管",
+          "values": {
+            "铸铁管_钢管": 100,
+            "塑料管": 110
+          },
+          "min_slope": null
+        },
+        {
+          "key": "重力流排水悬吊管、埋地管",
+          "values": {
+            "铸铁管_钢管": 100,
+            "塑料管": 110
+          },
+          "min_slope": {
+            "铸铁管_钢管": 0.01,
+            "塑料管": 0.005
+          }
+        },
+        {
+          "key": "满管压力流屋面排水悬吊支管",
+          "values": {
+            "铸铁管_钢管": 50,
+            "塑料管": 50
+          },
+          "min_slope": {
+            "铸铁管_钢管": 0.0,
+            "塑料管": 0.0
+          }
+        }
       ],
-      "columns": [
-        75,
-        100,
-        50,
-        50
-      ],
-      "values": [
-        [
-          75
-        ],
-        [
-          100
-        ],
-        [
-          100
-        ],
-        [
-          50
-        ]
-      ],
-      "interpolation": "none"
+      "_TEMPORARY_note": "临时结构。规范原表5.2.38 为二维（行=管别，列=管材类别），已用 entries 恢复该维度。此前的错误做法是把「最小管径」的值当作 columns 轴，且拆成 -5.2.38/-5.2.38-plastic 两条，导致铸铁100与塑料110分属不同条目、无法同行对照。S-3 落地为 row_keyed 后必须重录并删除拆分条目。"
     },
     "mandatory_level": "recommended",
     "applies_to": {
@@ -1015,117 +1105,6 @@
     "provenance": {
       "page": 0,
       "source_text": "5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度,宜按表5.2.38确定。表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。注：表中铸铁管管径为公称直径,括号内数据为塑料管外径。",
-      "extracted_by": "manual",
-      "verified_by": null,
-      "verified_at": null
-    }
-  },
-  {
-    "rule_id": "GB50015-2019-5.2.38-plastic",
-    "standard": "GB 50015",
-    "standard_year": 2019,
-    "clause": "5.2.38",
-    "category": "building_rain",
-    "scope": "steel_factory_gravity_rainwater",
-    "content_type": "clause",
-    "rule_type": "lookup_table",
-    "statement": "表5.2.38 塑料管最小管径（括号内数据为塑料管外径）：建筑外墙雨落水管 75；雨水排水立管 110；重力流排水悬吊管、埋地管 110；满管压力流屋面排水悬吊支管 50。",
-    "subject": "rain_pipe_min_diameter_plastic",
-    "lookup_table": {
-      "x_axis_label": "管别",
-      "y_axis_label": "塑料管最小外径 (mm)",
-      "rows": [
-        "建筑外墙雨落水管",
-        "雨水排水立管",
-        "重力流排水悬吊管、埋地管",
-        "满管压力流屋面排水悬吊支管"
-      ],
-      "columns": [
-        75,
-        110,
-        110,
-        50
-      ],
-      "values": [
-        [
-          75
-        ],
-        [
-          110
-        ],
-        [
-          110
-        ],
-        [
-          50
-        ]
-      ],
-      "interpolation": "none"
-    },
-    "mandatory_level": "recommended",
-    "applies_to": {
-      "system": [
-        "gravity",
-        "siphonic"
-      ]
-    },
-    "requires_human": false,
-    "provenance": {
-      "page": 0,
-      "source_text": "表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。注：表中铸铁管管径为公称直径,括号内数据为塑料管外径。",
-      "extracted_by": "manual",
-      "verified_by": null,
-      "verified_at": null
-    }
-  },
-  {
-    "rule_id": "GB50015-2019-5.2.38-slope",
-    "standard": "GB 50015",
-    "standard_year": 2019,
-    "clause": "5.2.38",
-    "category": "building_rain",
-    "scope": "steel_factory_gravity_rainwater",
-    "content_type": "clause",
-    "rule_type": "lookup_table",
-    "statement": "表5.2.38 横管最小设计坡度：重力流排水悬吊管、埋地管 0.010(铸铁管、钢管)/0.005(塑料管)；满管压力流屋面排水悬吊支管 0.000。",
-    "subject": "rain_pipe_min_slope",
-    "lookup_table": {
-      "x_axis_label": "管别",
-      "y_axis_label": "横管最小设计坡度",
-      "rows": [
-        "重力流排水悬吊管、埋地管（铸铁管、钢管）",
-        "重力流排水悬吊管、埋地管（塑料管）",
-        "满管压力流屋面排水悬吊支管"
-      ],
-      "columns": [
-        0.01,
-        0.005,
-        0.0
-      ],
-      "values": [
-        [
-          0.01
-        ],
-        [
-          0.005
-        ],
-        [
-          0.0
-        ]
-      ],
-      "interpolation": "none"
-    },
-    "mandatory_level": "recommended",
-    "applies_to": {
-      "system": [
-        "gravity",
-        "siphonic"
-      ]
-    },
-    "requires_human": false,
-    "provenance": {
-      "page": 0,
-      "source_text": "表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。",
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
@@ -1308,7 +1287,7 @@
       "external_params": []
     },
     "subject": "pipe_hydraulic_formula",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -1328,7 +1307,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应按",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50015-2019-5.3.16",

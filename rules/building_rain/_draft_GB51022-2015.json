@@ -56,7 +56,7 @@
     "comparator": "<=",
     "value": 300,
     "unit": "m",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -85,7 +85,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应符合",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-5.2.4-transverse",
@@ -138,27 +141,27 @@
     "statement": "屋面排水坡度不应小于表11.1.11的限值。表11.1.11 屋面排水坡度限值：直立缝锁边连接板 1/30；扣合式连接板及螺钉连接板 1/20。",
     "subject": "steel_roof_panel_slope_by_connection",
     "lookup_table": {
-      "x_axis_label": "连接方式",
-      "y_axis_label": "屋面排水坡度限值",
-      "rows": [
-        "直立缝锁边连接板",
-        "扣合式连接板及螺钉连接板"
+      "x_axis_label": "TEMPORARY_STRUCTURE__SEE_FILE_HEADER — 行=连接方式",
+      "y_axis_label": "屋面排水坡度限值 (比值)",
+      "rows": [],
+      "columns": [],
+      "values": [],
+      "interpolation": "none",
+      "_TEMPORARY_entries": [
+        {
+          "key": "直立缝锁边连接板",
+          "max_slope_ratio": 0.0333,
+          "expression": "1/30"
+        },
+        {
+          "key": "扣合式连接板及螺钉连接板",
+          "max_slope_ratio": 0.05,
+          "expression": "1/20"
+        }
       ],
-      "columns": [
-        0.0333,
-        0.05
-      ],
-      "values": [
-        [
-          0.0333
-        ],
-        [
-          0.05
-        ]
-      ],
-      "interpolation": "none"
+      "_TEMPORARY_note": "临时结构。此前把坡度限度的「值」当作 columns 轴，且 1/30 记为 0.0333 为近似值（精确值 0.03333…），内核查表时须知这是近似。S-3 落地为 row_keyed 后重录，建议改用分数表达式避免精度损失。"
     },
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -191,7 +194,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不应",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.3.1-external",
@@ -207,7 +213,7 @@
     "comparator": ">=",
     "value": 0.45,
     "unit": "mm",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -233,7 +239,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不应",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.3.1-internal",
@@ -284,7 +293,7 @@
     "comparator": ">=",
     "value": 3.0,
     "unit": "mm",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -310,7 +319,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "不应",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.3.2-1",
@@ -323,7 +335,7 @@
     "rule_type": "constructive",
     "statement": "天沟应符合下列构造要求：1 房屋的伸缩缝或沉降缝处的天沟应对应设置变形缝。",
     "subject": "gutter_expansion_joint_at_frame_joint",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -349,7 +361,10 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应设置",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.3.2-2",
@@ -401,7 +416,7 @@
     "rule_type": "constructive",
     "statement": "内天沟应设置溢流口，溢流口顶低于天沟上檐50mm、100mm。当无法设置溢流口时，应适当增加落水管数量。",
     "subject": "internal_gutter_overflow_required",
-    "mandatory_level": "recommended",
+    "mandatory_level": "mandatory_level_pending",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -435,7 +450,11 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "normative_verb": "应设置",
+    "blocks_production": true,
+    "safety_critical": true
   },
   {
     "rule_id": "GB51022-2015-11.3.3",

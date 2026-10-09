@@ -160,6 +160,30 @@ def check_mandatory_level_consistency(rule: dict, path: str, rep: Report) -> Non
                           "推荐级被拔高为强条，会误导用户"))
 
 
+def check_blocking_marked(rule: dict, path: str, rep: Report) -> None:
+    """阻断标记的规则不得留在生产目录。
+
+    mandatory_level_pending 表示该规则的真实强制性等级待定
+    （schema 缺 clause 档导致无法准确表达）。这类规则在 schema
+    改造完成前禁止投产，若混入生产目录会被当作可用的软约束。
+
+    历史上出现过成员声称已加阻断标记但实际未写入的情况，
+    因此这里以文件实际内容为准，不采信任何自述。
+    """
+    if rule.get("mandatory_level") != "mandatory_level_pending":
+        return
+
+    is_production = not (
+        path.replace("\\", "/").split("/")[-1].startswith("_")
+        or "/tests/" in path.replace("\\", "/")
+    )
+    if is_production:
+        rep.add(Issue("error", "E008", path,
+                      "阻断标记规则（mandatory_level_pending）"
+                      "不得置于生产目录："
+                      f"{rule.get('rule_id')}"))
+
+
 def check_requires_human_flag(rule: dict, path: str, rep: Report) -> None:
     """软判断规则必须显式标 requires_human。
 
@@ -245,6 +269,7 @@ def main() -> int:
         check_exception_refs(rule, path, known, rep)
         check_mandatory_level_consistency(rule, path, rep)
         check_requires_human_flag(rule, path, rep)
+        check_blocking_marked(rule, path, rep)
 
         missing_schema = required_props - set(rule.keys())
         if missing_schema:

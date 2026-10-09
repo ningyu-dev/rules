@@ -1,6 +1,6 @@
 [
   {
-    "rule_id": "ENGINEERING-PRACTICE-rainhead-spacing",
+    "rule_id": "EP-rainhead-spacing",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号",
@@ -16,8 +16,12 @@
     "unit": "m",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -26,10 +30,21 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   },
   {
-    "rule_id": "ENGINEERING-PRACTICE-rainheads-per-hanging-pipe",
+    "rule_id": "EP-rainheads-per-hanging-pipe",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号",
@@ -44,8 +59,12 @@
     "unit": "count",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -54,10 +73,21 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   },
   {
-    "rule_id": "ENGINEERING-PRACTICE-downpipe-spacing",
+    "rule_id": "EP-downpipe-spacing",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号",
@@ -73,8 +103,12 @@
     "unit": "m",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -83,10 +117,21 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   },
   {
-    "rule_id": "ENGINEERING-PRACTICE-gutter-mid-drain",
+    "rule_id": "EP-gutter-mid-drain",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号（条文说明4.2.3提及20m，非50m）",
@@ -101,8 +146,12 @@
     "unit": "m",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -111,10 +160,21 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   },
   {
-    "rule_id": "ENGINEERING-PRACTICE-service-area-limit",
+    "rule_id": "EP-service-area-limit",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号",
@@ -129,8 +189,12 @@
     "unit": "m2",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -139,10 +203,21 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   },
   {
-    "rule_id": "ENGINEERING-PRACTICE-multi-head-uneven-discharge",
+    "rule_id": "EP-multi-head-uneven-discharge",
     "standard": "无规范出处",
     "standard_year": 0,
     "clause": "无条文号",
@@ -154,8 +229,12 @@
     "subject": "multi_head_uneven_discharge_practice",
     "mandatory_level": "reference",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -164,6 +243,17 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
+    },
+    "_TEMPORARY_standard_year_placeholder": {
+      "_TEMPORARY": true,
+      "is_placeholder": true,
+      "reason": "本条无规范出处，无真实年份。schema 要求 standard_year 为 integer，故暂填 0 占位。0 不是有效年份，禁止用于任何版本比对或新旧对照逻辑。",
+      "fix": "S-6 完成后改为允许 standard_year: null，或为无出处条目增设独立 rule 类型。",
+      "do_not_use_for": [
+        "版本管理",
+        "新旧阈值对照",
+        "supersedes 判定"
+      ]
     }
   }
 ]
