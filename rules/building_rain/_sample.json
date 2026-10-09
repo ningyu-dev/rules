@@ -1,27 +1,29 @@
 [
   {
-    "rule_id": "GB50015-2019-5.2.11",
+    "_comment": "示例条目，仅用于演示 schema 字段的正确填法。数值依据 GB 50015-2019 5.2.9 与 GB 50345-2012 4.2.12，二者均为推荐级，不得标为强条。加 TEST- 前缀避免与生产条目撞号。详见 docs/规范依据规划.md §5.1。",
+    "rule_id": "TEST-GB50015-2019-5.2.9",
     "standard": "GB 50015",
     "standard_year": 2019,
     "standard_revision": "2019 局部修订",
-    "clause": "5.2.11",
+    "clause": "5.2.9",
     "category": "building_rain",
     "scope": "metal_gutter",
     "content_type": "clause",
     "rule_type": "numeric_threshold",
-    "statement": "金属天沟的纵向坡度不应小于 0.5%。",
+    "statement": "天沟宽度不宜小于 300mm，并应满足雨水斗安装要求，坡度不宜小于 0.003。",
     "subject": "gutter_longitudinal_slope",
     "comparator": ">=",
     "value": 0.005,
     "unit": "ratio",
-    "mandatory_level": "strong_clause",
+    "mandatory_level": "recommended",
+    "requires_human": false,
     "applies_to": {
       "roof_material": ["metal"],
       "system": ["gravity"]
     },
     "provenance": {
-      "page": 87,
-      "source_text": "……金属天沟的纵向坡度不应小于 0.5%……",
+      "page": 0,
+      "source_text": "天沟宽度不宜小于 300mm，并应满足雨水斗安装要求，坡度不宜小于 0.003。金属天沟的纵向坡度宜为 0.5%（GB 50345-2012 4.2.12，推荐级）。注：本条 page 待补，暂填 0。",
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null

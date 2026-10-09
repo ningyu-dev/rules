@@ -16,9 +16,16 @@
     "unit": "ratio",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity", "siphonic"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": true,
     "exceptions": [
@@ -50,9 +57,20 @@
     "value": 300,
     "unit": "m",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应符合",
+      "reason": "条文使用「应符合」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "exceptions": [
@@ -84,9 +102,20 @@
     "value": 150,
     "unit": "m",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -111,19 +140,43 @@
     "lookup_table": {
       "x_axis_label": "连接方式",
       "y_axis_label": "屋面排水坡度限值",
-      "rows": ["直立缝锁边连接板", "扣合式连接板及螺钉连接板"],
-      "columns": [0.0333, 0.05],
+      "rows": [
+        "直立缝锁边连接板",
+        "扣合式连接板及螺钉连接板"
+      ],
+      "columns": [
+        0.0333,
+        0.05
+      ],
       "values": [
-        [0.0333],
-        [0.05]
+        [
+          0.0333
+        ],
+        [
+          0.05
+        ]
       ],
       "interpolation": "none"
     },
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不应",
+      "reason": "条文使用「不应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity", "siphonic"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": true,
     "exceptions": [
@@ -155,10 +208,23 @@
     "value": 0.45,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不应",
+      "reason": "条文使用「不应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -185,9 +251,15 @@
     "unit": "mm",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -213,10 +285,23 @@
     "value": 3.0,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不应",
+      "reason": "条文使用「不应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -239,10 +324,23 @@
     "statement": "天沟应符合下列构造要求：1 房屋的伸缩缝或沉降缝处的天沟应对应设置变形缝。",
     "subject": "gutter_expansion_joint_at_frame_joint",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应符合",
+      "reason": "条文使用「应符合」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -265,10 +363,23 @@
     "statement": "屋面板应延伸入天沟，当采用内天沟时，屋面板与天沟连接应采取密封措施。",
     "subject": "roof_panel_extend_into_gutter",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -291,10 +402,25 @@
     "statement": "内天沟应设置溢流口，溢流口顶低于天沟上檐50mm、100mm。当无法设置溢流口时，应适当增加落水管数量。",
     "subject": "internal_gutter_overflow_required",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应设置",
+      "reason": "条文使用「应设置」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "exceptions": [
@@ -323,10 +449,23 @@
     "statement": "落水管的截面形式可采用圆形或方形截面，落水管材料可用金属镀层钢板、不锈钢、PVC等材料。集水盒与天沟应密封连接，落水管应与墙面结构或其他构件可靠连接。",
     "subject": "downpipe_connection_reliability",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {

@@ -19,13 +19,29 @@
         "slope": "屋面坡度",
         "inner_eaves_gutter": "是否采用内檐沟集水"
       },
-      "external_params": ["当地暴雨强度公式 A1/C/b/n（5.2.2）", "设计重现期 P（5.2.4）"]
+      "external_params": [
+        "当地暴雨强度公式 A1/C/b/n（5.2.2）",
+        "设计重现期 P（5.2.4）"
+      ]
     },
     "subject": "roof_design_rain_flow",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal", "concrete", "membrane"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal",
+        "concrete",
+        "membrane"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -48,8 +64,17 @@
     "statement": "设计暴雨强度应按当地或相邻地区暴雨强度公式计算确定。",
     "subject": "design_storm_intensity_source",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -75,8 +100,17 @@
     "value": 5,
     "unit": "min",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -99,8 +133,17 @@
     "statement": "屋面雨水排水管道工程设计重现期应根据建筑物的重要程度、气象特征等因素确定，各种屋面雨水排水管道工程的设计重现期不宜小于表5.2.4中的规定值。表5.2.4 各类建筑屋面雨水排水管道工程的设计重现期(a)：一般性建筑物屋面 5；重要公共建筑屋面 ≥10。注：工业厂房屋面雨水排水管道工程设计重现期应根据生产工艺、重要程度等因素确定。",
     "subject": "pipe_design_recurrence_interval",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -123,8 +166,19 @@
     "statement": "建筑的雨水排水管道工程与溢流设施的排水能力应根据建筑物的重要程度、屋面特征等按下列规定确定：1 一般建筑的总排水能力不应小于10a重现期的雨水量；2 重要公共建筑、高层建筑的总排水能力不应小于50a重现期的雨水量；3 当屋面无外檐天沟或无直接散水条件且采用溢流管道系统时，总排水能力不应小于100a重现期的雨水量；4 满管压力流排水系统雨水排水管道工程的设计重现期宜采用10a；5 工业厂房屋面雨水排水管道工程与溢流设施的总排水能力设计重现期应根据生产工艺、重要程度等因素确定。",
     "subject": "total_drainage_capacity_recurrence",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -150,9 +204,22 @@
     "value": 1.0,
     "unit": "ratio",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal", "concrete", "membrane"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal",
+        "concrete",
+        "membrane"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -178,8 +245,17 @@
     "value": 0.5,
     "unit": "ratio",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -202,8 +278,17 @@
     "statement": "天沟、檐沟排水不得流经变形缝和防火墙。",
     "subject": "gutter_crossing_deformation_joint",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "条文使用「不得」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -229,9 +314,21 @@
     "value": 300,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["metal", "concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal",
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -258,8 +355,13 @@
     "unit": "ratio",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal", "concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal",
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -285,9 +387,23 @@
     "value": 100,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "roof_material": ["metal", "concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal",
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -310,8 +426,19 @@
     "statement": "建筑屋面雨水排水工程应设置溢流孔口或溢流管系等溢流设施，且溢流排水不得危害建筑设施和行人安全。",
     "subject": "overflow_facility_required",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应设置",
+      "reason": "条文使用「应设置」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "exceptions": [
@@ -345,7 +472,9 @@
     "subject": "overflow_capacity_calculation_ref",
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -368,9 +497,21 @@
     "statement": "屋面雨水排水管道系统设计流态应符合下列规定：1 檐沟外排水宜按重力流系统设计；2 高层建筑屋面雨水排水宜按重力流系统设计；3 长天沟外排水宜按满管压力流设计；4 工业厂房、库房、公共建筑的大型屋面雨水排水宜按满管压力流设计；5 在风沙大、粉尘大、降雨量小地区不宜采用满管压力流排水系统。",
     "subject": "system_flow_state_selection",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应符合",
+      "reason": "条文使用「应符合」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity", "siphonic"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -396,8 +537,17 @@
     "value": 50,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "条文使用「不得」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -420,8 +570,17 @@
     "statement": "屋面排水系统应设置雨水斗，不同排水特征的屋面雨水排水系统应选用相应的雨水斗。",
     "subject": "rainhead_type_match_flow_state",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应设置",
+      "reason": "条文使用「应设置」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -449,12 +608,23 @@
         "Q_total": "屋面总雨水流量 (L/s)，按 5.2.1 计算",
         "Q_single_head": "单个雨水斗设计排水负荷 (L/s)，按表5.2.34 或厂家实测报告"
       },
-      "external_params": ["表5.2.34 或 CJ/T 245-2021 厂家测试报告的斗前水深-流量曲线"]
+      "external_params": [
+        "表5.2.34 或 CJ/T 245-2021 厂家测试报告的斗前水深-流量曲线"
+      ]
     },
     "subject": "rainhead_count",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -477,9 +647,20 @@
     "statement": "雨水斗的设置位置应根据屋面汇水情况并结合建筑结构承载、管系敷设等因素确定。",
     "subject": "rainhead_location_basis",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -502,9 +683,20 @@
     "statement": "除土建专业允许外，雨水管道不得敷设在结构层或结构柱内。",
     "subject": "pipe_in_structure_layer",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "条文使用「不得」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -527,8 +719,17 @@
     "statement": "裙房屋面的雨水应单独排放，不得汇入高层建筑屋面排水管道系统。",
     "subject": "podium_roof_separate_discharge",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -551,8 +752,17 @@
     "statement": "高层建筑雨落水管的雨水排至裙房屋面时，应将其雨水量计入裙房屋面的雨水量，且应采取防止水流冲刷裙房屋面的技术措施。",
     "subject": "high_rising_to_podium_flow_included",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -579,7 +789,9 @@
     "unit": "count",
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -605,8 +817,17 @@
     "value": 20,
     "unit": "m",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -631,17 +852,34 @@
     "lookup_table": {
       "x_axis_label": "雨水斗规格 (mm)",
       "y_axis_label": "指标",
-      "rows": ["最大设计排水流量 (L/s)", "斗前水深 (mm)"],
-      "columns": [75, 100, 150],
+      "rows": [
+        "最大设计排水流量 (L/s)",
+        "斗前水深 (mm)"
+      ],
+      "columns": [
+        75,
+        100,
+        150
+      ],
       "values": [
-        [7.1, 7.4, 13.7],
-        [48, 50, 68]
+        [
+          7.1,
+          7.4,
+          13.7
+        ],
+        [
+          48,
+          50,
+          68
+        ]
       ],
       "interpolation": "none"
     },
     "mandatory_level": "reference",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -667,8 +905,17 @@
     "value": 0.8,
     "unit": "ratio",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -694,8 +941,17 @@
     "value": 0,
     "unit": "ratio",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "条文使用「不得」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -720,19 +976,40 @@
     "lookup_table": {
       "x_axis_label": "管别",
       "y_axis_label": "铸铁管/钢管最小管径 (mm)",
-      "rows": ["建筑外墙雨落水管", "雨水排水立管", "重力流排水悬吊管、埋地管", "满管压力流屋面排水悬吊支管"],
-      "columns": [75, 100, 50, 50],
+      "rows": [
+        "建筑外墙雨落水管",
+        "雨水排水立管",
+        "重力流排水悬吊管、埋地管",
+        "满管压力流屋面排水悬吊支管"
+      ],
+      "columns": [
+        75,
+        100,
+        50,
+        50
+      ],
       "values": [
-        [75],
-        [100],
-        [100],
-        [50]
+        [
+          75
+        ],
+        [
+          100
+        ],
+        [
+          100
+        ],
+        [
+          50
+        ]
       ],
       "interpolation": "none"
     },
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -757,19 +1034,40 @@
     "lookup_table": {
       "x_axis_label": "管别",
       "y_axis_label": "塑料管最小外径 (mm)",
-      "rows": ["建筑外墙雨落水管", "雨水排水立管", "重力流排水悬吊管、埋地管", "满管压力流屋面排水悬吊支管"],
-      "columns": [75, 110, 110, 50],
+      "rows": [
+        "建筑外墙雨落水管",
+        "雨水排水立管",
+        "重力流排水悬吊管、埋地管",
+        "满管压力流屋面排水悬吊支管"
+      ],
+      "columns": [
+        75,
+        110,
+        110,
+        50
+      ],
       "values": [
-        [75],
-        [110],
-        [110],
-        [50]
+        [
+          75
+        ],
+        [
+          110
+        ],
+        [
+          110
+        ],
+        [
+          50
+        ]
       ],
       "interpolation": "none"
     },
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -794,18 +1092,35 @@
     "lookup_table": {
       "x_axis_label": "管别",
       "y_axis_label": "横管最小设计坡度",
-      "rows": ["重力流排水悬吊管、埋地管（铸铁管、钢管）", "重力流排水悬吊管、埋地管（塑料管）", "满管压力流屋面排水悬吊支管"],
-      "columns": [0.01, 0.005, 0.0],
+      "rows": [
+        "重力流排水悬吊管、埋地管（铸铁管、钢管）",
+        "重力流排水悬吊管、埋地管（塑料管）",
+        "满管压力流屋面排水悬吊支管"
+      ],
+      "columns": [
+        0.01,
+        0.005,
+        0.0
+      ],
       "values": [
-        [0.01],
-        [0.005],
-        [0.0]
+        [
+          0.01
+        ],
+        [
+          0.005
+        ],
+        [
+          0.0
+        ]
       ],
       "interpolation": "none"
     },
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -829,8 +1144,12 @@
     "subject": "gravity_rain_pipe_material",
     "mandatory_level": "recommended",
     "applies_to": {
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -853,20 +1172,109 @@
     "statement": "附录G 重力流系统立管的最大设计排水流量。表G 重力流系统屋面雨水排水立管的泄流量表。铸铁管：DN75 4.30、DN100 9.50、DN125 17.00、DN150 27.80、DN200 60.00、DN250 108.00、DN300 176.00 (L/s)。塑料管(公称外径×壁厚)：75×2.3 4.50、90×3.2 7.40、110×3.2 12.80、125×3.2 18.30、125×3.7 18.00、160×4.0 35.50、160×4.7 34.70、200×4.9 64.60、200×5.9 62.80、250×6.2 117.00、250×7.3 114.10、315×7.7 217.00、315×9.2 211.00 (L/s)。钢管(公称外径×壁厚)：88.9×4.0 5.10、114.3×4.0 9.40、139.7×4.0 17.10、168.3×4.5 30.80、219.1×6.0 65.50、273.0×7.0 119.10、323.9×7.0 194.00 (L/s)。",
     "subject": "gravity_vertical_pipe_max_capacity",
     "lookup_table": {
-      "x_axis_label": "公称直径 DN(mm) 或 公称外径×壁厚 (mm)",
+      "x_axis_label": "TEMPORARY_STRUCTURE__SEE_FILE_HEADER — 原为单一管径轴，现改为分组结构",
       "y_axis_label": "最大泄流量 (L/s)",
-      "rows": ["铸铁管", "塑料管", "钢管"],
-      "columns": [75, 100, 125, 150, 200, 250, 300],
-      "values": [
-        [4.30, 9.50, 17.00, 27.80, 60.00, 108.00, 176.00],
-        [4.50, 7.40, 18.30, 35.50, 64.60, 117.00, 217.00],
-        [5.10, 9.40, 17.10, 30.80, 65.50, 119.10, 194.00]
+      "rows": [
+        "铸铁管",
+        "塑料管",
+        "钢管"
       ],
-      "interpolation": "none"
+      "columns": [],
+      "values": [],
+      "interpolation": "none",
+      "_TEMPORARY_groups": [
+        {
+          "key": "cast_iron",
+          "label": "铸铁管（公称直径 DN，mm）",
+          "columns": [
+            75,
+            100,
+            125,
+            150,
+            200,
+            250,
+            300
+          ],
+          "values": [
+            [
+              4.3,
+              9.5,
+              17.0,
+              27.8,
+              60.0,
+              108.0,
+              176.0
+            ]
+          ]
+        },
+        {
+          "key": "plastic",
+          "label": "塑料管（公称外径×壁厚，mm）",
+          "columns": [
+            "75x2.3",
+            "90x3.2",
+            "110x3.2",
+            "125x3.2",
+            "125x3.7",
+            "160x4.0",
+            "160x4.7",
+            "200x4.9",
+            "200x5.9",
+            "250x6.2",
+            "250x7.3",
+            "315x7.7",
+            "315x9.2"
+          ],
+          "values": [
+            [
+              4.5,
+              7.4,
+              12.8,
+              18.3,
+              18.0,
+              35.5,
+              34.7,
+              64.6,
+              62.8,
+              117.0,
+              114.1,
+              217.0,
+              211.0
+            ]
+          ]
+        },
+        {
+          "key": "steel",
+          "label": "钢管（公称外径×壁厚，mm）",
+          "columns": [
+            "88.9x4.0",
+            "114.3x4.0",
+            "139.7x4.0",
+            "168.3x4.5",
+            "219.1x6.0",
+            "273.0x7.0",
+            "323.9x7.0"
+          ],
+          "values": [
+            [
+              5.1,
+              9.4,
+              17.1,
+              30.8,
+              65.5,
+              119.1,
+              194.0
+            ]
+          ]
+        }
+      ],
+      "_TEMPORARY_note": "临时结构，schema 改造（S-3）后必须重录为正式 groups 字段。本结构刻意不使用伪造的公共管径轴：三种管材的管径序列互不对齐（塑料管 13 档、铸铁管 7 档、钢管 7 档），强行共用一根 columns 轴会造成规格与数值错配，进而高估泄流量。"
     },
     "mandatory_level": "reference",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -901,8 +1309,17 @@
     },
     "subject": "pipe_hydraulic_formula",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -929,7 +1346,9 @@
     "unit": "m_per_s",
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -967,7 +1386,9 @@
     "subject": "overflow_facility_capacity",
     "mandatory_level": "recommended",
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": true,
     "provenance": {

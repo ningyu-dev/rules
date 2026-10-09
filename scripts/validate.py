@@ -116,8 +116,14 @@ def check_provenance(rule: dict, path: str, rep: Report, strict: bool) -> None:
     if not isinstance(prov, dict):
         return
 
-    if not prov.get("page"):
+    page = prov.get("page")
+    if page is None or page == "":
         rep.add(Issue("error", "E003", path, "provenance.page 缺失"))
+    elif page == 0:
+        # 0 表示待补，是合法状态（草稿阶段常态），仅告警不阻断。
+        # 绝不能编造页码；复核时必须填真实页码。
+        rep.add(Issue("warn", "W006", path,
+                      "provenance.page 为 0（待补），复核时须填真实页码"))
 
     extracted = prov.get("extracted_by")
     if not extracted:
@@ -129,6 +135,43 @@ def check_provenance(rule: dict, path: str, rep: Report, strict: bool) -> None:
 
     if not prov.get("verified_by") and strict:
         rep.add(Issue("error", "W002", path, "严格模式下要求全部条目已复核"))
+
+
+def check_mandatory_level_consistency(rule: dict, path: str, rep: Report) -> None:
+    """强制性等级与措辞的一致性检查。
+
+    规范用词直接决定等级，不可凭印象填写：
+      「必须/严禁/不应/不得」  -> strong_clause 或 mandatory_general_code
+      「宜/不宜」             -> recommended
+    把推荐级标成强条会让用户误以为必须遵守，是最危险的一类错误：
+    新人照抄示例会把软约束做成硬约束。
+    """
+    if rule.get("content_type") != "clause":
+        return
+
+    stmt = rule.get("statement") or ""
+    level = rule.get("mandatory_level")
+
+    # 措辞含「宜」但标为强条 → 拔高
+    if level in ("strong_clause", "mandatory_general_code"):
+        if any(w in stmt for w in ("宜为", "宜按", "宜取", "宜在", "不宜")):
+            rep.add(Issue("error", "E007", path,
+                          f"statement 用「宜」但 mandatory_level={level}："
+                          "推荐级被拔高为强条，会误导用户"))
+
+
+def check_requires_human_flag(rule: dict, path: str, rep: Report) -> None:
+    """软判断规则必须显式标 requires_human。
+
+    规范无条文依据、依赖工程经验的规则，若未标记则会被当作
+    可自动校验的硬约束，绕过用户确认。
+    """
+    level = rule.get("mandatory_level")
+    if level in ("engineering_practice", "reference"):
+        if "requires_human" not in rule:
+            rep.add(Issue("warn", "W007", path,
+                          f"mandatory_level={level} 但未标 requires_human："
+                          "该类规则须显式标注是否需人工确认"))
 
 
 def check_version(rule: dict, path: str, rep: Report) -> None:
@@ -180,6 +223,7 @@ def main() -> int:
         print(f"找不到 schema：{SCHEMA_PATH}")
         return 2
 
+
     schema = load_schema()
     required_props = set(schema.get("required", []))
 
@@ -199,6 +243,8 @@ def main() -> int:
         check_numeric_value(rule, path, rep)
         check_duplicate(seen, rule, path, rep)
         check_exception_refs(rule, path, known, rep)
+        check_mandatory_level_consistency(rule, path, rep)
+        check_requires_human_flag(rule, path, rep)
 
         missing_schema = required_props - set(rule.keys())
         if missing_schema:
@@ -219,13 +265,29 @@ def main() -> int:
         print(f"  WARN   [{issue.code}] {issue.path}\n         {issue.message}")
 
     print("-" * 60)
+    if rep.checked == 0:
+        # 0 条不能报「通过」。必须区分两种成因：
+        #   a) 规则库确实为空
+        #   b) 条目存在但被过滤条件全部排除
+        # 后者是假阳性来源，会让人误以为草稿已通过校验。
+        if include_samples:
+            print("未找到任何条目（含样本模式）。请检查 rules/ 目录。")
+        else:
+            print("规则库为空 —— 本次未校验任何条目。")
+            print("注意：以下情况也会导致此结果，请勿误认为校验通过：")
+            print("  · 条目文件均以下划线 _ 开头（被当作测试样本排除）")
+            print("  · 条目文件位于 tests/ 目录（被排除）")
+            print("  · rules/ 目录下没有 .json 文件")
+            print("草稿请用 --include-samples 校验。")
+        return 3
+
     if rep.errors:
         print(f"不通过：{len(rep.errors)} 个错误，{len(rep.warnings)} 个警告")
         return 1
     if rep.warnings:
         print(f"通过（有警告）：{len(rep.warnings)} 个警告")
         return 0
-    print("通过")
+    print(f"通过：{rep.checked} 条全部合规")
     return 0
 
 

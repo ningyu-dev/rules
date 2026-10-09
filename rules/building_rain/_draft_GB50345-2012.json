@@ -11,8 +11,18 @@
     "statement": "屋面应适当划分排水区域，排水路线应简捷，排水应通畅。",
     "subject": "roof_drainage_zone_division",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -38,8 +48,17 @@
     "value": 2,
     "unit": "count",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "system": ["gravity"]
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -65,9 +84,20 @@
     "value": 300,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应",
+      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -93,9 +123,20 @@
     "value": 100,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不应",
+      "reason": "条文使用「不应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -121,9 +162,20 @@
     "value": 200,
     "unit": "mm",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "条文使用「不得」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -150,8 +202,12 @@
     "unit": "ratio",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -177,9 +233,20 @@
     "value": 0.03,
     "unit": "ratio",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不应",
+      "reason": "条文使用「不应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true
+    },
     "applies_to": {
-      "roof_material": ["concrete"],
-      "system": ["gravity"]
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -206,9 +273,16 @@
     "unit": "ratio",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity", "siphonic"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": true,
     "exceptions": [
@@ -241,9 +315,16 @@
     "unit": "ratio",
     "mandatory_level": "recommended",
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity", "siphonic"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": true,
     "provenance": {
@@ -269,10 +350,25 @@
     "value": 30,
     "unit": "m",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应设置",
+      "reason": "条文使用「应设置」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {
@@ -295,10 +391,25 @@
     "statement": "内檐沟及内天沟应设置溢流口或溢流系统。",
     "subject": "inner_gutter_overflow_required",
     "mandatory_level": "recommended",
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "应设置",
+      "reason": "条文使用「应设置」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
+      "blocks_production": true,
+      "safety_critical": true,
+      "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
+    },
     "applies_to": {
-      "roof_material": ["metal"],
-      "building_type": ["steel_factory"],
-      "system": ["gravity"]
+      "roof_material": [
+        "metal"
+      ],
+      "building_type": [
+        "steel_factory"
+      ],
+      "system": [
+        "gravity"
+      ]
     },
     "requires_human": false,
     "provenance": {

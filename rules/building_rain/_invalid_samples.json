@@ -1,7 +1,7 @@
 [
   {
     "_comment": "以下均为故意违规条目，用于验证 validate.py 的检查能力。不应录入生产库。",
-    "rule_id": "GB50015-2019-5.2.9",
+    "rule_id": "TEST-GB50015-2019-5.2.9-explanation",
     "standard": "GB 50015",
     "standard_year": 2019,
     "clause": "5.2.9",
@@ -18,7 +18,7 @@
   },
   {
     "_comment": "缺 standard_year，违反 D-003",
-    "rule_id": "GB50015-appendix-F",
+    "rule_id": "TEST-GB50015-appendix-F",
     "standard": "GB 50015",
     "clause": "附录F",
     "category": "appendix_table",
@@ -45,7 +45,7 @@
   },
   {
     "_comment": "ai_assisted 但未复核；阈值非正数；exceptions 指向不存在的条文",
-    "rule_id": "GB50345-2012-4.3.2",
+    "rule_id": "TEST-GB50345-2012-4.3.2",
     "standard": "GB 50345",
     "standard_year": 2012,
     "clause": "4.3.2",
@@ -65,7 +65,7 @@
   },
   {
     "_comment": "缺 provenance，违反 E003",
-    "rule_id": "GB50015-2019-5.2.8",
+    "rule_id": "TEST-GB50015-2019-5.2.8",
     "standard": "GB 50015",
     "standard_year": 2019,
     "clause": "5.2.8",
@@ -78,7 +78,7 @@
   },
   {
     "_comment": "rule_id 重复",
-    "rule_id": "GB50015-2019-5.2.11",
+    "rule_id": "TEST-GB50015-2019-5.2.11",
     "standard": "GB 50015",
     "standard_year": 2019,
     "clause": "5.2.11",
