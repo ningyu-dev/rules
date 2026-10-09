@@ -64,11 +64,25 @@ def main() -> int:
     print("校验脚本 · 反向注入自检")
     print("=" * 60)
 
+    # 全程捕获 SelfTestFailure。
+    # 为什么必须全局捕获：本脚本的目的是「证明校验脚本能抓出缺陷」。
+    # 若自检本身失败却抛出裸 traceback，输出会被调用栈淹没——
+    # 「为什么自检失败」这个信息被淹没，与第 4 轮「脚本没在校验却报通过」
+    # 同型：表面是一个失败，实际原因不可见。故此处必须给出明确中文提示。
     try:
-        checklist = find_checklist()
+        return _run()
     except SelfTestFailure as e:
-        print(f"[F] {e}")
-        return 2
+        print(f"\n    [F] 自检失败：{e}")
+        print("        注意：本脚本用于验证校验脚本的有效性。")
+        print("        自检失败不等于校验脚本无效——先查本脚本的注入种子是否与清单匹配。")
+        return 3
+    except Exception as e:  # noqa: BLE001 兜底，避免裸 traceback
+        print(f"\n    [F] 自检意外异常：{type(e).__name__} {e}")
+        return 4
+
+
+def _run() -> int:
+    checklist = find_checklist()
 
     print(f"目标清单：{checklist.name}")
     print(f"目标校验：{VERIFY.name}")
