@@ -1,0 +1,312 @@
+[
+  {
+    "rule_id": "GB50345-2012-4.2.5",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.5",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面应适当划分排水区域，排水路线应简捷，排水应通畅。",
+    "subject": "roof_drainage_zone_division",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.5 屋面应适当划分排水区域,排水路线应简捷,排水应通畅。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.2.6",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.6",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "采用重力式排水时，屋面每个汇水面积内，雨水排水立管不宜少于2根，水落口和水落管的位置，应根据建筑物的造型要求和屋面汇水情况等因素确定。",
+    "subject": "min_vertical_pipes_per_catchment",
+    "comparator": ">=",
+    "value": 2,
+    "unit": "count",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.6 采用重力式排水时,屋面每个汇水面积内,雨水排水立管不宜少于2根,水落口和水落管的位置,应根据建筑物的造型要求和屋面汇水情况等因素确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.2.11",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.11",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "檐沟、天沟的过水断面，应根据屋面汇水面积的雨水流量经计算确定。钢筋混凝土檐沟、天沟净宽不应小于300mm，分水线处最小深度不应小于100mm；沟内纵向坡度不应小于1%，沟底水落差不得超过200mm；檐沟、天沟排水不得流经变形缝和防火墙。",
+    "subject": "rc_gutter_min_width",
+    "comparator": ">=",
+    "value": 300,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.11 檐沟、天沟的过水断面,应根据屋面汇水面积的雨水流量经计算确定。钢筋混凝土檐沟、天沟净宽不应小于300mm,分水线处最小深度不应小于100mm;沟内纵向坡度不应小于1%,沟底水落差不得超过200mm;檐沟、天沟排水不得流经变形缝和防火墙。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.2.11-depth",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.11",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "钢筋混凝土檐沟、天沟净宽不应小于300mm，分水线处最小深度不应小于100mm；沟内纵向坡度不应小于1%，沟底水落差不得超过200mm。",
+    "subject": "rc_gutter_depth_at_dividing_line",
+    "comparator": ">=",
+    "value": 100,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.11 钢筋混凝土檐沟、天沟净宽不应小于300mm,分水线处最小深度不应小于100mm;沟内纵向坡度不应小于1%,沟底水落差不得超过200mm。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.2.11-drop",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.11",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "沟底水落差不得超过200mm。",
+    "subject": "gutter_bottom_drop_max",
+    "comparator": "<=",
+    "value": 200,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.11 ……沟内纵向坡度不应小于1%,沟底水落差不得超过200mm。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.2.12",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.2.12",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "金属檐沟、天沟的纵向坡度宜为0.5%。",
+    "subject": "metal_gutter_longitudinal_slope_recommended",
+    "comparator": ">=",
+    "value": 0.005,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.2.12 金属檐沟、天沟的纵向坡度宜为0.5%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.3.1",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.3.1",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "混凝土结构层宜采用结构找坡，坡度不应小于3%；当采用材料找坡时，宜采用质量轻、吸水率低和有一定强度的材料，坡度宜为2%。",
+    "subject": "concrete_roof_finding_slope",
+    "comparator": ">=",
+    "value": 0.03,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.3.1 混凝土结构层宜采用结构找坡,坡度不应小于3%;当采用材料找坡时,宜采用质量轻、吸水率低和有一定强度的材料,坡度宜为2%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.9.7",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.9.7",
+    "category": "building_rain",
+    "scope": "steel_factory_roof",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "压型金属板采用咬口锁边连接时，屋面的排水坡度不宜小于5%；压型金属板采用紧固件连接时，屋面的排水坡度不宜小于10%。",
+    "subject": "metal_roof_panel_slope_locked_seam",
+    "comparator": ">=",
+    "value": 0.05,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "building_type": ["steel_factory"],
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": true,
+    "exceptions": [
+      {
+        "condition": "本条适用于咬口锁边连接。紧固件连接（螺钉连接）的坡度限值见 GB50345-2012-4.9.7-fastener",
+        "clause_ref": "GB50345-2012-4.9.7"
+      }
+    ],
+    "provenance": {
+      "page": 0,
+      "source_text": "4.9.7 压型金属板采用咬口锁边连接时,屋面的排水坡度不宜小于5%。压型金属板采用紧固件连接时,屋面的排水坡度不宜小于10%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.9.7-fastener",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.9.7",
+    "category": "building_rain",
+    "scope": "steel_factory_roof",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "压型金属板采用紧固件连接时，屋面的排水坡度不宜小于10%。",
+    "subject": "metal_roof_panel_slope_fastener",
+    "comparator": ">=",
+    "value": 0.1,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "building_type": ["steel_factory"],
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.9.7 压型金属板采用紧固件连接时,屋面的排水坡度不宜小于10%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.9.8",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.9.8",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "金属檐沟、天沟的伸缩缝间距不宜大于30m；内檐沟及内天沟应设置溢流口或溢流系统；沟内宜按0.5%找坡。",
+    "subject": "metal_gutter_expansion_joint_spacing",
+    "comparator": "<=",
+    "value": 30,
+    "unit": "m",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.9.8 金属檐沟,天沟的伸缩缝间距不宜大于30m;内檐沟及内天沟应设置溢流口或溢流系统;沟内宜按0.5%找坡。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50345-2012-4.9.8-overflow",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.9.8",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "内檐沟及内天沟应设置溢流口或溢流系统。",
+    "subject": "inner_gutter_overflow_required",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.9.8 ……内檐沟及内天沟应设置溢流口或溢流系统;沟内宜按0.5%找坡。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]

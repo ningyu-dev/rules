@@ -1,0 +1,169 @@
+[
+  {
+    "rule_id": "ENGINEERING-PRACTICE-rainhead-spacing",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "【工程经验，无规范出处】雨水斗间距一般按 15~24m 布置，跨度大或雨量大时取小值。依据：GB 50015-2019 5.2.17 仅要求「宜均匀布置」，未给出任何间距数值；GB 50345-2012 条文说明 4.2.6 有「每个水落口的汇水面积宜为150㎡~200㎡」的说法，但属条文说明（content_type=explanation，禁止参与校验），且为面积口径而非间距口径。",
+    "subject": "rainhead_spacing_practice",
+    "comparator": "between",
+    "value": 15,
+    "value_max": 24,
+    "unit": "m",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范原文。本条为行业惯例，来源不可追溯至规范条文。原技术方案引用来源为钢结构厂商科普文章，非技术标准。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "ENGINEERING-PRACTICE-rainheads-per-hanging-pipe",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "【工程经验，无规范出处】一根悬吊管连接的雨水斗不宜超过4个。依据：GB 50015-2019 全文无此规定。相关规范层面的约束是 5.2.34-2（悬吊管按式4.5.4-1/4.5.4-2计算，充满度取0.8）与 5.2.34 条文说明（多斗系统泄流能力不均，需按统一折减处理）。待确认：CJJ 142-2014 是否含此要求。",
+    "subject": "rainheads_per_hanging_pipe_practice",
+    "comparator": "<=",
+    "value": 4,
+    "unit": "count",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范原文。本条为行业惯例，来源不可追溯至规范条文。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "ENGINEERING-PRACTICE-downpipe-spacing",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "【工程经验，无规范出处】落水管（雨落水管）间距一般按 18~24m 布置。依据：GB 50015-2019 与 GB 50345-2012 均无落水管间距的数值规定。相关的规范约束是 GB 50015-2019 5.2.27「建筑屋面各汇水范围内，雨水排水立管不宜少于2根」（数量约束，非间距约束）与 GB 50345-2012 4.2.6 同款要求。",
+    "subject": "downpipe_spacing_practice",
+    "comparator": "between",
+    "value": 18,
+    "value_max": 24,
+    "unit": "m",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范原文。本条为行业惯例，来源不可追溯至规范条文。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "ENGINEERING-PRACTICE-gutter-mid-drain",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号（条文说明4.2.3提及20m，非50m）",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "【工程经验，无规范出处】天沟长度较大时宜在中部增设排水口。依据：GB 50345-2012 条文说明 4.2.3 提到「一般沟底分水线距水落口的距离超过20m时，可采用除两端外排水口外，在天沟中间增设水落口和内排水管」，但该表述属**条文说明**（按 D-004 禁止参与校验），且阈值为 **20m** 而非技术方案所写的 50m。规范正文中无任何关于增设中间排水口的规定。",
+    "subject": "gutter_mid_drain_threshold_practice",
+    "comparator": ">",
+    "value": 20,
+    "unit": "m",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范条文原文。GB 50345-2012 条文说明 4.2.3：由于多跨厂房因相邻两坡屋面相交，故只能用天沟内排水的方式排出屋面雨水。在进行天沟设计时，尽可能采用天沟外排水的方式…一般沟底分水线距水落口的距离超过20m时，可采用除两端外排水口外，在天沟中间增设水落口和内排水管，排水口的设置同时也确定了找坡分区的划分。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "ENGINEERING-PRACTICE-service-area-limit",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "【工程经验，无规范出处】单个排水系统的服务面积经验上限约 5000㎡。**重要提示：GB 50015-2019 5.2.36-2 的「一个满管压力流多斗系统服务汇水面积不宜大于2500㎡」是针对满管压力流系统的限值，不能用于重力流分支。** 原技术方案疑似将压力流限值误用为重力流限值后又改写为 5000㎡。规范对重力流多斗系统的服务面积上限无明文规定。",
+    "subject": "service_area_limit_practice",
+    "comparator": "<=",
+    "value": 5000,
+    "unit": "m2",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范原文。需注意 GB 50015-2019 5.2.36-2 的 2500㎡ 限值适用于「一个满管压力流多斗系统」，与本重力流分支无关，不得援引。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "ENGINEERING-PRACTICE-multi-head-uneven-discharge",
+    "standard": "无规范出处",
+    "standard_year": 0,
+    "clause": "无条文号",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "【工程经验，无规范出处】多斗重力流系统中，靠近立管的雨水斗泄流能力显著大于远离立管的雨水斗。规范层面的正确依据是 GB 50015-2019 5.2.34-2（悬吊管充满度取0.8）与表5.2.34（统一折减后的斗最大设计排水流量）；**原技术方案引用的「GB 50015 7.3.1」条号不存在**——GB 50015-2019 第7章为「热水及饮水供应」，无此条文。流传的「1根悬吊管接5斗时各斗泄流量之比为1:15:22:80:196、最靠立管两斗占总泄流量87.8%」源自高校公开试验研究报告，非规范条文。",
+    "subject": "multi_head_uneven_discharge_practice",
+    "mandatory_level": "reference",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "无规范条文。相关水力现象描述来自公开学术试验研究文献。规范中仅通过 GB 50015-2019 表5.2.34 的统一折减（系数0.7）与 5.2.34-2 的充满度要求间接体现，未给出逐斗分配条文。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]

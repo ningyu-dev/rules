@@ -1,0 +1,111 @@
+[
+  {
+    "rule_id": "GB55030-2022-4.4.3-2",
+    "standard": "GB 55030",
+    "standard_year": 2022,
+    "clause": "4.4.3",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "屋面排水坡度应根据屋顶结构形式、屋面基层类别、防水构造形式、材料性能及使用环境等条件确定，并应符合下列规定：1 屋面排水坡度应符合表4.4.3的规定；2 当屋面采用结构找坡时，其坡度不应小于3%；3 混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
+    "subject": "structural_finding_slope_min",
+    "comparator": ">=",
+    "value": 0.03,
+    "unit": "ratio",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.4.3 屋面排水坡度应根据屋顶结构形式、屋面基层类别、防水构造形式、材料性能及使用环境等条件确定,并应符合下列规定:1 屋面排水坡度应符合表4.4.3的规定;2 当屋面采用结构找坡时,其坡度不应小于3%;3 混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55030-2022-4.4.3-3",
+    "standard": "GB 55030",
+    "standard_year": 2022,
+    "clause": "4.4.3",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
+    "subject": "concrete_gutter_longitudinal_slope_min",
+    "comparator": ">=",
+    "value": 0.01,
+    "unit": "ratio",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "roof_material": ["concrete"],
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "exceptions": [
+      {
+        "condition": "本条为混凝土屋面檐沟天沟的强条要求。金属天沟的纵向坡度不在本条范围内，适用 GB 50345-2012 4.2.12（宜为0.5%，推荐级）",
+        "clause_ref": "GB55030-2022-4.4.3-3"
+      }
+    ],
+    "provenance": {
+      "page": 0,
+      "source_text": "4.4.3 ……3 混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55030-2022-4.4.4",
+    "standard": "GB 55030",
+    "standard_year": 2022,
+    "clause": "4.4.4",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面应设置独立的雨水收集或排水系统。",
+    "subject": "independent_roof_drainage_system",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.4.4 屋面应设置独立的雨水收集或排水系统。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55030-2022-4.4.5-3",
+    "standard": "GB 55030",
+    "standard_year": 2022,
+    "clause": "4.4.5",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "屋面雨水天沟、檐沟不应跨越变形缝，屋面变形缝泛水处的防水层应设附加层，防水层应铺贴或涂刷至变形缝挡墙顶面。高低跨变形缝在立墙泛水处，应采用有足够变形能力的材料和构造作密封处理。",
+    "subject": "gutter_crossing_deformation_joint_prohibited",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.4.5 屋面工程防水构造设计应符合下列规定：……3 屋面雨水天沟、檐沟不应跨越变形缝,屋面变形缝泛水处的防水层应设附加层,防水层应铺贴或涂刷至变形缝挡墙顶面。高低跨变形缝在立墙泛水处,应采用有足够变形能力的材料和构造作密封处理。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]

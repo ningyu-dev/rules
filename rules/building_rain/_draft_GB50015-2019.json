@@ -1,0 +1,981 @@
+[
+  {
+    "rule_id": "GB50015-2019-5.2.1",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.1",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "formula",
+    "statement": "建筑屋面设计雨水流量应按下式计算：qy=ψ·qj·Fw。当坡度大于2.5%的斜屋面或采用内檐沟集水时，设计雨水流量应乘以系数1.5。式中：qy—设计雨水流量(L/s)；qj—设计暴雨强度[L/(s·hm2)]；ψ—径流系数；Fw—汇水面积(m2)。",
+    "formula": {
+      "expression": "qy = psi * qj * Fw * (slope > 0.025 || inner_eaves_gutter ? 1.5 : 1.0)",
+      "variables": {
+        "qy": "设计雨水流量 (L/s)",
+        "psi": "径流系数，屋面可取 1.00（GB 50015-2019 5.2.6）",
+        "qj": "设计暴雨强度 [L/(s·hm2)]，按当地暴雨强度公式计算（5.2.2）",
+        "Fw": "汇水面积 (m2)，按水平投影面积计算，侧墙附加 1/2（5.2.7）",
+        "slope": "屋面坡度",
+        "inner_eaves_gutter": "是否采用内檐沟集水"
+      },
+      "external_params": ["当地暴雨强度公式 A1/C/b/n（5.2.2）", "设计重现期 P（5.2.4）"]
+    },
+    "subject": "roof_design_rain_flow",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal", "concrete", "membrane"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.1 建筑屋面设计雨水流量应按下式计算：式中：qy——设计雨水流量(L/s)，当坡度大于2.5%的斜屋面或采用内檐沟集水时，设计雨水流量应乘以系数1.5；qj——设计暴雨强度[L/(s·hm2)]；ψ——径流系数；Fw——汇水面积(m2)。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.2",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.2",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "设计暴雨强度应按当地或相邻地区暴雨强度公式计算确定。",
+    "subject": "design_storm_intensity_source",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.2 设计暴雨强度应按当地或相邻地区暴雨强度公式计算确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.3",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.3",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "屋面雨水排水设计降雨历时应按5min计算。",
+    "subject": "design_rain_duration",
+    "comparator": "==",
+    "value": 5,
+    "unit": "min",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.3 屋面雨水排水设计降雨历时应按5min计算。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.4",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.4",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "categorical",
+    "statement": "屋面雨水排水管道工程设计重现期应根据建筑物的重要程度、气象特征等因素确定，各种屋面雨水排水管道工程的设计重现期不宜小于表5.2.4中的规定值。表5.2.4 各类建筑屋面雨水排水管道工程的设计重现期(a)：一般性建筑物屋面 5；重要公共建筑屋面 ≥10。注：工业厂房屋面雨水排水管道工程设计重现期应根据生产工艺、重要程度等因素确定。",
+    "subject": "pipe_design_recurrence_interval",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.4 屋面雨水排水管道工程设计重现期应根据建筑物的重要程度、气象特征等因素确定，各种屋面雨水排水管道工程的设计重现期不宜小于表5.2.4中的规定值。表5.2.4 各类建筑屋面雨水排水管道工程的设计重现期,a。注：工业厂房屋面雨水排水管道工程设计重现期应根据生产工艺,重要程度等因素确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.5",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.5",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "categorical",
+    "statement": "建筑的雨水排水管道工程与溢流设施的排水能力应根据建筑物的重要程度、屋面特征等按下列规定确定：1 一般建筑的总排水能力不应小于10a重现期的雨水量；2 重要公共建筑、高层建筑的总排水能力不应小于50a重现期的雨水量；3 当屋面无外檐天沟或无直接散水条件且采用溢流管道系统时，总排水能力不应小于100a重现期的雨水量；4 满管压力流排水系统雨水排水管道工程的设计重现期宜采用10a；5 工业厂房屋面雨水排水管道工程与溢流设施的总排水能力设计重现期应根据生产工艺、重要程度等因素确定。",
+    "subject": "total_drainage_capacity_recurrence",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.5 建筑的雨水排水管道工程与溢流设施的排水能力应根据建筑物的重要程度、屋面特征等按下列规定确定：1 一般建筑的总排水能力不应小于10a重现期的雨水量；2 重要公共建筑,高层建筑的总排水能力不应小于50a重现期的雨水量；3 当屋面无外檐天沟或无直接散水条件且采用溢流管道系统时,总排水能力不应小于100a重现期的雨水量；4 满管压力流排水系统雨水排水管道工程的设计重现期宜采用10a；5 工业厂房屋面雨水排水管道工程与溢流设施的总排水能力设计重现期应根据生产工艺,重要程度等因素确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.6",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.6",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "屋面的雨水径流系数可取1.00，当采用屋面绿化时，应按绿化面积和相关规范选取径流系数。",
+    "subject": "roof_runoff_coefficient",
+    "comparator": "==",
+    "value": 1.0,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal", "concrete", "membrane"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.6 屋面的雨水径流系数可取1.00,当采用屋面绿化时,应按绿化面积和相关规范选取径流系数。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.7",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.7",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "屋面的汇水面积应按屋面水平投影面积计算，高出裙房屋面的毗邻侧墙，应附加其最大受雨面正投影的1/2计算，窗井、贴近高层建筑外墙的地下汽车库出入口坡道应附加其高出部分侧墙面积的1/2。",
+    "subject": "side_wall_catchment_area_ratio",
+    "comparator": "==",
+    "value": 0.5,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.7 屋面的汇水面积应按屋面水平投影面积计算，高出裙房屋面的毗邻侧墙，应附加其最大受雨面正投影的1/2计算，窗井、贴近高层建筑外墙的地下汽车库出入口坡道应附加其高出部分侧墙面积的1/2。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.8",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.8",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "天沟、檐沟排水不得流经变形缝和防火墙。",
+    "subject": "gutter_crossing_deformation_joint",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.8 天沟、檐沟排水不得流经变形缝和防火墙。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.9",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.9",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "天沟宽度不宜小于300mm，并应满足雨水斗安装要求，坡度不宜小于0.003。",
+    "subject": "gutter_min_width",
+    "comparator": ">=",
+    "value": 300,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal", "concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.9 天沟宽度不宜小于300mm,并应满足雨水斗安装要求,坡度不宜小于0.003。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.9-slope",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.9",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "天沟坡度不宜小于0.003。",
+    "subject": "gutter_longitudinal_slope",
+    "comparator": ">=",
+    "value": 0.003,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal", "concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.9 天沟宽度不宜小于300mm,并应满足雨水斗安装要求,坡度不宜小于0.003。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.10",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.10",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "天沟的设计水深应根据屋面的汇水面积、天沟坡度、天沟宽度、屋面构造和材质、雨水斗的斗前水深、天沟溢流水位确定。排水系统有坡度的檐沟、天沟分水线处最小有效深度不应小于100mm。",
+    "subject": "gutter_effective_depth_at_dividing_line",
+    "comparator": ">=",
+    "value": 100,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": ["metal", "concrete"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.10 天沟的设计水深应根据屋面的汇水面积、天沟坡度、天沟宽度、屋面构造和材质、雨水斗的斗前水深、天沟溢流水位确定。排水系统有坡度的檐沟、天沟分水线处最小有效深度不应小于100mm。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.11",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.11",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "建筑屋面雨水排水工程应设置溢流孔口或溢流管系等溢流设施，且溢流排水不得危害建筑设施和行人安全。",
+    "subject": "overflow_facility_required",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "exceptions": [
+      {
+        "condition": "外檐天沟排水、可直接散水的屋面雨水排水，可不设溢流设施",
+        "clause_ref": "GB50015-2019-5.2.11"
+      },
+      {
+        "condition": "民用建筑雨水管道单斗内排水系统、重力流多斗内排水系统按重现期P大于或等于100a设计时，可不设溢流设施。注意：条文明确限定为「民用建筑」，工业厂房不得援引本例外",
+        "clause_ref": "GB50015-2019-5.2.11"
+      }
+    ],
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.11 建筑屋面雨水排水工程应设置溢流孔口或溢流管系等溢流设施,且溢流排水不得危害建筑设施和行人安全。下列情况下可不设溢流设施：1 外檐天沟排水,可直接散水的屋面雨水排水；2 民用建筑雨水管道单斗内排水系统,重力流多斗内排水系统按重现期P大于或等于100a设计时。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.12",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.12",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "建筑屋面雨水溢流设施的泄流量宜按本标准附录F确定。",
+    "subject": "overflow_capacity_calculation_ref",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.12 建筑屋面雨水溢流设施的泄流量宜按本标准附录F确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.13",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.13",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "categorical",
+    "statement": "屋面雨水排水管道系统设计流态应符合下列规定：1 檐沟外排水宜按重力流系统设计；2 高层建筑屋面雨水排水宜按重力流系统设计；3 长天沟外排水宜按满管压力流设计；4 工业厂房、库房、公共建筑的大型屋面雨水排水宜按满管压力流设计；5 在风沙大、粉尘大、降雨量小地区不宜采用满管压力流排水系统。",
+    "subject": "system_flow_state_selection",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.13 屋面雨水排水管道系统设计流态应符合下列规定：1 檐沟外排水宜按重力流系统设计；2 高层建筑屋面雨水排水宜按重力流系统设计；3 长天沟外排水宜按满管压力流设计；4 工业厂房、库房、公共建筑的大型屋面雨水排水宜按满管压力流设计；5 在风沙大、粉尘大、降雨量小地区不宜采用满管压力流排水系统。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.15",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.15",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "雨水斗外边缘距天沟或集水槽装饰面净距不得小于50mm。",
+    "subject": "rainhead_edge_clearance",
+    "comparator": ">=",
+    "value": 50,
+    "unit": "mm",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.15 雨水斗外边缘距天沟或集水槽装饰面净距不得小于50mm。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.16",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.16",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面排水系统应设置雨水斗，不同排水特征的屋面雨水排水系统应选用相应的雨水斗。",
+    "subject": "rainhead_type_match_flow_state",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.16 屋面排水系统应设置雨水斗,不同排水特征的屋面雨水排水系统应选用相应的雨水斗。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.17",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.17",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "formula",
+    "statement": "雨水斗数量应按屋面总的雨水流量和每个雨水斗的设计排水负荷确定，且宜均匀布置。",
+    "formula": {
+      "expression": "n = ceil(Q_total / Q_single_head)",
+      "variables": {
+        "n": "雨水斗数量",
+        "Q_total": "屋面总雨水流量 (L/s)，按 5.2.1 计算",
+        "Q_single_head": "单个雨水斗设计排水负荷 (L/s)，按表5.2.34 或厂家实测报告"
+      },
+      "external_params": ["表5.2.34 或 CJ/T 245-2021 厂家测试报告的斗前水深-流量曲线"]
+    },
+    "subject": "rainhead_count",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.17 雨水斗数量应按屋面总的雨水流量和每个雨水斗的设计排水负荷确定,且宜均匀布置。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.18",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.18",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "雨水斗的设置位置应根据屋面汇水情况并结合建筑结构承载、管系敷设等因素确定。",
+    "subject": "rainhead_location_basis",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.18 雨水斗的设置位置应根据屋面汇水情况并结合建筑结构承载,管系敷设等因素确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.21",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.21",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "除土建专业允许外，雨水管道不得敷设在结构层或结构柱内。",
+    "subject": "pipe_in_structure_layer",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.21 除土建专业允许外,雨水管道不得敷设在结构层或结构柱内。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.22",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.22",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "裙房屋面的雨水应单独排放，不得汇入高层建筑屋面排水管道系统。",
+    "subject": "podium_roof_separate_discharge",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.22 裙房屋面的雨水应单独排放,不得汇入高层建筑屋面排水管道系统。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.23",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.23",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "高层建筑雨落水管的雨水排至裙房屋面时，应将其雨水量计入裙房屋面的雨水量，且应采取防止水流冲刷裙房屋面的技术措施。",
+    "subject": "high_rising_to_podium_flow_included",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.23 高层建筑雨落水管的雨水排至裙房屋面时,应将其雨水量计入裙房屋面的雨水量,且应采取防止水流冲刷裙房屋面的技术措施。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.27",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.27",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "建筑屋面各汇水范围内，雨水排水立管不宜少于2根。",
+    "subject": "min_vertical_pipes_per_catchment",
+    "comparator": ">=",
+    "value": 2,
+    "unit": "count",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.27 建筑屋面各汇水范围内,雨水排水立管不宜少于2根。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.30",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.30",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "重力流雨水排水系统中长度大于15m的雨水悬吊管，应设检查口，其间距不宜大于20m，且应布置在便于维修操作处。",
+    "subject": "hanging_pipe_inspection_port_spacing",
+    "comparator": "<=",
+    "value": 20,
+    "unit": "m",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.30 重力流雨水排水系统中长度大于15m的雨水悬吊管,应设检查口,其间距不宜大于20m,且应布置在便于维修操作处。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.34-1",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.34",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "lookup_table",
+    "statement": "重力流多斗系统雨水斗的最大设计排水流量应符合表5.2.34的规定。表5.2.34 重力流多斗系统的雨水斗设计最大排水流量：雨水斗规格(mm) 75/100/150；流量(L/s) 7.1/7.4/13.7；斗前水深(mm) 48/50/68。",
+    "subject": "gravity_rainhead_max_capacity",
+    "lookup_table": {
+      "x_axis_label": "雨水斗规格 (mm)",
+      "y_axis_label": "指标",
+      "rows": ["最大设计排水流量 (L/s)", "斗前水深 (mm)"],
+      "columns": [75, 100, 150],
+      "values": [
+        [7.1, 7.4, 13.7],
+        [48, 50, 68]
+      ],
+      "interpolation": "none"
+    },
+    "mandatory_level": "reference",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "表5.2.34 重力流多斗系统的雨水斗设计最大排水流量。表下注释（条文说明）：本条系屋面雨水重力流多斗系统按常规重力流排水管渠的设计方法。表5.2.34中雨水斗的最大设计排水流量系根据北京建筑大学在测试平台对河北徐水县兴华铸造有限公司提供的G型重力斗进行了尾管0.5m通水能力测试所得泄流量而确定的。考虑到树叶杂物在雨水斗处遮挡，相当于增加了雨水斗的阻力，乘以系数0.7。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.34-2",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.34",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "重力流多斗系统雨水悬吊管水力计算应按本标准式(4.5.4-1)、式(4.5.4-2)计算，雨水悬吊管充满度应取0.8，排出管充满度应取1.0。",
+    "subject": "hanging_pipe_fill_ratio",
+    "comparator": "==",
+    "value": 0.8,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.34 重力流多斗系统设计应符合下列规定：2 雨水悬吊管水力计算应按本标准式(4.5.4-1)、式(4.5.4-2)计算,雨水悬吊管充满度应取0.8,排出管充满度应取1.0。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.34-3",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.34",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "重力流多斗系统立管不得小于悬吊管管径。当一根立管连接2根或2根以上悬吊管时，立管的最大设计排水流量宜按本标准附录G确定。",
+    "subject": "vertical_pipe_vs_hanging_pipe_diameter",
+    "comparator": ">=",
+    "value": 0,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.34 重力流多斗系统设计应符合下列规定：3 重力流多斗系统立管不得小于悬吊管管径,当一根立管连接2根或2根以上悬吊管时,立管的最大设计排水流量宜按本标准附录G确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.38",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.38",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "lookup_table",
+    "statement": "建筑雨水管道的最小管径和横管的最小设计坡度，宜按表5.2.38确定。表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度：建筑外墙雨落水管 铸铁管/钢管 75、塑料管 75；雨水排水立管 铸铁管/钢管 100、塑料管 110；重力流排水悬吊管、埋地管 铸铁管/钢管 100、塑料管 110，横管最小设计坡度 0.010(铸铁钢管)/0.005(塑料管)；满管压力流屋面排水悬吊支管 铸铁管/钢管 50、塑料管 50，横管最小设计坡度 0.000。注：表中铸铁管管径为公称直径，括号内数据为塑料管外径。",
+    "subject": "rain_pipe_min_diameter_and_slope",
+    "lookup_table": {
+      "x_axis_label": "管别",
+      "y_axis_label": "铸铁管/钢管最小管径 (mm)",
+      "rows": ["建筑外墙雨落水管", "雨水排水立管", "重力流排水悬吊管、埋地管", "满管压力流屋面排水悬吊支管"],
+      "columns": [75, 100, 50, 50],
+      "values": [
+        [75],
+        [100],
+        [100],
+        [50]
+      ],
+      "interpolation": "none"
+    },
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度,宜按表5.2.38确定。表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。注：表中铸铁管管径为公称直径,括号内数据为塑料管外径。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.38-plastic",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.38",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "lookup_table",
+    "statement": "表5.2.38 塑料管最小管径（括号内数据为塑料管外径）：建筑外墙雨落水管 75；雨水排水立管 110；重力流排水悬吊管、埋地管 110；满管压力流屋面排水悬吊支管 50。",
+    "subject": "rain_pipe_min_diameter_plastic",
+    "lookup_table": {
+      "x_axis_label": "管别",
+      "y_axis_label": "塑料管最小外径 (mm)",
+      "rows": ["建筑外墙雨落水管", "雨水排水立管", "重力流排水悬吊管、埋地管", "满管压力流屋面排水悬吊支管"],
+      "columns": [75, 110, 110, 50],
+      "values": [
+        [75],
+        [110],
+        [110],
+        [50]
+      ],
+      "interpolation": "none"
+    },
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。注：表中铸铁管管径为公称直径,括号内数据为塑料管外径。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.38-slope",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.38",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "lookup_table",
+    "statement": "表5.2.38 横管最小设计坡度：重力流排水悬吊管、埋地管 0.010(铸铁管、钢管)/0.005(塑料管)；满管压力流屋面排水悬吊支管 0.000。",
+    "subject": "rain_pipe_min_slope",
+    "lookup_table": {
+      "x_axis_label": "管别",
+      "y_axis_label": "横管最小设计坡度",
+      "rows": ["重力流排水悬吊管、埋地管（铸铁管、钢管）", "重力流排水悬吊管、埋地管（塑料管）", "满管压力流屋面排水悬吊支管"],
+      "columns": [0.01, 0.005, 0.0],
+      "values": [
+        [0.01],
+        [0.005],
+        [0.0]
+      ],
+      "interpolation": "none"
+    },
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "表5.2.38 建筑雨水管道的最小管径和横管的最小设计坡度。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.2.39",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.39",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "重力流雨水排水系统当采用外排水时，可选用建筑排水塑料管；当采用内排水雨水系统时，宜采用承压塑料管、金属管或涂塑钢管等管材。",
+    "subject": "gravity_rain_pipe_material",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.2.39 雨水排水管材选用应符合下列规定：1 重力流雨水排水系统当采用外排水时,可选用建筑排水塑料管,当采用内排水雨水系统时,宜采用承压塑料管、金属管或涂塑钢管等管材。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-appendix-G",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "附录G",
+    "category": "appendix_table",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "table",
+    "rule_type": "lookup_table",
+    "statement": "附录G 重力流系统立管的最大设计排水流量。表G 重力流系统屋面雨水排水立管的泄流量表。铸铁管：DN75 4.30、DN100 9.50、DN125 17.00、DN150 27.80、DN200 60.00、DN250 108.00、DN300 176.00 (L/s)。塑料管(公称外径×壁厚)：75×2.3 4.50、90×3.2 7.40、110×3.2 12.80、125×3.2 18.30、125×3.7 18.00、160×4.0 35.50、160×4.7 34.70、200×4.9 64.60、200×5.9 62.80、250×6.2 117.00、250×7.3 114.10、315×7.7 217.00、315×9.2 211.00 (L/s)。钢管(公称外径×壁厚)：88.9×4.0 5.10、114.3×4.0 9.40、139.7×4.0 17.10、168.3×4.5 30.80、219.1×6.0 65.50、273.0×7.0 119.10、323.9×7.0 194.00 (L/s)。",
+    "subject": "gravity_vertical_pipe_max_capacity",
+    "lookup_table": {
+      "x_axis_label": "公称直径 DN(mm) 或 公称外径×壁厚 (mm)",
+      "y_axis_label": "最大泄流量 (L/s)",
+      "rows": ["铸铁管", "塑料管", "钢管"],
+      "columns": [75, 100, 125, 150, 200, 250, 300],
+      "values": [
+        [4.30, 9.50, 17.00, 27.80, 60.00, 108.00, 176.00],
+        [4.50, 7.40, 18.30, 35.50, 64.60, 117.00, 217.00],
+        [5.10, 9.40, 17.10, 30.80, 65.50, 119.10, 194.00]
+      ],
+      "interpolation": "none"
+    },
+    "mandatory_level": "reference",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "附录G 重力流系统立管的最大设计排水流量。表G 重力流系统屋面雨水排水立管的泄流量表。条文说明（5.2.34）：本标准表G的数据系根据重力流系统立管的最大设计排水流量系按威廉.埃顿(Whly.Eaton)方程式计算，立管管中雨水充满率为0.33时的排水流量确定的。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-4.5.4",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "4.5.4",
+    "category": "hydraulic_calc",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "formula",
+    "statement": "排水横管的水力计算应按下列公式计算：Q=ω·v；v=(1/n)·R^(2/3)·I^(1/2)。式中：A(ω)——管道在设计充满度的过水断面(m2)；v——速度(m/s)；R——水力半径(m)；I——水力坡度；n——管渠粗糙系数，塑料管取0.009，铸铁管取0.013，钢管取0.012。",
+    "formula": {
+      "expression": "Q = A * v;  v = (1/n) * R^(2/3) * I^(1/2)",
+      "variables": {
+        "Q": "设计流量 (m3/s)",
+        "A": "管道在设计充满度的过水断面 (m2)",
+        "v": "流速 (m/s)",
+        "R": "水力半径 (m)，A/湿周",
+        "I": "水力坡度",
+        "n": "管渠粗糙系数：塑料管 0.009、铸铁管 0.013、钢管 0.012"
+      },
+      "external_params": []
+    },
+    "subject": "pipe_hydraulic_formula",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.4 排水横管的水力计算,应按下列公式计算。式中：A——管道在设计充满度的过水断面(m2);v——速度(m/s);R——水力半径(m);I——水力坡度;n——管渠粗糙系数。塑料管取0.009,铸铁管取0.013,钢管取0.012。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-5.3.16",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.3.16",
+    "category": "building_rain",
+    "scope": "site_drainage",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "小区雨水管道宜按满管重力流设计，管内流速不宜小于0.75m/s。",
+    "subject": "site_rain_pipe_min_velocity",
+    "comparator": ">=",
+    "value": 0.75,
+    "unit": "m_per_s",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "5.3.16 小区雨水管道宜按满管重力流设计,管内流速不宜小于0.75m/s。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB50015-2019-appendix-F",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "附录F",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "table",
+    "rule_type": "formula",
+    "statement": "附录F 屋面溢流设施泄流量计算。F.0.1 金属天沟溢流孔溢流量可按下式计算（式中：qyL—溢流量(L/s)；byL—溢流孔宽度(m)；400—流量系数；hy1—溢流水位高度(m)；g—重力加速度(m/s2)）。F.0.2 墙体方孔溢流量可按下列公式计算：1 当溢流水位hy1>100mm时，按下式计算；2 当溢流水位hy1≤100mm时，按下式计算（式中：σ—溢流水流断面面积与天沟断面面积之比，即σ=ω/Ω；ω为溢流水流断面面积(㎡)；Ω为天沟断面面积(㎡)）。F.0.3 墙体圆管溢流量可按下式计算（式中：dyL—溢流管内径(m)；hy2—天沟水位至管中心淹没高度(m)）。注：式(F.0.3)只有在淹没流时才成立。F.0.4 漏斗形管式溢流量可按下式计算（式中：DyL—漏斗喇叭口直径(m)；hy3—喇叭口上边缘溢流水位深度(m)）。F.0.5 直管式溢流量可按本标准式(F.0.4)计算，其中DyL=dyL，为直管式溢流管内径。",
+    "formula": {
+      "expression": "PENDING_VERIFICATION: 五个公式的精确代数式待官方PDF核对。已确认变量名：qyL/byL/hy1(400); σ=ω/Ω; dyL/hy2(仅淹没流); DyL/hy3",
+      "variables": {
+        "qyL": "溢流量 (L/s)",
+        "byL": "溢流孔宽度 (m)",
+        "hy1": "溢流水位高度 (m)",
+        "sigma": "σ=ω/Ω，溢流水流断面面积与天沟断面面积之比",
+        "dyL": "溢流管内径 (m)",
+        "hy2": "天沟水位至管中心淹没高度 (m)",
+        "DyL": "漏斗喇叭口直径 (m)",
+        "hy3": "喇叭口上边缘溢流水位深度 (m)"
+      },
+      "external_params": []
+    },
+    "subject": "overflow_facility_capacity",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "F.0.1 金属天沟溢流孔溢流量可按下式计算。式中：qyL——溢流量(L/s);byL——溢流孔宽度(m);400——流量系数;hy1——溢流水位高度(m);g——重力加速度(m/s2)。F.0.2 墙体方孔溢流量可按下列公式计算:1 当溢流水位hy1>100mm时,按下式计算;2 当溢流水位hy1≤100mm时,按下式计算。式中：σ——溢流水流断面面积与天沟断面面积之比,即σ=ω/Ω。F.0.3 墙体圆管溢流量可按下式计算。式中：dyL——溢流管内径(m);hy2——天沟水位至管中心淹没高度(m)。注：式(F.0.3)只有在淹没流时才成立。F.0.4 漏斗形管式溢流量可按下式计算。F.0.5 直管式溢流量可按本标准式(F.0.4)计算,其中DyL=dyL,为直管式溢流管内径。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]

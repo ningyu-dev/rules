@@ -1,0 +1,196 @@
+[
+  {
+    "rule_id": "GB55020-2021-4.5.1",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.1",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面雨水应有组织排放。",
+    "subject": "roof_rain_organized_discharge",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.1 屋面雨水应有组织排放。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.2",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.2",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面雨水排除、溢流设施的设置和排水能力不得影响屋面结构、墙体及人员安全，且应符合下列规定：1 屋面雨水排水系统应保证及时排除设计重现期的雨水量，且在超过设计重现期雨水状况时溢流设施应能安全可靠运行；2 屋面雨水排水系统的设计重现期应根据建筑物的重要程度、系统要求以及出现水患可能造成的财产损失或建筑损害的严重级别来确定。",
+    "subject": "overflow_safety_and_recurrence_principle",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.2 屋面雨水排除、溢流设施的设置和排水能力不得影响屋面结构、墙体及人员安全,且应符合下列规定:1 屋面雨水排水系统应保证及时排除设计重现期的雨水量,且在超过设计重现期雨水状况时溢流设施应能安全可靠运行;2 屋面雨水排水系统的设计重现期应根据建筑物的重要程度、系统要求以及出现水患可能造成的财产损失或建筑损害的严重级别来确定。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.3",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.3",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "屋面雨水收集或排水系统应独立设置，严禁与建筑生活污水、废水排水连接。严禁在民用建筑室内设置敞开式检查口或检查井。",
+    "subject": "rainwater_system_independence",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.3 屋面雨水收集或排水系统应独立设置,严禁与建筑生活污水、废水排水连接。严禁在民用建筑室内设置敞开式检查口或检查井。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.5",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.5",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "雨水斗与天沟、檐沟连接处应采取防水措施。",
+    "subject": "rainhead_gutter_joint_waterproof",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.5 雨水斗与天沟、檐沟连接处应采取防水措施。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.6",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.6",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "屋面雨水排水系统的管道、附配件以及连接接口应能耐受屋面灌水高度产生的正压。雨水斗标高高于250m的屋面雨水系统，管道、附配件以及连接接口承压能力不应小于2.5MPa。",
+    "subject": "rain_pipe_positive_pressure_resistance",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity", "siphonic"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.6 屋面雨水排水系统的管道、附配件以及连接接口应能耐受屋面灌水高度产生的正压。雨水斗标高高于250m的屋面雨水系统,管道、附配件以及连接接口承压能力不应小于2.5MPa。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.9",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.9",
+    "category": "building_rain",
+    "scope": "steel_factory_gravity_rainwater",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "塑料雨水排水管道不得布置在工业厂房的高温作业区。",
+    "subject": "plastic_rain_pipe_in_high_temp_zone",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "building_type": ["steel_factory"],
+      "system": ["gravity"]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.9 塑料雨水排水管道不得布置在工业厂房的高温作业区。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.10",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.10",
+    "category": "building_rain",
+    "scope": "site_drainage",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "室外雨水口应设置在雨水控制利用设施末端，以溢流形式排放；超过雨水径流控制要求的降雨溢流排入市政雨水管渠。",
+    "subject": "outdoor_rain_inlet_at_control_facility_end",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {
+      "system": ["gravity"]
+    },
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.10 室外雨水口应设置在雨水控制利用设施末端,以溢流形式排放;超过雨水径流控制要求的降雨溢流排入市政雨水管渠。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  },
+  {
+    "rule_id": "GB55020-2021-4.5.12",
+    "standard": "GB 55020",
+    "standard_year": 2021,
+    "clause": "4.5.12",
+    "category": "site_drainage",
+    "scope": "site_drainage",
+    "content_type": "clause",
+    "rule_type": "constructive",
+    "statement": "大于10hm2的场地应进行雨水控制及利用专项设计，雨水控制及利用应采用土壤入渗系统、收集回用系统、调蓄排放系统。",
+    "subject": "site_rain_control_special_design_threshold",
+    "comparator": ">",
+    "value": 10,
+    "unit": "hm2",
+    "mandatory_level": "mandatory_general_code",
+    "applies_to": {},
+    "requires_human": true,
+    "provenance": {
+      "page": 0,
+      "source_text": "4.5.12 大于10hm2的场地应进行雨水控制及利用专项设计,雨水控制及利用应采用土壤入渗系统、收集回用系统、调蓄排放系统。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]
