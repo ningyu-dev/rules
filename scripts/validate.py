@@ -61,16 +61,30 @@ def load_schema() -> dict:
     return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 
-def load_rules() -> list[tuple[str, dict]]:
+def load_rules(include_samples: bool = False) -> list[tuple[str, dict]]:
+    """加载生产规则。
+
+    排除 _ 前缀文件与 tests/ 目录：那里存放故意违规的测试样本，
+    不是生产数据。早期版本用 rglob("*.json") 扫全目录，导致测试
+    样本被当生产规则校验，还污染 known 集合使 W005 失效。
+
+    include_samples=True 时纳入样本，仅用于验证检查项本身是否生效。
+    """
     out: list[tuple[str, dict]] = []
     if not RULES_DIR.exists():
         return out
+
     for path in sorted(RULES_DIR.rglob("*.json")):
+        rel = path.relative_to(RULES_DIR)
+        # 测试样本：文件名以 _ 开头，或位于 tests/ 下
+        is_sample = path.name.startswith("_") or rel.parts[0] == "tests"
+        if is_sample and not include_samples:
+            continue
         data = json.loads(path.read_text(encoding="utf-8"))
-        rel = str(path.relative_to(ROOT))
+        str_path = str(path.relative_to(ROOT))
         items = data if isinstance(data, list) else [data]
         for item in items:
-            out.append((rel, item))
+            out.append((str_path, item))
     return out
 
 
@@ -159,6 +173,7 @@ def check_exception_refs(rule: dict, path: str, known: set[str], rep: Report) ->
 
 def main() -> int:
     strict = "--strict" in sys.argv
+    include_samples = "--include-samples" in sys.argv
     rep = Report()
 
     if not SCHEMA_PATH.exists():
@@ -168,7 +183,7 @@ def main() -> int:
     schema = load_schema()
     required_props = set(schema.get("required", []))
 
-    rules = load_rules()
+    rules = load_rules(include_samples=include_samples)
     rep.files = len({p for p, _ in rules})
     rep.checked = len(rules)
 
@@ -191,7 +206,10 @@ def main() -> int:
                           f"缺失 schema 要求字段：{sorted(missing_schema)}"))
 
     print("=" * 60)
-    print(f"规则库校验  模式：{'strict' if strict else 'normal'}")
+    mode = "strict" if strict else "normal"
+    if include_samples:
+        mode += " +samples"
+    print(f"规则库校验  模式：{mode}")
     print(f"文件 {rep.files} 个，条目 {rep.checked} 条")
     print("=" * 60)
 
