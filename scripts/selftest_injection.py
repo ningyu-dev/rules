@@ -24,18 +24,28 @@ from __future__ import annotations
 
 import hashlib
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
 import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CHECKLIST_GLOB = "核对*.md"
+# 与 verify_checklist.py 使用同一套 glob，避免自检与被检定位到
+# 不同文件而给出虚假结论（清单改名时两者必须同步变化）。
+CHECKLIST_GLOB = "*核对*.md"
 VERIFY = ROOT / "scripts" / "verify_checklist.py"
 
-# 注入内容：复制一行已存在的清单行，使清单多出一行。
-# 按内容匹配而非按标题匹配 —— 标题会变，内容稳定。
-SEED = "EP-rainhead-spacing"
+# 注入内容：复制一行清单数据行，使清单多出一行。
+#
+# 不硬编码具体条目或标题——本项目已两次因硬编码失效：一次 marker
+# 写成 '### ## P3'（实际 '### P3'），一次精确等值匹配遇标题含
+# 全角空格抛 ValueError。两次表面都是「校验通过」，实际是注入没发生。
+#
+# 仅靠「表格行 + 反引号」也不够：清单内还有说明性表格（证据等级
+# 说明、优先级总览等），复制那些行不会触发任何断言。必须要求首列
+# 是形如 GB50015-2019-xxx / EP-xxx 的 rule_id。
+ROW_MARKER = re.compile(r"^\|\s*`((?:GB|CJJ|CJT|EP)-[^`]+)`\s*\|")
 
 
 class SelfTestFailure(Exception):
@@ -102,9 +112,12 @@ def _run() -> int:
         try:
             # 注入：复制一行真实存在的清单行
             lines = checklist.read_text(encoding="utf-8").splitlines(keepends=True)
-            seed_lines = [l for l in lines if SEED in l]
+            seed_lines = [l for l in lines if ROW_MARKER.match(l.strip())]
             if not seed_lines:
-                raise SelfTestFailure(f"未找到注入种子行：{SEED}")
+                raise SelfTestFailure(
+                    "未找到可注入的清单数据行（形如 `| `GB50015-…` |`）。"
+                    "请检查 ROW_MARKER 是否仍匹配清单结构。"
+                )
             checklist.write_text(
                 checklist.read_text(encoding="utf-8") + seed_lines[0],
                 encoding="utf-8",
