@@ -20,14 +20,32 @@
 from __future__ import annotations
 
 import collections
+import glob
 import json
 import pathlib
 import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CHECKLIST = ROOT / "docs" / "核对任务清单.md"
 RULES_DIR = ROOT / "rules" / "building_rain"
+
+# 清单文件名可能调整（如「核对任务清单」→「屋面雨水核对清单」），
+# 因此按 glob 匹配而非硬编码路径。硬编码会在改名后突然失效，
+# 且失效时可能报「文件不存在」被误认为「清单为空」。
+_CHECKLIST_GLOB = str(ROOT / "docs" / "*核对*.md")
+
+
+def resolve_checklist() -> pathlib.Path:
+    matches = glob.glob(_CHECKLIST_GLOB)
+    if not matches:
+        raise SystemExit(f"未找到核对清单：{_CHECKLIST_GLOB}")
+    if len(matches) > 1:
+        raise SystemExit(
+            f"匹配到多个清单文件，无法确定用哪个：\n  "
+            + "\n  ".join(matches)
+            + "\n请保留一个，或调整 glob。"
+        )
+    return pathlib.Path(matches[0])
 
 # 清单表格数据行：以反引号包裹的 rule_id 开头
 ROW_RE = re.compile(r"^\| `((?:GB|EP)[^`]+)` \|")
@@ -47,9 +65,7 @@ def load_rule_ids() -> list[str]:
 def main() -> int:
     errors: list[str] = []
 
-    if not CHECKLIST.exists():
-        print(f"找不到清单：{CHECKLIST}")
-        return 1
+    CHECKLIST = resolve_checklist()
 
     text = CHECKLIST.read_text(encoding="utf-8")
     rows = [m.group(1) for m in (ROW_RE.match(line) for line in text.split("\n")) if m]
