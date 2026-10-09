@@ -12,6 +12,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -219,6 +220,43 @@ def check_numeric_value(rule: dict, path: str, rep: Report) -> None:
                       f"阈值非正数：{value}，请确认是否录错"))
 
 
+def check_schema_patterns(rule: dict, path: str, rep: Report, schema: dict,
+                          undefined_seen: set[str]) -> None:
+    """执行 schema 中的 pattern 与 additionalProperties 约束。
+
+    此前本脚本只比对 required 字段列表，不执行 pattern 与
+    additionalProperties，因此「31 条 rule_id 不合规」这类问题
+    查不出来——草稿看起来完全合规。这是 D-009/D-010 同源的盲区：
+    校验层自己少查了东西，却报「通过」。
+
+    不引外部依赖（jsonschema），只手写这两类约束——它们是本项目
+    实际用到的全部。schema 若日后引入 draft-07 其他关键字，需相应
+    扩展本函数。
+
+    undefined_seen 收集未定义字段名，用于末尾汇总——大量条目重复
+    报同一个缺失字段会淹没输出。
+    """
+    props: dict = schema.get("properties", {})
+    additional_allowed = schema.get("additionalProperties", True)
+
+    # 1. additionalProperties: false —— 拒绝 schema 未定义的字段
+    if additional_allowed is False:
+        for key in rule:
+            if key not in props and not key.startswith("_"):
+                undefined_seen.add(key)
+                rep.add(Issue("error", "E009", path,
+                              f"出现 schema 未定义的字段 `{key}`"
+                              "（additionalProperties=false）"))
+
+    # 2. pattern —— 正则约束（如 rule_id 格式）
+    for key, spec in props.items():
+        pattern = spec.get("pattern") if isinstance(spec, dict) else None
+        value = rule.get(key)
+        if pattern and isinstance(value, str) and not re.match(pattern, value):
+            rep.add(Issue("error", "E010", path,
+                          f"`{key}` = `{value}` 不匹配 pattern: {pattern}"))
+
+
 def check_duplicate(seen: dict[str, str], rule: dict, path: str, rep: Report) -> None:
     rid = rule.get("rule_id")
     if not rid:
@@ -259,6 +297,7 @@ def main() -> int:
     known = {r.get("rule_id") for _, r in rules if r.get("rule_id")}
 
     seen: dict[str, str] = {}
+    undefined_seen: set[str] = set()
     for path, rule in rules:
         check_required(rule, path, rep)
         check_content_type(rule, path, rep)
@@ -270,6 +309,7 @@ def main() -> int:
         check_mandatory_level_consistency(rule, path, rep)
         check_requires_human_flag(rule, path, rep)
         check_blocking_marked(rule, path, rep)
+        check_schema_patterns(rule, path, rep, schema, undefined_seen)
 
         missing_schema = required_props - set(rule.keys())
         if missing_schema:
@@ -288,6 +328,13 @@ def main() -> int:
         print(f"  ERROR  [{issue.code}] {issue.path}\n         {issue.message}")
     for issue in rep.warnings:
         print(f"  WARN   [{issue.code}] {issue.path}\n         {issue.message}")
+
+    if undefined_seen:
+        print("-" * 60)
+        print(f"schema 缺失定义：{len(undefined_seen)} 个字段被使用但未定义")
+        for f in sorted(undefined_seen):
+            print(f"  · {f}")
+        print("  → 需扩展 schema（对应 S-1/S-3/S-4），否则 additionalProperties=false 会拒绝这些条目")
 
     print("-" * 60)
     if rep.checked == 0:
