@@ -1,0 +1,96 @@
+[
+  {
+    "_comment": "以下均为故意违规条目，用于验证 validate.py 的检查能力。不应录入生产库。",
+    "rule_id": "GB50015-2019-5.2.9",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.9",
+    "category": "building_rain",
+    "content_type": "explanation",
+    "rule_type": "numeric_threshold",
+    "statement": "条文说明示例：斗距可根据工程实际情况适当放宽（本条为条文说明，非正文）。",
+    "subject": "rainhead_spacing",
+    "comparator": "<=",
+    "value": 24,
+    "unit": "m",
+    "mandatory_level": "reference",
+    "provenance": { "page": 88, "extracted_by": "manual" }
+  },
+  {
+    "_comment": "缺 standard_year，违反 D-003",
+    "rule_id": "GB50015-appendix-F",
+    "standard": "GB 50015",
+    "clause": "附录F",
+    "category": "appendix_table",
+    "content_type": "table",
+    "rule_type": "lookup_table",
+    "statement": "屋面雨水溢流设施的泄流量计算表。",
+    "subject": "overflow_discharge_capacity",
+    "mandatory_level": "reference",
+    "lookup_table": {
+      "x_axis_label": "水深 mm",
+      "y_axis_label": "泄流量 L/s",
+      "rows": [50, 75, 100, 150, 200],
+      "columns": [1.0, 1.5, 2.0, 3.0],
+      "values": [
+        [0.35, 0.52, 0.70, 1.05],
+        [0.62, 0.93, 1.24, 1.86],
+        [0.95, 1.42, 1.90, 2.84],
+        [1.75, 2.63, 3.51, 5.26],
+        [2.80, 4.20, 5.60, 8.40]
+      ],
+      "interpolation": "linear"
+    },
+    "provenance": { "page": 148, "extracted_by": "ai_assisted" }
+  },
+  {
+    "_comment": "ai_assisted 但未复核；阈值非正数；exceptions 指向不存在的条文",
+    "rule_id": "GB50345-2012-4.3.2",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.3.2",
+    "category": "building_rain",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "金属压型钢板屋面设计坡度不应小于 5%（示例条目，数值为故意填错）。",
+    "subject": "roof_design_slope",
+    "comparator": ">=",
+    "value": 0,
+    "unit": "ratio",
+    "mandatory_level": "mandatory_general_code",
+    "exceptions": [
+      { "condition": "单坡排水屋面宽度超过 12m 时", "clause_ref": "GB50345-2012-4.3.5" }
+    ],
+    "provenance": { "page": 22, "extracted_by": "ai_assisted", "verified_by": null }
+  },
+  {
+    "_comment": "缺 provenance，违反 E003",
+    "rule_id": "GB50015-2019-5.2.8",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.8",
+    "category": "building_rain",
+    "content_type": "clause",
+    "rule_type": "prohibition",
+    "statement": "天沟、檐沟排水不得流经变形缝和防火墙。",
+    "subject": "gutter_crossing_deformation_joint",
+    "mandatory_level": "strong_clause"
+  },
+  {
+    "_comment": "rule_id 重复",
+    "rule_id": "GB50015-2019-5.2.11",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "clause": "5.2.11",
+    "category": "building_rain",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "重复条目，用于验证重复检测。",
+    "subject": "gutter_longitudinal_slope",
+    "comparator": ">=",
+    "value": 0.005,
+    "unit": "ratio",
+    "mandatory_level": "strong_clause",
+    "provenance": { "page": 87, "extracted_by": "manual" }
+  }
+]

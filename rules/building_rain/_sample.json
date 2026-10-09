@@ -1,0 +1,30 @@
+[
+  {
+    "rule_id": "GB50015-2019-5.2.11",
+    "standard": "GB 50015",
+    "standard_year": 2019,
+    "standard_revision": "2019 局部修订",
+    "clause": "5.2.11",
+    "category": "building_rain",
+    "scope": "metal_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "金属天沟的纵向坡度不应小于 0.5%。",
+    "subject": "gutter_longitudinal_slope",
+    "comparator": ">=",
+    "value": 0.005,
+    "unit": "ratio",
+    "mandatory_level": "strong_clause",
+    "applies_to": {
+      "roof_material": ["metal"],
+      "system": ["gravity"]
+    },
+    "provenance": {
+      "page": 87,
+      "source_text": "……金属天沟的纵向坡度不应小于 0.5%……",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
+  }
+]

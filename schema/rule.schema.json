@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ningyu-dev.github.io/rules/schema/rule.schema.json",
+  "title": "宁雨规范规则",
+  "description": "单条规范规则的schema。设计原则见 docs/DESIGN.md",
+  "type": "object",
+  "required": ["rule_id", "standard", "standard_year", "clause", "category", "content_type", "rule_type", "statement", "provenance"],
+  "additionalProperties": false,
+
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "pattern": "^GB\\d{5}-\\d{4}-(\\d+\\.\\d+(\\.\\d+)*|appendix-[A-Z])$",
+      "description": "规则唯一标识。格式为 标准号-年份-条文号。条文号支持多级如 5.2.11，附录用 appendix-A"
+    },
+    "standard": {
+      "type": "string",
+      "description": "标准号，不含年份。如 GB 50015"
+    },
+    "standard_year": {
+      "type": "integer",
+      "description": "标准版本年份。规范会局部换版，此字段用于版本隔离，不得省略"
+    },
+    "standard_revision": {
+      "type": "string",
+      "description": "局部修订标记，如 2019 局部修订。无则省略"
+    },
+    "clause": {
+      "type": "string",
+      "description": "条文号，如 5.2.11 或 附录F"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "general",
+        "building_rain",
+        "site_drainage",
+        "sewage",
+        "water_supply",
+        "hydraulic_calc",
+        "appendix_table"
+      ],
+      "description": "规则所属子系统"
+    },
+    "scope": {
+      "type": "string",
+      "description": "适用范围描述，如 steel_roof_gutter"
+    },
+
+    "content_type": {
+      "type": "string",
+      "enum": ["clause", "explanation", "table"],
+      "description": "clause=规范正文（可参与校验）；explanation=条文说明（禁止参与校验）；table=附录表格。条文与条文说明物理隔离的依据"
+    },
+
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "numeric_threshold",
+        "lookup_table",
+        "formula",
+        "categorical",
+        "prohibition",
+        "constructive"
+      ],
+      "description": "rule_type 决定需要哪些附加字段。numeric_threshold 需要 comparator/value/unit；lookup_table 需要 axes/values；formula 需要 formula 引用"
+    },
+
+    "statement": {
+      "type": "string",
+      "description": "条文原文或等义转述。禁止包含条文说明内容"
+    },
+
+    "subject": {
+      "type": "string",
+      "description": "被约束的工程量标识符，如 gutter_longitudinal_slope。计算内核依赖此字段索引"
+    },
+    "comparator": {
+      "type": "string",
+      "enum": [">=", "<=", ">", "<", "==", "!=", "between", "in"],
+      "description": "比较符。numeric_threshold 必填"
+    },
+    "value": {
+      "description": "阈值。numeric_threshold 必填",
+      "type": ["number", "string"]
+    },
+    "value_max": {
+      "type": "number",
+      "description": "阈值上界。comparator=between 时必填"
+    },
+    "unit": {
+      "type": "string",
+      "description": "单位，如 mm / ratio / m_per_s / L_per_s。ratio 为无量纲比值"
+    },
+
+    "mandatory_level": {
+      "type": "string",
+      "enum": [
+        "strong_clause",
+        "mandatory_general_code",
+        "recommended",
+        "reference"
+      ],
+      "description": "强制等级。strong_clause=规范强条；mandatory_general_code=强制性通用规范强条；recommended=推荐；reference=仅供参考（如设计手册取值）"
+    },
+
+    "applies_to": {
+      "type": "object",
+      "description": "适用条件。字段值均为字符串数组，规则仅在全部条件匹配时生效",
+      "properties": {
+        "roof_material": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "metal / concrete / membrane 等"
+        },
+        "system": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["gravity", "siphonic"]},
+          "description": "排水系统形式"
+        },
+        "building_type": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "steel_factory / clean_room / chemical 等"
+        },
+        "pipe_filled_ratio_state": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "water / full 等"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "exceptions": {
+      "type": "array",
+      "description": "例外条件。每条例外须引用自身条文号，避免无出处",
+      "items": {
+        "type": "object",
+        "required": ["condition", "clause_ref"],
+        "properties": {
+          "condition": {"type": "string"},
+          "clause_ref": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    },
+
+    "lookup_table": {
+      "type": "object",
+      "description": "rule_type=lookup_table 时必填。将规范附录表格表达为可计算结构",
+      "required": ["x_axis_label", "y_axis_label", "rows", "columns", "values"],
+      "properties": {
+        "x_axis_label": {"type": "string"},
+        "y_axis_label": {"type": "string"},
+        "rows": {"type": "array", "items": {"type": "number"}},
+        "columns": {"type": "array", "items": {"type": "number"}},
+        "values": {
+          "type": "array",
+          "description": "二维数组，values[row_index][column_index]",
+          "items": {"type": "array", "items": {"type": "number"}}
+        },
+        "interpolation": {
+          "type": "string",
+          "enum": ["none", "linear", "linear_on_log"],
+          "description": "表内插值方式。none=超出范围即报错，不外推"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "formula": {
+      "type": "object",
+      "description": "rule_type=formula 时必填。公式参数指向外部参数表",
+      "required": ["expression"],
+      "properties": {
+        "expression": {"type": "string"},
+        "variables": {
+          "type": "object",
+          "description": "变量名到含义的映射",
+          "additionalProperties": {"type": "string"}
+        },
+        "external_params": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "需外部查表的参数名，如 暴雨强度公式的城市参数"
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "provenance": {
+      "type": "object",
+      "description": "溯源信息。缺少此块的数据不得进入生产库",
+      "required": ["page", "extracted_by"],
+      "properties": {
+        "page": {"type": "integer", "description": "原文所在页码"},
+        "source_text": {
+          "type": "string",
+          "description": "条文原文。注意：规范数值事实不受著作权保护，但商业数据库的整理成果可能受保护，公开分发前需确认"
+        },
+        "extracted_by": {
+          "type": "string",
+          "enum": ["manual", "ai_assisted"],
+          "description": "录入方式。ai_assisted 必须经人工复核"
+        },
+        "verified_by": {"type": ["string", "null"]},
+        "verified_at": {"type": ["string", "null"], "format": "date-time"}
+      },
+      "additionalProperties": false
+    }
+  }
+}

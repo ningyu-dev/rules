@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 规范原文归档（版权与体积考虑，不入库）
+*.pdf
+archive/
+
+# 规则库生成物
+*.db
+*.sqlite3
+index/
