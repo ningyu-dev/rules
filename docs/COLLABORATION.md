@@ -41,6 +41,24 @@
 
 两个成员对同一问题给出不同结论时，**以文件实际内容为准**，不是以最后写入的为准。实测优先于自述。
 
+### 6. 只推 main，禁止 `git push --all`
+
+本地可能存在 `backup/*` 分支（历史重写前的回退点）。这些分支里可能有**不宜公开的过程文档**——它们被 `.gitignore` 挡在正常提交之外，但 `git push --all` 会把分支连同历史一起推上去，等于绕过忽略规则。
+
+```bash
+git push origin main      # 正确
+git push --all            # 禁止
+```
+
+`backup/*` 分支一律不设上游（`upstream` 为空），这样普通 `git push` 不会带上它。判断方法：
+
+```bash
+git for-each-ref --format="%(refname:short) upstream=%(upstream:short)" refs/heads
+```
+
+只要 `backup/*` 的 `upstream` 是空的，它就只存在于本地。
+
+
 ## 已验证的协作教训
 
 | 教训 | 代价 |
