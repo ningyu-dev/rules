@@ -6,12 +6,17 @@
   "type": "object",
   "required": ["rule_id", "standard", "standard_year", "clause", "category", "content_type", "rule_type", "statement", "provenance"],
   "additionalProperties": false,
+  "patternProperties": {
+    "^_": {
+      "description": "下划线前缀为临时/占位字段的既定逃逸口。校验脚本对其降级为警告而非错误，但正式投产前必须清除（见 D-011）。"
+    }
+  },
 
   "properties": {
     "rule_id": {
       "type": "string",
-      "pattern": "^GB\\d{5}-\\d{4}-(\\d+\\.\\d+(\\.\\d+)*|appendix-[A-Z])$",
-      "description": "规则唯一标识。格式为 标准号-年份-条文号。条文号支持多级如 5.2.11，附录用 appendix-A"
+      "pattern": "^(?:(?:GB\\d{5}|CJJ\\s?\\d+|CJ/T\\s?\\d+|JGJ\\s?\\d+|CECS\\s?\\d+)-\\d{4}-(?:\\d+(?:\\.\\d+)*|appendix-[A-Za-z])(?:-[A-Za-z0-9]+)*|EP-[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*|TEST-[A-Za-z0-9.\\-]+)$",
+      "description": "规则唯一标识。格式为 标准号-年份-条文号，可带后缀。条文号支持多级（5.2.11）与附录（appendix-G）；后缀表达同一条文下的并列约束（-1/-2/-3 为款次，-slope/-depth/-external 为语义区分）。EP- 为无标准出处的工程经验条目，TEST- 为校验用样本。年份不可省——版本隔离是硬约束（D-003），省掉年份等于放弃版本追溯。"
     },
     "standard": {
       "type": "string",
@@ -101,7 +106,56 @@
         "recommended",
         "reference"
       ],
-      "description": "强制等级。strong_clause=规范强条；mandatory_general_code=强制性通用规范强条；recommended=推荐；reference=仅供参考（如设计手册取值）"
+      "description": "强制等级。strong_clause=规范强条；mandatory_general_code=强制性通用规范强条；recommended=推荐；reference=仅供参考（如设计手册取值）。注意：本字段只接受上述四个字面值。历史上曾把字段名 mandatory_level_pending 当作哨兵值写入本字段（tag_blocking.py 旧版缺陷，见 D-011），导致 36 条规则在内核中落入未定义分支。待定级信息一律写入 mandatory_level_pending 对象，不得污染本字段。"
+    },
+
+    "mandatory_level_pending": {
+      "type": "object",
+      "description": "待定级承载结构（S-4 落地前的临时方案）。mandatory_level 保留真实基线值，本对象记录待定级的依据与阻断要求。具备本对象的条目一律不得投产。",
+      "required": ["intended_level", "normative_verb", "blocks_production"],
+      "properties": {
+        "_TEMPORARY": {"type": "boolean"},
+        "intended_level": {
+          "type": "string",
+          "enum": ["clause", "strong_clause", "mandatory_general_code", "recommended", "reference"],
+          "description": "按规范措辞应当归属的等级。clause 档当前不在 mandatory_level 枚举内（S-4 未完成）"
+        },
+        "normative_verb": {
+          "type": "string",
+          "description": "条文中的强制模态词，如 应设置 / 不应 / 严禁。空值即unknowable，不可填 unknown 以外的占位"
+        },
+        "reason": {"type": "string"},
+        "blocks_production": {"type": "boolean"},
+        "safety_critical": {"type": "boolean"},
+        "safety_reason": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+
+    "intended_level": {
+      "type": "string",
+      "enum": ["clause", "strong_clause", "mandatory_general_code", "recommended", "reference"],
+      "description": "mandatory_level_pending.intended_level 的顶层镜像，便于检索。两者必须一致，脚本应校验。"
+    },
+    "normative_verb": {
+      "type": "string",
+      "description": "mandatory_level_pending.normative_verb 的顶层镜像"
+    },
+    "blocks_production": {
+      "type": "boolean",
+      "description": "为 true 时该条目禁止进入生产库。与 mandatory_level_pending 同时出现"
+    },
+    "safety_critical": {
+      "type": "boolean",
+      "description": "安全关键条目（涉及溢流、防水、荷载、人员安全）。误判为可跳过将直接产生安全隐患"
+    },
+    "safety_reason": {
+      "type": "string",
+      "description": "判定为安全关键的依据，须写明失效后果而不只是复述关键词"
+    },
+    "requires_human": {
+      "type": "boolean",
+      "description": "该条是否需要人工确认后才可采纳。规范只给判断原则而无量化值时必为 true（如工程经验条目、须结合项目条件的条文）"
     },
 
     "applies_to": {
@@ -117,6 +171,11 @@
           "type": "array",
           "items": {"type": "string", "enum": ["gravity", "siphonic"]},
           "description": "排水系统形式"
+        },
+        "rainhead_system": {
+          "type": "array",
+          "items": {"type": "string", "enum": ["single", "multi"]},
+          "description": "单斗内排水（single）或多斗系统（multi）。GB 50015-2019 对两者分别规定：5.2.34 适用于多斗系统并按表 5.2.34 取单斗排水能力；5.2.35 适用于单斗内排水系统，其重力流工况的斗能力按附录 G 确定。缺此维度会把表 5.2.34 的多斗值套到单斗系统上（7.4 vs 附录 G 的 12.8），属「用错场景」。"
         },
         "building_type": {
           "type": "array",
@@ -148,25 +207,89 @@
 
     "lookup_table": {
       "type": "object",
-      "description": "rule_type=lookup_table 时必填。将规范附录表格表达为可计算结构",
-      "required": ["x_axis_label", "y_axis_label", "rows", "columns", "values"],
+      "description": "rule_type=lookup_table 时必填。规范附录表格的可计算表达，支持三种形态，三者至少提供一种且非空（由 validate.py 的 E016 检查）：①矩阵 values —— 行轴×列轴对齐的数值网格；②分组 groups —— 若干互不对齐的子表，每组自带 columns 轴（如附录 G 的三种管材）；③行键 entries —— 每行一个具名类别，携带具名指标（如「管别 × 最小管径/坡度」）。**不得为了塞进某一种形态而伪造公共轴**：三种管材规格互不对齐时硬用一根 columns，会把 De110 的 12.80 放到 125 列，查表得 18.30，高估 43%。",
+      "required": ["interpolation"],
       "properties": {
         "x_axis_label": {"type": "string"},
         "y_axis_label": {"type": "string"},
-        "rows": {"type": "array", "items": {"type": "number"}},
-        "columns": {"type": "array", "items": {"type": "number"}},
+        "unit": {"type": "string", "description": "整表统一单位；各行单位不同时改用 entries[].metrics 的具名键表达"},
+        "rows": {
+          "type": "array",
+          "description": "矩阵形态的行轴。允许字符串，用于分类轴（如管材名）",
+          "items": {"type": ["number", "string"]}
+        },
+        "columns": {
+          "type": "array",
+          "description": "矩阵形态的列轴。允许字符串，如塑料管的「外径×壁厚」规格",
+          "items": {"type": ["number", "string"]}
+        },
         "values": {
           "type": "array",
-          "description": "二维数组，values[row_index][column_index]",
+          "description": "二维数组，values[row_index][column_index]。每行长度必须等于 columns 长度（E017）",
           "items": {"type": "array", "items": {"type": "number"}}
+        },
+        "groups": {
+          "type": "array",
+          "description": "分组形态。每组自带 columns 轴，互不共用——这是附录 G 必须用本形态的原因",
+          "items": {
+            "type": "object",
+            "required": ["key", "columns", "values"],
+            "properties": {
+              "key": {"type": "string", "description": "分组标识，如 cast_iron / plastic / steel"},
+              "label": {"type": "string", "description": "人读名称，如「塑料管（公称外径×壁厚，mm）」"},
+              "columns": {
+                "type": "array",
+                "items": {"type": ["number", "string"]},
+                "description": "本组自己的列轴，不得与其他组共用"
+              },
+              "values": {
+                "type": "array",
+                "items": {"type": "array", "items": {"type": "number"}},
+                "description": "本组的数值行；每行长度必须等于本组 columns 长度（E017）"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "entries": {
+          "type": "array",
+          "description": "行键形态。每行一个类别，指标具名——用具名替代「第二行是斗前水深」这类位置约定",
+          "items": {
+            "type": "object",
+            "required": ["key", "metrics"],
+            "properties": {
+              "key": {"type": "string", "description": "行类别，如「雨水排水立管」「直立缝锁边连接板」"},
+              "note": {"type": "string"},
+              "metrics": {
+                "type": "object",
+                "minProperties": 1,
+                "description": "具名指标。值为标量；若该指标随另一维度（如管材）变化，则用「维度值 → 标量」的对象表达",
+                "additionalProperties": {
+                  "anyOf": [
+                    {"type": ["number", "string", "boolean", "null"]},
+                    {
+                      "type": "object",
+                      "additionalProperties": {"type": ["number", "string", "null"]}
+                    }
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
+          }
         },
         "interpolation": {
           "type": "string",
           "enum": ["none", "linear", "linear_on_log"],
-          "description": "表内插值方式。none=超出范围即报错，不外推"
+          "description": "表内插值方式。none=超出范围即报错，不外推。离散管材规格的泄流量上限只能取 none——插值出来的数不对应任何真实管材"
         }
       },
-      "additionalProperties": false
+      "additionalProperties": false,
+      "patternProperties": {
+        "^_": {
+          "description": "临时结构逃逸口。校验降级为警告（W008），投产前必须清除。"
+        }
+      }
     },
 
     "formula": {

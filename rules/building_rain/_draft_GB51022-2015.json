@@ -56,7 +56,7 @@
     "comparator": "<=",
     "value": 300,
     "unit": "m",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -127,7 +127,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.1.11",
@@ -141,27 +143,28 @@
     "statement": "屋面排水坡度不应小于表11.1.11的限值。表11.1.11 屋面排水坡度限值：直立缝锁边连接板 1/30；扣合式连接板及螺钉连接板 1/20。",
     "subject": "steel_roof_panel_slope_by_connection",
     "lookup_table": {
-      "x_axis_label": "TEMPORARY_STRUCTURE__SEE_FILE_HEADER — 行=连接方式",
-      "y_axis_label": "屋面排水坡度限值 (比值)",
-      "rows": [],
-      "columns": [],
-      "values": [],
+      "x_axis_label": "屋面板连接方式",
+      "y_axis_label": "屋面排水坡度上限（比值）",
       "interpolation": "none",
-      "_TEMPORARY_entries": [
+      "entries": [
         {
           "key": "直立缝锁边连接板",
-          "max_slope_ratio": 0.0333,
-          "expression": "1/30"
+          "metrics": {
+            "max_slope_ratio": 0.0333,
+            "expression": "1/30"
+          }
         },
         {
           "key": "扣合式连接板及螺钉连接板",
-          "max_slope_ratio": 0.05,
-          "expression": "1/20"
+          "metrics": {
+            "max_slope_ratio": 0.05,
+            "expression": "1/20"
+          }
         }
       ],
-      "_TEMPORARY_note": "临时结构。此前把坡度限度的「值」当作 columns 轴，且 1/30 记为 0.0333 为近似值（精确值 0.03333…），内核查表时须知这是近似。S-3 落地为 row_keyed 后重录，建议改用分数表达式避免精度损失。"
+      "unit": "ratio"
     },
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -213,7 +216,7 @@
     "comparator": ">=",
     "value": 0.45,
     "unit": "mm",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -293,7 +296,7 @@
     "comparator": ">=",
     "value": 3.0,
     "unit": "mm",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -335,11 +338,11 @@
     "rule_type": "constructive",
     "statement": "天沟应符合下列构造要求：1 房屋的伸缩缝或沉降缝处的天沟应对应设置变形缝。",
     "subject": "gutter_expansion_joint_at_frame_joint",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应符合",
+      "normative_verb": "应设置",
       "reason": "条文使用「应符合」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -403,7 +406,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB51022-2015-11.3.2-3",
@@ -416,7 +421,7 @@
     "rule_type": "constructive",
     "statement": "内天沟应设置溢流口，溢流口顶低于天沟上檐50mm、100mm。当无法设置溢流口时，应适当增加落水管数量。",
     "subject": "internal_gutter_overflow_required",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -454,7 +459,8 @@
     "intended_level": "clause",
     "normative_verb": "应设置",
     "blocks_production": true,
-    "safety_critical": true
+    "safety_critical": true,
+    "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
   },
   {
     "rule_id": "GB51022-2015-11.3.3",
@@ -493,6 +499,8 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   }
 ]

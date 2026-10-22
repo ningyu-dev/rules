@@ -42,6 +42,7 @@ class Issue:
     code: str
     path: str
     message: str
+    rule_id: str | None = None
 
 
 @dataclass
@@ -62,7 +63,7 @@ def load_schema() -> dict:
     return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 
-def load_rules(include_samples: bool = False) -> list[tuple[str, dict]]:
+def load_rules(include_samples: bool = False, drafts_only: bool = False) -> list[tuple[str, dict]]:
     """加载生产规则。
 
     排除 _ 前缀文件与 tests/ 目录：那里存放故意违规的测试样本，
@@ -70,6 +71,8 @@ def load_rules(include_samples: bool = False) -> list[tuple[str, dict]]:
     样本被当生产规则校验，还污染 known 集合使 W005 失效。
 
     include_samples=True 时纳入样本，仅用于验证检查项本身是否生效。
+    drafts_only=True 时只读 _draft_*.json —— 草稿结构必须干净，
+    而 fixture 本来就该报错，两者混在一起时退出码无法表达「草稿是否有问题」。
     """
     out: list[tuple[str, dict]] = []
     if not RULES_DIR.exists():
@@ -77,10 +80,14 @@ def load_rules(include_samples: bool = False) -> list[tuple[str, dict]]:
 
     for path in sorted(RULES_DIR.rglob("*.json")):
         rel = path.relative_to(RULES_DIR)
-        # 测试样本：文件名以 _ 开头，或位于 tests/ 下
-        is_sample = path.name.startswith("_") or rel.parts[0] == "tests"
-        if is_sample and not include_samples:
-            continue
+        if drafts_only:
+            if not path.name.startswith("_draft_"):
+                continue
+        else:
+            # 测试样本：文件名以 _ 开头，或位于 tests/ 下
+            is_sample = path.name.startswith("_") or rel.parts[0] == "tests"
+            if is_sample and not include_samples:
+                continue
         data = json.loads(path.read_text(encoding="utf-8"))
         str_path = str(path.relative_to(ROOT))
         items = data if isinstance(data, list) else [data]
@@ -199,6 +206,112 @@ def check_requires_human_flag(rule: dict, path: str, rep: Report) -> None:
                           "该类规则须显式标注是否需人工确认"))
 
 
+def check_lookup_table(rule: dict, path: str, rep: Report) -> None:
+    """查表的形态与维度一致性。
+
+    三条断言，对应本项目真实踩过的坑：
+
+    E016 三种形态（矩阵 / 分组 / 行键）至少一种非空。
+         曾为塞进旧的 rows/columns/values 而伪造公共轴，把三种互不对齐的
+         管材规格硬并成一根 columns，导致 De110 查表得 18.30（真实 12.80），
+         高估 43% → 立管选小 → 溢流。
+
+    E017 列轴长度必须等于每个数值行的长度。
+         附录 G 那次错位的直接原因就是这一条无人校验：塑料管 13 档塞进
+         7 列，后 6 档静默丢失。
+
+    E018 行键表的 metrics 不得为空——空的 metrics 等于一行只有名字没有内容。
+    """
+    if rule.get("rule_type") != "lookup_table":
+        return
+
+    lt = rule.get("lookup_table")
+    if not isinstance(lt, dict):
+        rep.add(Issue("error", "E016", path,
+                      "rule_type=lookup_table 但缺少 lookup_table 对象"))
+        return
+
+    forms = {
+        "values": lt.get("values"),
+        "groups": lt.get("groups"),
+        "entries": lt.get("entries"),
+    }
+    nonempty = [k for k, v in forms.items() if isinstance(v, list) and v]
+    if not nonempty:
+        rep.add(Issue("error", "E016", path,
+                      "lookup_table 未提供任何非空表体：values / groups / entries 三者至少要有一种"))
+
+    # 矩阵形态的维度一致
+    cols = lt.get("columns") or []
+    rows = lt.get("rows") or []
+    vals = lt.get("values") or []
+    if isinstance(vals, list) and vals:
+        if cols and any(isinstance(r, list) and len(r) != len(cols) for r in vals):
+            widths = sorted({len(r) for r in vals if isinstance(r, list)})
+            rep.add(Issue("error", "E017", path,
+                          f"values 行宽 {widths} 与 columns 长度 {len(cols)} 不一致："
+                          "列轴与数值会错位，查表结果不可用"))
+        if rows and len(rows) != len(vals):
+            rep.add(Issue("error", "E017", path,
+                          f"rows 长度 {len(rows)} 与 values 行数 {len(vals)} 不一致"))
+
+    # 分组形态：每组各自对齐，不得跨组共用列轴
+    for group in lt.get("groups") or []:
+        if not isinstance(group, dict):
+            continue
+        gkey = group.get("key", "?")
+        gcols = group.get("columns") or []
+        gvals = group.get("values") or []
+        if gcols and gvals and any(isinstance(r, list) and len(r) != len(gcols) for r in gvals):
+            widths = sorted({len(r) for r in gvals if isinstance(r, list)})
+            rep.add(Issue("error", "E017", path,
+                          f"分组 `{gkey}` 的 values 行宽 {widths} 与本组 columns 长度 "
+                          f"{len(gcols)} 不一致：该组规格与数值会错位"))
+
+    # 行键形态：metrics 不得为空
+    for entry in lt.get("entries") or []:
+        if not isinstance(entry, dict):
+            continue
+        if not entry.get("metrics"):
+            rep.add(Issue("error", "E018", path,
+                          f"行键 `{entry.get('key', '?')}` 的 metrics 为空："
+                          "只有类别名没有指标，该行不可计算"))
+
+
+def check_pending_consistency(rule: dict, path: str, rep: Report) -> None:
+    """待定级信息的内部一致性。
+
+    顶层 intended_level / normative_verb / blocks_production 是
+    mandatory_level_pending 对象内同名字段的镜像。两者一旦漂移，
+    检索与渲染就会看到两套结论——第 6 轮「同一数字三处不同」的同型。
+    """
+    pend = rule.get("mandatory_level_pending")
+    mirror_keys = ("intended_level", "normative_verb", "blocks_production")
+
+    if not isinstance(pend, dict):
+        if any(k in rule for k in mirror_keys):
+            rep.add(Issue("error", "E015", path,
+                          "存在 intended_level/normative_verb/blocks_production 但缺少"
+                          " mandatory_level_pending 对象：待定级信息不完整"))
+        return
+
+    for key in mirror_keys:
+        if key in rule and rule[key] != pend.get(key):
+            rep.add(Issue("error", "E015", path,
+                          f"顶层 {key}=`{rule[key]}` 与 mandatory_level_pending.{key}="
+                          f"`{pend.get(key)}` 不一致"))
+
+    if pend.get("blocks_production") is not True:
+        rep.add(Issue("warn", "W009", path,
+                      "带待定级对象但 blocks_production 非 true："
+                      "该条可能被当成可用规则"))
+
+    if pend.get("safety_critical") is True and rule.get("safety_critical") is not True:
+        rep.add(Issue("error", "E015", path,
+                      "mandatory_level_pending.safety_critical 为 true，"
+                      "但顶层未标 safety_critical"))
+
+
 def check_version(rule: dict, path: str, rep: Report) -> None:
     year = rule.get("standard_year")
     if year is None:
@@ -222,39 +335,140 @@ def check_numeric_value(rule: dict, path: str, rep: Report) -> None:
 
 def check_schema_patterns(rule: dict, path: str, rep: Report, schema: dict,
                           undefined_seen: set[str]) -> None:
-    """执行 schema 中的 pattern 与 additionalProperties 约束。
+    """执行 schema 中本项目的全部约束：pattern / additionalProperties / enum / type / 嵌套 required。
 
-    此前本脚本只比对 required 字段列表，不执行 pattern 与
-    additionalProperties，因此「31 条 rule_id 不合规」这类问题
-    查不出来——草稿看起来完全合规。这是 D-009/D-010 同源的盲区：
-    校验层自己少查了东西，却报「通过」。
+    历史：本脚本最初只比对 required 字段列表，不执行 pattern 与
+    additionalProperties，因此「31 条 rule_id 不合规」查不出来；
+    补了这两类之后，又漏掉 enum —— 而 mandatory_level 唯一的机器可读
+    约束就是 enum，于是 tag_blocking.py 把字段名当成哨兵值写进枚举字段，
+    36 条规则（含 8 条安全关键）在内核里落入未定义分支，而校验一路绿灯。
 
-    不引外部依赖（jsonschema），只手写这两类约束——它们是本项目
-    实际用到的全部。schema 若日后引入 draft-07 其他关键字，需相应
-    扩展本函数。
+    这说明「补了校验」不等于「校验覆盖了 schema」：校验器自己有没有覆盖
+    全部约束，也需要被断言。见 D-011 与 scripts/selftest_validate.py。
 
     undefined_seen 收集未定义字段名，用于末尾汇总——大量条目重复
     报同一个缺失字段会淹没输出。
     """
-    props: dict = schema.get("properties", {})
-    additional_allowed = schema.get("additionalProperties", True)
+    _check_node(rule, schema, rep, path, "$", undefined_seen, is_root=True)
 
-    # 1. additionalProperties: false —— 拒绝 schema 未定义的字段
-    if additional_allowed is False:
-        for key in rule:
-            if key not in props and not key.startswith("_"):
-                undefined_seen.add(key)
-                rep.add(Issue("error", "E009", path,
-                              f"出现 schema 未定义的字段 `{key}`"
-                              "（additionalProperties=false）"))
 
-    # 2. pattern —— 正则约束（如 rule_id 格式）
-    for key, spec in props.items():
-        pattern = spec.get("pattern") if isinstance(spec, dict) else None
-        value = rule.get(key)
-        if pattern and isinstance(value, str) and not re.match(pattern, value):
+_TYPE_MAP = {
+    "object": dict,
+    "array": list,
+    "string": str,
+    "boolean": bool,
+    "number": (int, float),
+    "integer": int,
+    "null": type(None),
+}
+
+
+def _type_ok(value, spec_type) -> bool:
+    types = spec_type if isinstance(spec_type, list) else [spec_type]
+    for t in types:
+        py = _TYPE_MAP.get(t)
+        if py is None:
+            continue
+        # bool 是 int 的子类，必须排除，否则 "value": true 会被当作合法数值
+        if t in ("number", "integer") and isinstance(value, bool):
+            continue
+        if isinstance(value, py):
+            return True
+    return False
+
+
+def _check_node(value, spec, rep: Report, path: str, locator: str,
+                undefined_seen: set[str], is_root: bool = False) -> None:
+    """按 schema 递归校验一个节点。只实现 schema 实际用到的关键字。"""
+    if not isinstance(spec, dict):
+        return
+
+    # 1. type
+    spec_type = spec.get("type")
+    if spec_type and not _type_ok(value, spec_type):
+        rep.add(Issue("error", "E012", path,
+                      f"{locator} 类型不符：期望 {spec_type}，实际 {type(value).__name__}"))
+        return  # 类型错则不再深入，避免连带噪音
+
+    # 2. enum
+    enum = spec.get("enum")
+    if enum is not None and value not in enum:
+        rep.add(Issue("error", "E011", path,
+                      f"{locator} 取值 `{value}` 不在枚举内：{enum}"))
+
+    # 3. pattern（仅对字符串）
+    if isinstance(value, str):
+        pattern = spec.get("pattern")
+        if pattern and not re.match(pattern, value):
             rep.add(Issue("error", "E010", path,
-                          f"`{key}` = `{value}` 不匹配 pattern: {pattern}"))
+                          f"{locator} = `{value}` 不匹配 pattern: {pattern}"))
+
+    # 4. object
+    if isinstance(value, dict):
+        props: dict = spec.get("properties", {})
+        patterns: dict = spec.get("patternProperties", {})
+        additional = spec.get("additionalProperties", True)
+
+        min_props = spec.get("minProperties")
+        if isinstance(min_props, int) and len(value) < min_props:
+            rep.add(Issue("error", "E018", path,
+                          f"{locator} 至少需要 {min_props} 个字段，实际 {len(value)} 个"))
+
+        for req in spec.get("required", []):
+            # 根节点的 required 由 check_required / missing_schema 负责，
+            # 这里只查嵌套对象，避免同一缺失被三条码重复报。
+            if is_root:
+                continue
+            if req not in value:
+                rep.add(Issue("error", "E014", path,
+                              f"{locator} 缺少 schema 要求的字段 `{req}`"))
+
+        for key, sub in value.items():
+            child_loc = f"{locator}.{key}"
+            if key in props:
+                _check_node(sub, props[key], rep, path, child_loc, undefined_seen)
+                continue
+            matched = next((p for p in patterns if re.match(p, key)), None)
+            if matched is not None:
+                if key.startswith("_"):
+                    rep.add(Issue("warn", "W008", path,
+                                  f"{child_loc} 为临时/占位字段：投产前必须清除（D-011）"))
+                _check_node(sub, patterns[matched], rep, path, child_loc, undefined_seen)
+                continue
+            if additional is False:
+                if is_root:
+                    undefined_seen.add(key)
+                    rep.add(Issue("error", "E009", path,
+                                  f"出现 schema 未定义的字段 `{key}`"
+                                  "（additionalProperties=false）"))
+                else:
+                    rep.add(Issue("error", "E013", path,
+                                  f"{child_loc} 是 schema 未定义的嵌套字段"
+                                  "（additionalProperties=false）"))
+            elif isinstance(additional, dict):
+                _check_node(sub, additional, rep, path, child_loc, undefined_seen)
+
+    # 5. array
+    elif isinstance(value, list):
+        items = spec.get("items")
+        if isinstance(items, dict):
+            for i, item in enumerate(value):
+                _check_node(item, items, rep, path, f"{locator}[{i}]", undefined_seen)
+
+    # 6. anyOf —— 任一支路通过即可。用于 metrics 值「标量 或 维度映射」两种形态
+    any_of = spec.get("anyOf")
+    if any_of:
+        passed = False
+        for branch in any_of:
+            probe = Report()
+            _check_node(value, branch, probe, path, locator, set())
+            if not probe.errors:
+                passed = True
+                break
+        if not passed:
+            rep.add(Issue("error", "E018", path,
+                          f"{locator} 不满足 anyOf 的任一形态（共 {len(any_of)} 支）"))
+
 
 
 def check_duplicate(seen: dict[str, str], rule: dict, path: str, rep: Report) -> None:
@@ -279,6 +493,7 @@ def check_exception_refs(rule: dict, path: str, known: set[str], rep: Report) ->
 def main() -> int:
     strict = "--strict" in sys.argv
     include_samples = "--include-samples" in sys.argv
+    drafts_only = "--drafts-only" in sys.argv
     rep = Report()
 
     if not SCHEMA_PATH.exists():
@@ -289,7 +504,7 @@ def main() -> int:
     schema = load_schema()
     required_props = set(schema.get("required", []))
 
-    rules = load_rules(include_samples=include_samples)
+    rules = load_rules(include_samples=include_samples, drafts_only=drafts_only)
     rep.files = len({p for p, _ in rules})
     rep.checked = len(rules)
 
@@ -299,6 +514,7 @@ def main() -> int:
     seen: dict[str, str] = {}
     undefined_seen: set[str] = set()
     for path, rule in rules:
+        n_err, n_warn = len(rep.errors), len(rep.warnings)
         check_required(rule, path, rep)
         check_content_type(rule, path, rep)
         check_provenance(rule, path, rep, strict)
@@ -307,6 +523,8 @@ def main() -> int:
         check_duplicate(seen, rule, path, rep)
         check_exception_refs(rule, path, known, rep)
         check_mandatory_level_consistency(rule, path, rep)
+        check_lookup_table(rule, path, rep)
+        check_pending_consistency(rule, path, rep)
         check_requires_human_flag(rule, path, rep)
         check_blocking_marked(rule, path, rep)
         check_schema_patterns(rule, path, rep, schema, undefined_seen)
@@ -316,18 +534,29 @@ def main() -> int:
             rep.add(Issue("error", "E001", path,
                           f"缺失 schema 要求字段：{sorted(missing_schema)}"))
 
+        # 给本轮新增的条目补 rule_id：一个文件含数十条时，
+        # 「哪一条错了」比「哪个文件错了」更需要先回答。
+        rid = rule.get("rule_id")
+        for issue in rep.errors[n_err:] + rep.warnings[n_warn:]:
+            if issue.rule_id is None:
+                issue.rule_id = rid
+
     print("=" * 60)
     mode = "strict" if strict else "normal"
     if include_samples:
         mode += " +samples"
+    if drafts_only:
+        mode = "drafts-only" + (" +strict" if strict else "")
     print(f"规则库校验  模式：{mode}")
     print(f"文件 {rep.files} 个，条目 {rep.checked} 条")
     print("=" * 60)
 
     for issue in rep.errors:
-        print(f"  ERROR  [{issue.code}] {issue.path}\n         {issue.message}")
+        where = f"{issue.path}" + (f"  [{issue.rule_id}]" if issue.rule_id else "")
+        print(f"  ERROR  [{issue.code}] {where}\n         {issue.message}")
     for issue in rep.warnings:
-        print(f"  WARN   [{issue.code}] {issue.path}\n         {issue.message}")
+        where = f"{issue.path}" + (f"  [{issue.rule_id}]" if issue.rule_id else "")
+        print(f"  WARN   [{issue.code}] {where}\n         {issue.message}")
 
     if undefined_seen:
         print("-" * 60)

@@ -31,7 +31,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50345-2012-4.2.6",
@@ -67,7 +69,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50345-2012-4.2.11",
@@ -83,11 +87,11 @@
     "comparator": ">=",
     "value": 300,
     "unit": "mm",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应",
+      "normative_verb": "不应",
       "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -125,7 +129,7 @@
     "comparator": ">=",
     "value": 100,
     "unit": "mm",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -167,7 +171,7 @@
     "comparator": "<=",
     "value": 200,
     "unit": "mm",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -241,7 +245,7 @@
     "comparator": ">=",
     "value": 0.03,
     "unit": "ratio",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -361,7 +365,7 @@
     "comparator": "<=",
     "value": 30,
     "unit": "m",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -393,7 +397,8 @@
     "intended_level": "clause",
     "normative_verb": "应设置",
     "blocks_production": true,
-    "safety_critical": true
+    "safety_critical": true,
+    "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
   },
   {
     "rule_id": "GB50345-2012-4.9.8-overflow",
@@ -406,7 +411,7 @@
     "rule_type": "constructive",
     "statement": "内檐沟及内天沟应设置溢流口或溢流系统。",
     "subject": "inner_gutter_overflow_required",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -438,6 +443,7 @@
     "intended_level": "clause",
     "normative_verb": "应设置",
     "blocks_production": true,
-    "safety_critical": true
+    "safety_critical": true,
+    "safety_reason": "涉及溢流/防水/人员安全，误判为可跳过将直接导致屋面溢水隐患。S-4 完成前本条禁止投产，且不得按 recommended 的「可确认跳过」处理。"
   }
 ]

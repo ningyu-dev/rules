@@ -10,7 +10,7 @@
     "rule_type": "constructive",
     "statement": "当地区改建时，改建后相同设计重现期的径流量不得超过原径流量。",
     "subject": "renovation_runoff_volume_not_increase",
-    "mandatory_level": "strong_clause",
+    "mandatory_level": "recommended",
     "applies_to": {
       "building_type": [
         "steel_factory"
@@ -23,7 +23,23 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "mandatory_level_pending": {
+      "_TEMPORARY": true,
+      "intended_level": "clause",
+      "normative_verb": "不得",
+      "reason": "本条原为 GB 50014-2021 强条，但其强条属性已于 2022-10-01 被 GB 55027-2022 废止（该公告废止清单第一项即含 4.1.6）。标准本体现行、条文本条仍有效，但不得再作强条引用（CS 判据）。同一要求现由 GB 55027-2022 以全文强制规范承载，校验时应引通规。",
+      "blocks_production": true
+    },
+    "intended_level": "clause",
+    "normative_verb": "不得",
+    "blocks_production": true,
+    "exceptions": [
+      {
+        "condition": "强条属性已废止：现行强制力来自 GB 55027-2022（全文强制），本条只作为方法性条文引用，不得标 strong_clause",
+        "clause_ref": "GB55027-2022-4.1.6"
+      }
+    ]
   },
   {
     "rule_id": "GB50014-2021-4.1.9",
@@ -52,11 +68,11 @@
       ]
     },
     "subject": "design_storm_intensity_formula",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应",
+      "normative_verb": "应按",
       "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -97,11 +113,11 @@
       "external_params": []
     },
     "subject": "site_storm_duration_formula",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应",
+      "normative_verb": "应按",
       "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -139,11 +155,11 @@
     "rule_type": "constructive",
     "statement": "雨水管道和合流管道应按满流计算。明渠超高不得小于0.2m。",
     "subject": "storm_pipe_full_flow_calculation",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应",
+      "normative_verb": "应按",
       "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -242,7 +258,7 @@
     "comparator": ">=",
     "value": 0.75,
     "unit": "m_per_s",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -279,43 +295,50 @@
     "statement": "排水管道的最小管径和相应最小设计坡度，宜按表5.2.10的规定取值。表5.2.10 最小管径和相应最小设计坡度：污水管、合流管 300 / 0.003；雨水管 300（塑料管0.002，其他管0.003）；雨水口连接管 200 / 0.010；压力输泥管 150 / —；重力输泥管 200 / 0.010。",
     "subject": "storm_pipe_min_diameter_slope",
     "lookup_table": {
-      "x_axis_label": "TEMPORARY_STRUCTURE__SEE_FILE_HEADER — 行=管道类别",
+      "x_axis_label": "管道类别",
       "y_axis_label": "最小管径 (mm) / 相应最小设计坡度",
-      "rows": [],
-      "columns": [],
-      "values": [],
       "interpolation": "none",
-      "_TEMPORARY_entries": [
+      "entries": [
         {
           "key": "污水管、合流管",
-          "min_diameter_mm": 300,
-          "min_slope": 0.003
+          "metrics": {
+            "min_diameter_mm": 300,
+            "min_slope": 0.003
+          }
         },
         {
           "key": "雨水管",
-          "min_diameter_mm": 300,
-          "min_slope": {
-            "塑料管": 0.002,
-            "其他管": 0.003
+          "metrics": {
+            "min_diameter_mm": 300,
+            "min_slope": {
+              "塑料管": 0.002,
+              "其他管": 0.003
+            }
           }
         },
         {
           "key": "雨水口连接管",
-          "min_diameter_mm": 200,
-          "min_slope": 0.01
+          "metrics": {
+            "min_diameter_mm": 200,
+            "min_slope": 0.01
+          }
         },
         {
           "key": "压力输泥管",
-          "min_diameter_mm": 150,
-          "min_slope": null
+          "metrics": {
+            "min_diameter_mm": 150,
+            "min_slope": null
+          }
         },
         {
           "key": "重力输泥管",
-          "min_diameter_mm": 200,
-          "min_slope": 0.01
+          "metrics": {
+            "min_diameter_mm": 200,
+            "min_slope": 0.01
+          }
         }
       ],
-      "_TEMPORARY_note": "临时结构。表5.2.10 原为「管道类别 × (最小管径, 最小坡度)」，此前把最小管径的值误当作 columns 轴。S-3 落地为 row_keyed 后重录。"
+      "unit": "见 metrics 键名"
     },
     "mandatory_level": "recommended",
     "mandatory_level_pending": {
@@ -337,7 +360,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50014-2021-5.3.7",
@@ -353,11 +378,11 @@
     "comparator": ">=",
     "value": 0.6,
     "unit": "m",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
-      "normative_verb": "应",
+      "normative_verb": "应采用",
       "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
       "blocks_production": true
     },
@@ -413,7 +438,9 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   },
   {
     "rule_id": "GB50014-2021-5.7.3",
@@ -458,7 +485,7 @@
     "comparator": ">=",
     "value": 0.015,
     "unit": "ratio",
-    "mandatory_level": "mandatory_level_pending",
+    "mandatory_level": "recommended",
     "mandatory_level_pending": {
       "_TEMPORARY": true,
       "intended_level": "clause",
@@ -514,6 +541,8 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    }
+    },
+    "intended_level": "clause",
+    "blocks_production": true
   }
 ]
