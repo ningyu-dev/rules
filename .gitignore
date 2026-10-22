@@ -12,22 +12,26 @@ venv/
 .DS_Store
 Thumbs.db
 
-# 规范原文 PDF：不入库
+# 规范原文 PDF：放工作区，不入 git
 #
-# 官方原文可自由获取与转载（详见 NOTICE.md），但 91 MB 的 PDF
-# 会让每次 clone 都很重，而规则库本身只有几百 KB。
-# 因此仓库内只保留可校验的证据：
-#   SOURCE.md          下载 URL、公告号、核对状态
+# 官方原文可自由获取与转载（详见 NOTICE.md），但一本规范动辄几十 MB，
+# 全放进来会让每次 clone 都很重，而规则库本身只有几百 KB。
+#
+# 约定：PDF 就放在 archive/<标准>/ 下，与 SOURCE.md 并列，由本文件忽略。
+# 仓库内只提交可校验的证据：
+#   SOURCE.md          下载 URL、来源类型（官方/转载）、公告号、核对状态
 #   SHA256.txt         PDF 的 SHA-256
-#   announcement.html  公告原文（供强条清单机械比对）
+#   announcement.html  公告原文（体积小，可机械比对强条清单）
+#   announcement.sha256
 #
-# 需要 PDF 时按 SOURCE.md 的 URL 下载，用 SHA256.txt 校验一致性。
-# 这样"文件可信"由哈希保证，而非由二进制入库保证。
-archive/GB50015-2019/*.pdf
+# "文件可信"由哈希保证，不由二进制入库保证：
+# 任何人按 SOURCE.md 的 URL 下载，用 SHA256.txt 一比，就知道是不是同一份。
+archive/**/*.pdf
+archive/**/*.PDF
+archive/**/*.pdf.part
 
 # 商业数据库导出：不予入库（涉及第三方整理成果）
 archive/commercial/
-*.pdf.part
 
 # 规则库生成物
 *.db

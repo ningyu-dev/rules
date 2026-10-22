@@ -1,0 +1,2007 @@
+{
+  "_meta": {
+    "purpose": "给排水行业标准全景登记表 + 现行性台账。规则库每一条 provenance 最终都要落到这里的某个渠道上。",
+    "口径": "standards 按标准计，不按条文计。status=presumed 表示按常识判断现行但未核公告；name_verified=false 表示标准名称或编号尚未以官方渠道确认，此状态下不得引用其条文。",
+    "分层": "group 为门类（A~N），in_scope 标记是否属于本产品当前范围（钢结构厂房屋面雨水·重力流）。全景 ≠ 范围：两者混为一谈会让规则库无限膨胀。",
+    "维护纪律": "任何一次核对必须同时更新 last_checked 与 checked_by；只写「已核对」不写日期，视为未核对（D-009）。",
+    "生成日期": "2026-10-22",
+    "版本": "0.2"
+  },
+  "channels": [
+    {
+      "id": "mohurd_notice",
+      "name": "住建部 · 标准公告栏目",
+      "url": "https://www.mohurd.gov.cn/gongkai/fdzdgknr/bzgf/index.html",
+      "type": "official",
+      "scope": "国家标准的发布、局部修订、废止公告。判据的唯一来源。",
+      "note": "先看公告，再去公告正文页取「废止了哪些条文」附件。措辞判据见 docs/信源与更新机制.md §三。"
+    },
+    {
+      "id": "mohurd_doc",
+      "name": "住建部 · 公文库（公告原文页）",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/",
+      "type": "official",
+      "scope": "单条公告的正式页面，含文号、实施日期、附件（废止清单 / 规范全文）。",
+      "note": "URL 形如 /gongkai/zc/wjk/art/<年>/art_17339_<id>.html，id 不可推算，只能站内检索。"
+    },
+    {
+      "id": "mohurd_draft",
+      "name": "住建部 · 征求意见稿栏目",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/",
+      "type": "official",
+      "scope": "标准制修订计划与征求意见稿。用于提前预判换版，不用于设计依据。",
+      "note": "征求意见稿不是依据、不得引用。登记它的唯一目的是知道哪本快要换版。"
+    },
+    {
+      "id": "ccsn",
+      "name": "工程建设标准化信息网",
+      "url": "https://www.ccsn.org.cn/",
+      "type": "quasi_official",
+      "scope": "转载住建部公告，带「查看标准全文」入口，检索比官网方便。",
+      "note": "转载件只用于定位，最终以 mohurd 原文为准，不得作为条文出处。"
+    },
+    {
+      "id": "std_samr",
+      "name": "全国标准信息公共服务平台",
+      "url": "https://std.samr.gov.cn/",
+      "type": "official",
+      "scope": "GB / GB/T / 行业标准（CJ、CJJ）的编号、名称、状态查询。",
+      "note": "查「标准号 + 名称 + 状态」最快，但条文全文不在本平台。"
+    },
+    {
+      "id": "openstd",
+      "name": "国家标准全文公开系统",
+      "url": "https://openstd.samr.gov.cn/bzgk/gb/",
+      "type": "official",
+      "scope": "GB / GB/T 推荐性标准在线阅读。工程建设标准多数不在此库。",
+      "note": "缺页不代表废止。住建部归口的工程建设标准以 mohurd 为准。"
+    },
+    {
+      "id": "ndls",
+      "name": "国家数字标准馆",
+      "url": "https://ndls.org.cn/",
+      "type": "quasi_official",
+      "scope": "标准状态、发布日期、废止日期、替代关系的结构化查询。",
+      "note": "判断「是否被替代」很好用，但条文原文仍需正式出版文本。"
+    },
+    {
+      "id": "dbba",
+      "name": "地方标准信息服务平台",
+      "url": "http://dbba.sacinfo.org.cn/",
+      "type": "official",
+      "scope": "DB 开头地方标准的备案与查询，地方加严条款的来源。",
+      "note": "地方标准在相应国标或行标实施后应自行废止，须逐个确认，不能默认有效。"
+    },
+    {
+      "id": "local_meteo",
+      "name": "地方暴雨强度公式（住建/气象部门发布）",
+      "url": null,
+      "type": "local_official",
+      "scope": "各城市暴雨强度公式及参数 A1、C、b、n。q 值的唯一合法来源。",
+      "note": "必须按城市取。系统不本地推算（D-007）。公式版本会更新，须记发布年份与文号。"
+    },
+    {
+      "id": "atlas",
+      "name": "国家建筑标准设计图集",
+      "url": null,
+      "type": "atlas",
+      "scope": "构造做法与标准节点。是设计的应用工具，不是规范。",
+      "note": "未按图集设计不能判为违反规范标准；图集获强制力的唯一路径是被规范或设计文件引用。"
+    },
+    {
+      "id": "press",
+      "name": "正式出版文本（中国建筑出版传媒等）",
+      "url": null,
+      "type": "paid",
+      "scope": "唯一可靠的条文原文来源，尤其是扫描件、附录公式、表格。",
+      "note": "PDF 放工作区 archive/<标准号>/，由 .gitignore 排除；仓库只提交 SOURCE.md（含来源类型）与 SHA256。用 scripts/archive_pdf.py 归档与校验。来源类型为「转载」时不得作为条文出处。"
+    }
+  ],
+  "taxonomy": [
+    {
+      "id": "A",
+      "name": "强制性通用规范（全文强制）",
+      "note": "效力最高。母子关系须双依据同引：不一致处以通规为准，一致部分母标准继续有效。"
+    },
+    {
+      "id": "B",
+      "name": "给水",
+      "note": "取水、净水、输配、二次供水、节水。"
+    },
+    {
+      "id": "C",
+      "name": "排水与污水处理",
+      "note": "室外排水、污水厂、污泥、管道检测与修复。"
+    },
+    {
+      "id": "D",
+      "name": "雨水与海绵",
+      "note": "本产品的主战场：屋面雨水、雨水控制利用、内涝防治。"
+    },
+    {
+      "id": "E",
+      "name": "建筑给水排水与消防",
+      "note": "建筑内部系统。与屋面雨水在立管、溢流、管材上直接相关。"
+    },
+    {
+      "id": "F",
+      "name": "水质与排放",
+      "note": "饮用水、地表水、污水排放、行业排放标准族。"
+    },
+    {
+      "id": "G",
+      "name": "管材、管件、井盖与设备产品",
+      "note": "产品标准决定「能不能用」，规范决定「该不该用」。"
+    },
+    {
+      "id": "H",
+      "name": "施工、验收与试验",
+      "note": "满水试验、灌水试验、通水试验的依据。"
+    },
+    {
+      "id": "I",
+      "name": "结构与地基接口",
+      "note": "提资口径：抗浮、荷载、抗渗、沉降。"
+    },
+    {
+      "id": "J",
+      "name": "电气、自控、暖通与制图接口",
+      "note": "条件由给排水给出，判定其是否齐全仍是给排水的活。"
+    },
+    {
+      "id": "K",
+      "name": "设计深度、概预算与治理",
+      "note": "文件能不能用，与算得对不对是两件事。"
+    },
+    {
+      "id": "L",
+      "name": "地方标准与地方参数",
+      "note": "三层叠加的最内层。加严条款多在此。"
+    },
+    {
+      "id": "M",
+      "name": "标准设计图集",
+      "note": "应用工具，非规范。"
+    },
+    {
+      "id": "N",
+      "name": "已废止 / 黑名单",
+      "note": "任何场合不得引用。见到引用即说明来源不可靠。"
+    }
+  ],
+  "standards": [
+    {
+      "id": "GB55020-2021",
+      "standard": "GB 55020",
+      "name": "建筑给水排水与节水通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-04-01",
+      "announcement_no": "2021 年第 171 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "本子域第一锚点。第 4.5 节全部涉及屋面雨水。审查基准为合同签订日。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762458.html"
+    },
+    {
+      "id": "GB55030-2022",
+      "standard": "GB 55030",
+      "name": "建筑与市政工程防水通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-04-01",
+      "announcement_no": "2022 年第 147 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "4.4 节与屋面排水直接相关。GB 50345 的 8 条原强条由其废止，属强条属性废止。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_768499.html"
+    },
+    {
+      "id": "GB55026-2022",
+      "standard": "GB 55026",
+      "name": "城市给水工程项目规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-10-01",
+      "announcement_no": "2022 年第 46 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "整部废止 GB 50788-2012。给水项目必列。\n【公告核 2026-10-23】强条：一句话含两种形态：「废止现行国家标准《城镇给水排水技术规范》GB 50788-2012」= 整部废止；「和下列……相关强制性条文」= 部分废止。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2024/art_17339_765626.html"
+    },
+    {
+      "id": "GB55027-2022",
+      "standard": "GB 55027",
+      "name": "城乡排水工程项目规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-10-01",
+      "announcement_no": "2022 年第 45 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "排水项目必列。公告全部为部分废止形态，无整部废止。\n【公告核 2026-10-23】强条：全部为「同时废止下列……相关强制性条文」，无整部废止。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765619.html"
+    },
+    {
+      "id": "GB55001-2021",
+      "standard": "GB 55001",
+      "name": "工程结构通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-01-01",
+      "announcement_no": "2021 年第 70 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "4.2.8 不上人屋面活荷载 0.5 kN/m²，取消 GB 50009 的 0.3 例外。公告原文已核。"
+    },
+    {
+      "id": "GB55002-2021",
+      "standard": "GB 55002",
+      "name": "建筑与市政工程抗震通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-01-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55003-2021",
+      "standard": "GB 55003",
+      "name": "建筑与市政地基基础通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-01-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55006-2021",
+      "standard": "GB 55006",
+      "name": "钢结构通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-01-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "与 GB 51022 为母子关系，须双依据同引。"
+    },
+    {
+      "id": "GB55008-2021",
+      "standard": "GB 55008",
+      "name": "混凝土结构通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55009-2021",
+      "standard": "GB 55009",
+      "name": "燃气工程项目规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-01-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55015-2021",
+      "standard": "GB 55015",
+      "name": "建筑节能与可再生能源利用通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "设备能效等级须逐台注明的上位要求之一。"
+    },
+    {
+      "id": "GB55016-2021",
+      "standard": "GB 55016",
+      "name": "建筑环境通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "只管民用建筑与工业建筑的辅助办公类建筑。污水厂生产性建筑不适用，勿误引。"
+    },
+    {
+      "id": "GB55019-2021",
+      "standard": "GB 55019",
+      "name": "建筑与市政工程无障碍通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55024-2022",
+      "standard": "GB 55024",
+      "name": "建筑电气与智能化通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-10-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55032-2022",
+      "standard": "GB 55032",
+      "name": "建筑与市政工程施工质量控制通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-03-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55034-2022",
+      "standard": "GB 55034",
+      "name": "建筑与市政施工现场安全卫生与职业健康通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-06-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ]
+    },
+    {
+      "id": "GB55036-2022",
+      "standard": "GB 55036",
+      "name": "消防设施通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-03-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "与 GB 50974/50084 母子关系，双依据同引。"
+    },
+    {
+      "id": "GB55037-2022",
+      "standard": "GB 55037",
+      "name": "建筑防火通用规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-06-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc"
+      ],
+      "notes": "立管穿防火分区的封堵要求在此族。现库无对应条目。"
+    },
+    {
+      "id": "GB55038-2025",
+      "standard": "GB 55038",
+      "name": "住宅项目规范",
+      "group": "A",
+      "role": "anchor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "公告中同时出现「整部废止」与「强条废止」两种形态，须拆开分别判。名称与实施日期待核。"
+    },
+    {
+      "id": "GB50013-2018",
+      "standard": "GB 50013",
+      "name": "室外给水设计标准",
+      "group": "B",
+      "role": "base",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2019-08-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50282-2016",
+      "standard": "GB 50282",
+      "name": "城市给水工程规划规范",
+      "group": "B",
+      "role": "planning",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2017-07-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50318-2017",
+      "standard": "GB 50318",
+      "name": "城市排水工程规划规范",
+      "group": "B",
+      "role": "planning",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2018-02-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GBT50331-2002",
+      "standard": "GB/T 50331",
+      "name": "城市居民生活用水量标准",
+      "group": "B",
+      "role": "quota",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr",
+        "press"
+      ],
+      "notes": "用水定额类，换版频繁，引用前必查。"
+    },
+    {
+      "id": "GB50555-2010",
+      "standard": "GB 50555",
+      "name": "民用建筑节水设计标准",
+      "group": "B",
+      "role": "water_eff",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "CJJ92-2016",
+      "standard": "CJJ 92",
+      "name": "城镇供水管网漏损控制及评定标准",
+      "group": "B",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ58-2009",
+      "standard": "CJJ 58",
+      "name": "城镇供水厂运行、维护及安全技术规程",
+      "group": "B",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ207-2013",
+      "standard": "CJJ 207",
+      "name": "城镇供水管网运行、维护及安全技术规程",
+      "group": "B",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJT206-2005",
+      "standard": "CJ/T 206",
+      "name": "城市供水水质标准",
+      "group": "B",
+      "role": "quality",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "与 GB 5749 并行，宽松度不同，勿混用。"
+    },
+    {
+      "id": "GB50014-2021",
+      "standard": "GB 50014",
+      "name": "室外排水设计标准",
+      "group": "C",
+      "role": "base",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2021-10-01",
+      "announcement_no": "2021 年第 58 号",
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "原强条 5.15.3 已于 2022-10-01 废止，不得再作强条引用。库内 13 条。\n【公告核 2026-10-23】强条：公告列强条 14 条，含 4.1.6 与 5.15.3；两条的强条属性均已被 GB 55027-2022 废止。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_250183.html"
+    },
+    {
+      "id": "GB18918-2002",
+      "standard": "GB 18918",
+      "name": "城镇污水处理厂污染物排放标准",
+      "group": "C",
+      "role": "discharge",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2003-07-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "含修改单 XG2-2025。标准号/名称/年版全不变但内容已改——这是四查里第 4 查（/XG）的典型。"
+    },
+    {
+      "id": "GBT31962-2015",
+      "standard": "GB/T 31962",
+      "name": "污水排入城镇下水道水质标准",
+      "group": "C",
+      "role": "discharge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ60-2011",
+      "standard": "CJJ 60",
+      "name": "城镇污水处理厂运行、维护及安全技术规程",
+      "group": "C",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ68-2016",
+      "standard": "CJJ 68",
+      "name": "城镇排水管渠与泵站运行、维护及安全技术规程",
+      "group": "C",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ6-2009",
+      "standard": "CJJ 6",
+      "name": "城镇排水管道维护安全技术规程",
+      "group": "C",
+      "role": "operation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ181-2012",
+      "standard": "CJJ 181",
+      "name": "城镇排水管道检测与评估技术规程",
+      "group": "C",
+      "role": "inspection",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GB4284-2018",
+      "standard": "GB 4284",
+      "name": "农用污泥污染物控制标准",
+      "group": "C",
+      "role": "sludge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "CJT309-2009",
+      "standard": "CJ/T 309",
+      "name": "城镇污水处理厂污泥处置 农用泥质",
+      "group": "C",
+      "role": "sludge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "与 GB 4284 存在衔接关系，引用前核哪一个作准。"
+    },
+    {
+      "id": "GB50400-2016",
+      "standard": "GB 50400",
+      "name": "建筑与小区雨水控制及利用工程技术规范",
+      "group": "D",
+      "role": "rain",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2017-07-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "边界在溢流与回用设施衔接处，回用水质由水效方承接。"
+    },
+    {
+      "id": "GBT51345-2018",
+      "standard": "GB/T 51345",
+      "name": "海绵城市建设评价标准",
+      "group": "D",
+      "role": "sponge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "CJJT188-2012",
+      "standard": "CJJ/T 188",
+      "name": "透水砖路面技术规程",
+      "group": "D",
+      "role": "sponge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJ142-2014",
+      "standard": "CJJ 142",
+      "name": "建筑屋面雨水排水系统技术规程",
+      "group": "D",
+      "role": "core_pending",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2014-10-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "GB 50015-2019 5.2.37 明确指向。3.1.2/3.1.9/3.4.5 三条强条已自 2022-04-01 被 GB 55020 废止。若含斗间距数值，6 条工程经验可升级为条文。库内 0 条，是当前最大缺口。"
+    },
+    {
+      "id": "GB50015-2019",
+      "standard": "GB 50015",
+      "name": "建筑给水排水设计标准",
+      "group": "D",
+      "role": "core",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2020-03-01",
+      "announcement_no": "2019 年第 171 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc",
+        "press"
+      ],
+      "notes": "第 5 章雨水是主战场，库内 32 条。5.2 节 41 条中未收录 16 条，其中 5.2.33/5.2.35 属重力流范围。\n【公告核 2026-10-23】强条：公告列强条 30 条，全部在第 3/4/6 章，**第 5 章（雨水）0 条**。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html"
+    },
+    {
+      "id": "GB50345-2012",
+      "standard": "GB 50345",
+      "name": "屋面工程技术规范",
+      "group": "D",
+      "role": "core",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2012-10-01",
+      "announcement_no": "2012 年第 1395 号",
+      "sources": [
+        "mohurd_notice",
+        "mohurd_doc",
+        "press"
+      ],
+      "notes": "4.2 节天沟、4.9 节金属屋面，库内 11 条。8 条原强条（3.0.5/4.5.1/4.5.5/4.5.6/4.5.7/4.8.1/4.9.1/5.1.6）自 2023-04-01 被 GB 55030-2022 废止。4.2.12 原文为「宜为」，不得拔高为「不应」。\n【公告核 2026-10-23】强条：公告列强条 8 条（3.0.5/4.5.1/4.5.5/4.5.6/4.5.7/4.8.1/4.9.1/5.1.6），2023-04-01 起被 GB 55030-2022 废止强条属性。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_210744.html"
+    },
+    {
+      "id": "GB51022-2015",
+      "standard": "GB 51022",
+      "name": "门式刚架轻型房屋钢结构技术规范",
+      "group": "D",
+      "role": "core",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2016-08-01",
+      "announcement_no": "2015 年第 991 号",
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "11.1.11 屋面坡度（强条）、11.3 天沟构造，库内 11 条。该强条约束的是坡度而非排水方式——P0-2 的拦截判据不能用「厂房规模」引申。\n【公告核 2026-10-23】强条：公告列强条 **仅 14.2.5 一条**；表 11.1.11 不是强条。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2016/art_17339_226433.html"
+    },
+    {
+      "id": "GB50974-2014",
+      "standard": "GB 50974",
+      "name": "消防给水及消火栓系统技术规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50084-2017",
+      "standard": "GB 50084",
+      "name": "自动喷水灭火系统设计规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50140-2005",
+      "standard": "GB 50140",
+      "name": "建筑灭火器配置设计规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50261-2017",
+      "standard": "GB 50261",
+      "name": "自动喷水灭火系统施工及验收规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50219-2014",
+      "standard": "GB 50219",
+      "name": "水喷雾灭火系统技术规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50151-2021",
+      "standard": "GB 50151",
+      "name": "泡沫灭火系统技术标准",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50067-2014",
+      "standard": "GB 50067",
+      "name": "汽车库、修车库、停车场设计防火规范",
+      "group": "E",
+      "role": "fire",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50038-2005",
+      "standard": "GB 50038",
+      "name": "人民防空地下室设计规范",
+      "group": "E",
+      "role": "special",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50098-2009",
+      "standard": "GB 50098",
+      "name": "人民防空工程设计防火规范",
+      "group": "E",
+      "role": "special",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50073-2013",
+      "standard": "GB 50073",
+      "name": "洁净厂房设计规范",
+      "group": "E",
+      "role": "special",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "洁净厂房排水禁止穿越，与屋面雨水立管布置相关。"
+    },
+    {
+      "id": "GB50457-2019",
+      "standard": "GB 50457",
+      "name": "医药工业洁净厂房设计标准",
+      "group": "E",
+      "role": "special",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50072-2021",
+      "standard": "GB 50072",
+      "name": "冷库设计标准",
+      "group": "E",
+      "role": "special",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50050-2017",
+      "standard": "GB 50050",
+      "name": "工业循环冷却水处理设计规范",
+      "group": "E",
+      "role": "industry",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GBT50102-2014",
+      "standard": "GB/T 50102",
+      "name": "工业循环水冷却设计规范",
+      "group": "E",
+      "role": "industry",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "CJJT29-2010",
+      "standard": "CJJ/T 29",
+      "name": "建筑排水塑料管道工程技术规程",
+      "group": "E",
+      "role": "pipe_system",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ],
+      "notes": "雨水立管用塑料管时的伸缩节与支架间距依据。"
+    },
+    {
+      "id": "CJJ127-2009",
+      "standard": "CJJ 127",
+      "name": "建筑排水金属管道工程技术规程",
+      "group": "E",
+      "role": "pipe_system",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJT98-2014",
+      "standard": "CJJ/T 98",
+      "name": "建筑给水塑料管道工程技术规程",
+      "group": "E",
+      "role": "pipe_system",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJT154-2011",
+      "standard": "CJJ/T 154",
+      "name": "建筑给水金属管道工程技术规程",
+      "group": "E",
+      "role": "pipe_system",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJJT155-2011",
+      "standard": "CJJ/T 155",
+      "name": "建筑给水复合管道工程技术规程",
+      "group": "E",
+      "role": "pipe_system",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GB5749-2022",
+      "standard": "GB 5749",
+      "name": "生活饮用水卫生标准",
+      "group": "F",
+      "role": "quality",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2023-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "97 项指标。浑浊度 1 NTU、游离氯 0.3~2 mg/L、菌落总数 100 CFU/mL。"
+    },
+    {
+      "id": "GBT5750-2023",
+      "standard": "GB/T 5750",
+      "name": "生活饮用水标准检验方法（系列）",
+      "group": "F",
+      "role": "testing",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr",
+        "press"
+      ],
+      "notes": "13 个部分分别发布，引用须给到分部分号。"
+    },
+    {
+      "id": "GB3838-2002",
+      "standard": "GB 3838",
+      "name": "地表水环境质量标准",
+      "group": "F",
+      "role": "quality",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GBT14848-2017",
+      "standard": "GB/T 14848",
+      "name": "地下水质量标准",
+      "group": "F",
+      "role": "quality",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GB3097-1997",
+      "standard": "GB 3097",
+      "name": "海水水质标准",
+      "group": "F",
+      "role": "quality",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB8978-1996",
+      "standard": "GB 8978",
+      "name": "污水综合排放标准",
+      "group": "F",
+      "role": "discharge",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB18466-2005",
+      "standard": "GB 18466",
+      "name": "医疗机构水污染物排放标准",
+      "group": "F",
+      "role": "discharge",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB14554-1993",
+      "standard": "GB 14554",
+      "name": "恶臭污染物排放标准",
+      "group": "F",
+      "role": "odor",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "表 1 厂界浓度、表 2 排气筒速率，两者不可混用。网上流传的「GB 14554-2019」不存在，2018 年征求意见稿至今未发布正式版。"
+    },
+    {
+      "id": "CJT245-2021",
+      "standard": "CJ/T 245",
+      "name": "建筑屋面排水用雨水斗通用技术条件",
+      "group": "G",
+      "role": "core_pending",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2022-03-01",
+      "announcement_no": "2021 年第 220 号",
+      "sources": [
+        "std_samr",
+        "press"
+      ],
+      "notes": "2021-12-23 发布，2022-03-01 实施，代替 CJ/T 245-2007《虹吸雨水斗》。旧版名为「虹吸雨水斗」，新版扩为「建筑屋面排水用」，因此含重力流雨水斗要求——这正是 6.6.3 能作为斗选型依据的原因。推荐性行业标准，非强条。",
+      "last_checked": "2026-10-23",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765709.html"
+    },
+    {
+      "id": "GBT12772-2016",
+      "standard": "GB/T 12772",
+      "name": "排水用柔性接口铸铁管、管件及附件",
+      "group": "G",
+      "role": "product",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "附录 G 铸铁管管径轴的规格来源。"
+    },
+    {
+      "id": "GBT5836-2018",
+      "standard": "GB/T 5836",
+      "name": "建筑排水用硬聚氯乙烯（PVC-U）管材及管件",
+      "group": "G",
+      "role": "product",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "分 1/2 两部分，引用须给分部分号。"
+    },
+    {
+      "id": "GBT13663-2018",
+      "standard": "GB/T 13663",
+      "name": "给水用聚乙烯（PE）管道系统",
+      "group": "G",
+      "role": "product",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GBT18742-2017",
+      "standard": "GB/T 18742",
+      "name": "冷热水用聚丙烯管道系统",
+      "group": "G",
+      "role": "product",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJT120-2016",
+      "standard": "CJ/T 120",
+      "name": "给水涂塑复合钢管",
+      "group": "G",
+      "role": "product",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GBT23858-2009",
+      "standard": "GB/T 23858",
+      "name": "检查井盖",
+      "group": "G",
+      "role": "product",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "承载等级与车行道下的选用依据。"
+    },
+    {
+      "id": "CJT511-2017",
+      "standard": "CJ/T 511",
+      "name": "铸铁检查井盖",
+      "group": "G",
+      "role": "product",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "CJT233-2006",
+      "standard": "CJ/T 233",
+      "name": "建筑小区排水用塑料检查井",
+      "group": "G",
+      "role": "product",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ]
+    },
+    {
+      "id": "GB50242-2002",
+      "standard": "GB 50242",
+      "name": "建筑给水排水及采暖工程施工质量验收规范",
+      "group": "H",
+      "role": "acceptance",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2002-04-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "本期明确不入库。但灌水/通水试验属设计文件应提出的内容，不是验收规范内容——边界须写清，否则两不管。"
+    },
+    {
+      "id": "GB50268-2008",
+      "standard": "GB 50268",
+      "name": "给水排水管道工程施工及验收规范",
+      "group": "H",
+      "role": "acceptance",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50141-2008",
+      "standard": "GB 50141",
+      "name": "给水排水构筑物工程施工及验收规范",
+      "group": "H",
+      "role": "acceptance",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "满水试验依据。限值 2/3 L/(m²·d)，必须同步测蒸发量，否则假阳性。"
+    },
+    {
+      "id": "GB50265-2010",
+      "standard": "GB 50265",
+      "name": "泵站设计规范",
+      "group": "H",
+      "role": "pump",
+      "in_scope": false,
+      "status": "pending_verify",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "状态存疑：既有资料列为已废止，也有资料仍作现行引用。换版与否未核，引用前必须先查公告。"
+    },
+    {
+      "id": "GB50069-2002",
+      "standard": "GB 50069",
+      "name": "给水排水工程构筑物结构设计规范",
+      "group": "I",
+      "role": "structure",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "本体现行，部分强条被通规废止。与「整部废止」处置完全不同。"
+    },
+    {
+      "id": "GB50332-2002",
+      "standard": "GB 50332",
+      "name": "给水排水工程管道结构设计规范",
+      "group": "I",
+      "role": "structure",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50032-2003",
+      "standard": "GB 50032",
+      "name": "室外给水排水和燃气热力工程抗震设计规范",
+      "group": "I",
+      "role": "structure",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "本行业最常漏列的一本。"
+    },
+    {
+      "id": "JGJ476-2019",
+      "standard": "JGJ 476",
+      "name": "建筑工程抗浮技术标准",
+      "group": "I",
+      "role": "structure",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "抗浮稳定系数分档与抗浮设防水位来源要求在此。使用期要求高于施工期。"
+    },
+    {
+      "id": "GB50009-2012",
+      "standard": "GB 50009",
+      "name": "建筑结构荷载规范",
+      "group": "I",
+      "role": "structure",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2012-10-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "表 5.3.1 注 1 的 0.3 kN/m² 与 GB 55001-2021 4.2.8 的 0.5 冲突，按强制优先取 0.5。库内 0 条，只留接口。"
+    },
+    {
+      "id": "GBT50106-2010",
+      "standard": "GB/T 50106",
+      "name": "建筑给水排水制图标准",
+      "group": "J",
+      "role": "drafting",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2011-03-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "ndls"
+      ],
+      "notes": "出 DXF 缺此依据。标高符号类型（管中心/管内底/管顶）是施工图最高频低级错误。库内 0 条。"
+    },
+    {
+      "id": "GBT50001-2017",
+      "standard": "GB/T 50001",
+      "name": "房屋建筑制图统一标准",
+      "group": "J",
+      "role": "drafting",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GB50981-2014",
+      "standard": "GB 50981",
+      "name": "建筑机电工程抗震设计规范",
+      "group": "J",
+      "role": "electrical",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2015-08-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "1.0.4 强条（6 度及以上必须做抗震设计）。量化设防范围在 3.1.6 条文说明里，按 D-004 不得作校验依据 → 只能 requires_human。给排水列举只到「生活给水、消防」，屋面雨水是否纳入按「悬吊管道重力 >1.8kN」判断。库内 0 条。"
+    },
+    {
+      "id": "GB50057-2010",
+      "standard": "GB 50057",
+      "name": "建筑物防雷设计规范",
+      "group": "J",
+      "role": "electrical",
+      "in_scope": true,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "金属屋面/金属天沟接闪与等电位。转交接口目前无电气方向。"
+    },
+    {
+      "id": "GB50314-2015",
+      "standard": "GB 50314",
+      "name": "智能建筑设计标准",
+      "group": "J",
+      "role": "instrumentation",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "GBT51348-2019",
+      "standard": "GB/T 51348",
+      "name": "民用建筑电气设计标准",
+      "group": "J",
+      "role": "electrical",
+      "in_scope": false,
+      "status": "presumed",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ]
+    },
+    {
+      "id": "DEPTH-2016",
+      "standard": "建质函〔2016〕247 号",
+      "name": "建筑工程设计文件编制深度规定（2016 年版）",
+      "group": "K",
+      "role": "deliverable",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2017-01-01",
+      "announcement_no": "建质函〔2016〕247 号",
+      "sources": [
+        "mohurd_doc"
+      ],
+      "notes": "适用范围含工业厂房、仓库。屋面雨水属建筑给排水，适用本版；市政公用工程另有 2025 年版，两者不得混用。计算书深度要求在此。"
+    },
+    {
+      "id": "DEPTH-MUNI-2025",
+      "standard": "市政公用工程设计文件编制深度规定（2025 年版）",
+      "name": "市政公用工程设计文件编制深度规定（2025 年版）",
+      "group": "K",
+      "role": "deliverable",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": false,
+      "implemented": "2025-10-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_doc"
+      ],
+      "notes": "2013 年版已于 2025-10-01 废止。给水篇与排水篇章号体系不同，引条号必须带篇名。"
+    },
+    {
+      "id": "GBT50500-2024",
+      "standard": "GB/T 50500",
+      "name": "建设工程工程量清单计价规范",
+      "group": "K",
+      "role": "cost",
+      "in_scope": false,
+      "status": "current",
+      "name_verified": true,
+      "implemented": "2025-09-01",
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice",
+        "press"
+      ],
+      "notes": "替代 GB 50500-2013（后者 2025-09-01 整部废止）。概算四条红线与 16 项应有清单在此族。"
+    },
+    {
+      "id": "LOCAL-Q",
+      "standard": "地方暴雨强度公式",
+      "name": "各城市暴雨强度公式及参数",
+      "group": "L",
+      "role": "local_param",
+      "in_scope": true,
+      "status": "current",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "local_meteo",
+        "dbba"
+      ],
+      "notes": "q 值唯一合法来源。系统不本地推算（D-007）。必须记发布年份与文号，公式会更新。"
+    },
+    {
+      "id": "LOCAL-DB",
+      "standard": "DB（地方标准）",
+      "name": "各省市给排水相关地方标准",
+      "group": "L",
+      "role": "local_std",
+      "in_scope": true,
+      "status": "pending_verify",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "dbba"
+      ],
+      "notes": "未逐省登记。地方标准在相应国标或行标实施后应自行废止，须逐个确认现行性。这是三层叠加里目前完全空缺的一层。"
+    },
+    {
+      "id": "ATLAS-20S515",
+      "standard": "20S515",
+      "name": "（图集名称待核，排水管道配套）",
+      "group": "M",
+      "role": "atlas",
+      "in_scope": false,
+      "status": "pending_verify",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "atlas"
+      ],
+      "notes": "图集未按设计不能判为违反规范标准；获强制力的唯一路径是被规范或设计文件引用。"
+    },
+    {
+      "id": "GB50788-2012",
+      "standard": "GB 50788",
+      "name": "城镇给水排水技术规范",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "被 GB 55026/55027 整部废止。任何场合不得引用。"
+    },
+    {
+      "id": "GB50014-2006",
+      "standard": "GB 50014",
+      "name": "室外排水设计规范（2006 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "被 GB 50014-2021 替代。旧版数值（如 ψ=0.9、DN100 斗 12 L/s）常被二手资料沿用。"
+    },
+    {
+      "id": "GB50015-2003",
+      "standard": "GB 50015",
+      "name": "建筑给水排水设计规范（2003 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "被 GB 50015-2019 替代。12 L/s 等旧值源自此版。"
+    },
+    {
+      "id": "GB5749-2006",
+      "standard": "GB 5749",
+      "name": "生活饮用水卫生标准（2006 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ]
+    },
+    {
+      "id": "GB50500-2013",
+      "standard": "GB 50500",
+      "name": "建设工程工程量清单计价规范（2013 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "2025-09-01 整部废止，改 GB/T 50500-2024。"
+    },
+    {
+      "id": "GBT50106-2001",
+      "standard": "GB/T 50106",
+      "name": "给水排水制图标准（2001 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "ndls"
+      ],
+      "notes": "2011-03-01 废止。"
+    },
+    {
+      "id": "CECS149-2003",
+      "standard": "CECS 149",
+      "name": "（名称待核，已于 2016-12-30 作废）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": false,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "std_samr"
+      ],
+      "notes": "作废日已确认，名称待核。CECS 系列须逐个核现行性。"
+    },
+    {
+      "id": "DEPTH-MUNI-2013",
+      "standard": "市政公用工程设计文件编制深度规定（2013 年版）",
+      "name": "市政公用工程设计文件编制深度规定（2013 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_doc"
+      ],
+      "notes": "2025-10-01 废止。"
+    },
+    {
+      "id": "GB50345-2004",
+      "standard": "GB 50345",
+      "name": "屋面工程技术规范（2004 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "被 GB 50345-2012 替代（公告第 1395 号原文「原国家标准《屋面工程技术规范》GB 50345-2004 同时废止」）。"
+    },
+    {
+      "id": "CJT245-2007",
+      "standard": "CJ/T 245",
+      "name": "虹吸雨水斗（2007 年版）",
+      "group": "N",
+      "role": "abolished",
+      "in_scope": false,
+      "status": "abolished",
+      "name_verified": true,
+      "implemented": null,
+      "announcement_no": null,
+      "sources": [
+        "mohurd_notice"
+      ],
+      "notes": "被 CJ/T 245-2021 替代。旧版只管虹吸斗，新版扩到建筑屋面排水用雨水斗（含重力流）。"
+    }
+  ]
+}
