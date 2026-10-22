@@ -1,0 +1,64 @@
+name: 规则库校验
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 清单与草稿必须一一对应：85 行 / 85 唯一 id / 无坏字符
+      - name: 核对任务清单完整性
+        run: python scripts/verify_checklist.py
+
+      # 证明校验器真的在校验（enum 约束的反向注入，D-010）
+      - name: 校验器自检
+        run: python scripts/selftest_validate.py
+
+      # 证明清单校验真的在校验（第 7 轮失败模式）
+      - name: 清单校验自检
+        run: python scripts/selftest_injection.py
+
+      # 信源登记表结构：渠道引用、门类归属、状态取值、检索式是否齐全。
+      # 用 --structure-only 而非默认模式：默认模式会因「109 本从未核对」
+      # 返回 1，那是待办提示不是缺陷；让它阻断 CI，红色会变成背景色。
+      - name: 信源登记表结构
+        run: python scripts/check_sources.py --structure-only
+
+      - name: 名称未核条目清单（信息）
+        run: python scripts/check_sources.py --unverified
+
+      # 硬门禁：草稿结构必须干净。
+      # 用 --drafts-only 而不是 --include-samples：fixture 本来就该报错，
+      # 混在一起时退出码无法表达「草稿有没有问题」。S-2/S-3 落地后
+      # 草稿侧已归零，这一步才可能变成真门禁。
+      - name: schema 校验（草稿）
+        run: python scripts/validate.py --drafts-only
+
+      # 硬门禁：库里每条规则的标准都必须在信源表登记。
+      # 未登记意味着出处不可控，这类条目不得进入生产库。
+      - name: 库内标准是否都已登记
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          root = pathlib.Path(".")
+          reg = json.loads((root / "sources/standards.json").read_text(encoding="utf-8"))
+          known = {s["standard"] for s in reg["standards"]} | {"无规范出处"}
+          bad = set()
+          for p in sorted((root / "rules/building_rain").glob("_draft_*.json")):
+              for r in json.loads(p.read_text(encoding="utf-8")):
+                  if r.get("standard") not in known:
+                      bad.add(r.get("standard"))
+          if bad:
+              print("未登记标准：", sorted(bad))
+              sys.exit(1)
+          print("通过：库内所有标准均已在信源表登记")
+          PY
