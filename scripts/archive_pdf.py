@@ -80,29 +80,22 @@ def page_count(path: pathlib.Path) -> int | None:
 def write_stub_md(folder: pathlib.Path, sid: str, entry: dict, *,
                   note: str = "", by: str | None = None,
                   at: str | None = None) -> pathlib.Path:
-    """正文尚未取得时也写一份记录。
+    """正文尚未归档时写「来源记录」。
 
-    空的归档目录最危险：下一个人看到目录存在，会以为已经归档过。
-    有记录、写明「未取得」和「该从哪里下」，才谈得上可复核。
+    只记从哪取、怎么取、取到后怎么验，**不记本地有没有**。
+    PDF 不进 git，本地有无是每台机器各自的运行时状态：写进版本库必然
+    过期，还会让下一个人把「文档说没有」当成结论。本地状态由
+    audit_archive.py 在运行时判断。
     """
     path = folder / "SOURCE.md"
     lines = [
         f"# {entry['standard']} {entry['name']} · 原文归档",
         "",
-        "> 本目录的 PDF **不进 git**（见仓库根 `.gitignore`）。",
-        "> **本目录当前没有正文 PDF。**",
+        "> 本目录的 PDF **不进 git**（见仓库根 `.gitignore`），只留在本地。",
+        "> 本文件只记出处与获取方式，**不记本地是否已下载**——PDF 是否在手是每台机器",
+        "> 各自的运行时状态，写进版本库必然过期。本地有没有，跑 `audit_archive.py` 看。",
         "",
-        "## 下载记录",
-        "",
-        "| 项 | 内容 |",
-        "|---|---|",
-        "| 下载时间 | 未下载 |",
-        f"| 下载人 | {by or '未记录'} |",
-        f"| 下载方式 | — |",
-        "| **来源页面** | 见下方「公告页」，附件入口在该页 |",
-        "| PDF 直链 | **未取得**（住建部门户网站附件由 JS 动态加载，静态抓不到直链） |",
-        "",
-        "## 文件",
+        "## 来源",
         "",
         "| 项 | 内容 |",
         "|---|---|",
@@ -110,25 +103,24 @@ def write_stub_md(folder: pathlib.Path, sid: str, entry: dict, *,
         f"| 名称 | {entry['name']} |",
         f"| 公告号 | {entry.get('announcement_no') or '未取到'} |",
         f"| 实施日期 | {entry.get('implemented') or '未取到'} |",
+        "| 来源类型 | 官方（住房和城乡建设部） |",
         f"| 公告页 | {entry.get('evidence') or '未记录'} |",
-        "| 公告原文 | `announcement.html`（已归档，哈希见 `announcement.sha256`） |",
-        "| 正文 PDF | **未取得** |",
-        "| 来源类型 | — |",
+        "| 公告原文 | `announcement.html`（哈希见 `announcement.sha256`） |",
+        "| 正文获取 | 公告页「附件下载」→ 规范全文（附件由 JS 动态加载，需浏览器打开） |",
         "",
-        "## 怎么补",
-        "",
-        "人工在浏览器打开上方公告页 → 点「附件下载」→ 取得规范全文，然后：",
+        "## 获取方式",
         "",
         "```bash",
-        f"python scripts/archive_pdf.py {sid} --from-local <文件> --type 官方 \\",
-        "    --source-page <公告页 URL> --expected-pages <全文页数>",
+        f"python scripts/archive_pdf.py {sid} <PDF 直链> --type 官方 \\",
+        f"    --source-page {entry.get('evidence') or '<公告页 URL>'}",
         "```",
         "",
-        "`--expected-pages` 会在页数不足时直接告警，避免把节选当全文。",
+        "已有人工下载的文件时用 `--from-local`。归档后脚本会写 `SHA256.txt`，",
+        "并把哈希与大小补进本文件。",
         "",
-        "## 当前可用证据",
+        "## 用途边界",
         "",
-        "公告原文已归档，可支撑：现行性、实施日期、废止措辞形态、强条清单。",
+        "公告原文可支撑：现行性、实施日期、废止措辞形态、强条清单。",
         "**不足以**支撑：逐条核对条文数值——那需要全文。",
     ]
     if note:
@@ -190,6 +182,10 @@ def write_source_md(folder: pathlib.Path, sid: str, entry: dict, *,
         "## 用途边界",
         "",
     ]
+    # 页数未知时不写「完整性」行：那是本次运行的工具限制，不是文件属性，
+    # 留在出处记录里会被误读成「这份文件有问题」。
+    if pages is None:
+        lines = [l for l in lines if not l.startswith("| **完整性** |")]
     if source_type == "官方":
         lines += [
             "官方发布件或正式出版文本。可作为条文出处。",

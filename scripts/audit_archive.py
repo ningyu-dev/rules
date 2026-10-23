@@ -6,7 +6,7 @@
     正文、从哪下的」在版本库里完全没有痕迹——除非把记录做成可检查的对象。
 
 审计四条：
-  1. 每个 archive/<标准>/ 必须有 SOURCE.md（没有记录 = 不知道有没有正文）
+  1. 每个 archive/<标准>/ 必须有 SOURCE.md（没有记录 = 不知道出处）
   2. 有 PDF 就必须有 SHA256.txt，且哈希要对得上（否则不是同一份）
   3. 有 PDF 就必须记「来源页面」与「下载时间」；只记直链等于无法复核入口
   4. 「完整性」标为不完整的，单独列出——节选件不能当全文用
@@ -33,8 +33,13 @@ def parse_md(path: pathlib.Path) -> dict[str, str]:
 
     多列表格（如 GB50015 的「日期/来源/文件/大小/校验」）不参与解析——
     它们承载的是更细的下载流水，不是台账字段。
+
+    同名字段出现两次且值不同时直接报错：扁平字典会静默取最后一个，
+    此前「废止强条清单」小节复用 `SHA-256` 键，就把 PDF 的哈希覆盖成了
+    清单的哈希，审计因此误报「不是同一份文件」。静默丢信息的手段不用。
     """
     fields: dict[str, str] = {}
+    conflicts: dict[str, str] = {}
     for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line.startswith("|") or not line.endswith("|"):
@@ -46,7 +51,15 @@ def parse_md(path: pathlib.Path) -> dict[str, str]:
         key = key.replace("*", "").strip()
         if key in ("项", "") or set(key) <= {"-"}:
             continue
-        fields[key] = value.replace("**", "").replace("`", "").strip()
+        value = value.replace("**", "").replace("`", "").strip()
+        if key in fields and fields[key] != value:
+            conflicts[key] = fields[key]
+        fields[key] = value
+    if conflicts:
+        raise SystemExit(
+            f"{path}: 字段 {sorted(conflicts)} 出现多次且值不同。\n"
+            "扁平解析会静默取最后一个——请给附表字段改名（如「清单 SHA-256」）后重跑。"
+        )
     return fields
 
 
@@ -102,12 +115,9 @@ def main() -> int:
                 problems.append(f"{sid}: {integrity}")
             state = f"{pdf.stat().st_size / 1048576:.1f} MB"
         else:
-            state = "未取得"
-            # 记录里声称下过、却没文件——比「从未下载」更危险：
-            # 台账看起来齐全，实际核对时打不开。
-            if digest or "缺失" in f.get("正文 PDF", "") or "已下载" in f.get("文件", ""):
-                problems.append(
-                    f"{sid}: SOURCE.md 记有哈希/下载记录，但目录里没有 PDF —— 台账与实物不符")
+            state = "本地无"
+            # PDF 不进 git，clone 到新机器上本来就没有。本地有无是运行时
+            # 状态，不是台账缺陷——只如实显示，不报错。
 
         rows.append((sid, state, source_type or "-", source_page or "-",
                      dl_time or "-", integrity or "-"))
@@ -122,9 +132,9 @@ def main() -> int:
         stype_short = stype.split("（")[0][:9]
         print(f"{sid:22s} {state:10s} {stype_short:10s} {dtime:12s} {integ[:40]}")
     print("-" * 100)
-    with_pdf = sum(1 for r in rows if r[1] not in ("未取得", "无记录"))
-    print(f"共 {len(rows)} 本：有正文 {with_pdf} 本，未取得 {len(rows) - with_pdf} 本")
-    print("口径：按标准目录计；正文以 archive/<id>/*.pdf 是否存在为判据。")
+    with_pdf = sum(1 for r in rows if r[1] not in ("本地无", "无记录"))
+    print(f"共 {len(rows)} 本：本地有 PDF {with_pdf} 本，本地无 PDF {len(rows) - with_pdf} 本")
+    print("口径：本地运行时状态，按 archive/<id>/*.pdf 是否存在计；该状态不写入版本库。")
 
     if problems:
         print("-" * 100)
