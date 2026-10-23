@@ -61,7 +61,7 @@ python scripts/archive_announcements.py --apply
 - **P0-1** PDF 是否入库（当前：暂不入库，Phase 0 后重议）
 - **P0-2** 重力流分支的适用性声明（方向已定"先确认 + 超范围再拦截"，**拦截条件待定**）
 
-其余：OCR 路线、schema 六项改造、`source_authenticity` 字段、85 条核对派工。
+其余：OCR 路线、schema 六项改造、`source_authenticity` 字段、86 条核对派工。
 
 ## 信源：标准会不会变，靠什么知道
 

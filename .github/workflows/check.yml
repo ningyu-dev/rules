@@ -15,7 +15,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      # 清单与草稿必须一一对应：85 行 / 85 唯一 id / 无坏字符
+      # 清单与草稿必须一一对应：86 行 / 86 唯一 id / 无坏字符
       - name: 核对任务清单完整性
         run: python scripts/verify_checklist.py
 

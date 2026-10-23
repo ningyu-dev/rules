@@ -147,7 +147,7 @@ def main() -> int:
     print(f"3. 顶层镜像对齐：{len(fixed_mirror)} 条")
     print(f"4. 需人工判定、本次未改：{len(unresolved)} 条")
     print("-" * 60)
-    print("口径：按 rule_id 计数；分布对 85 条草稿全量统计，含未改动条目。")
+    print("口径：按 rule_id 计数；分布对全部草稿统计，含未改动条目。")
 
     if unresolved:
         print("-" * 60)

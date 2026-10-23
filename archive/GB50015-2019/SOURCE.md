@@ -118,7 +118,7 @@ python scripts/fetch_mandatory_clauses.py --check
 - `provenance.page` 与 `statement` 必须**人工读原页后填写**，不能脚本生成
 - 附录 F 的公式为图片中的图形，无法提取代数式
 
-结论：**85 条草稿的逐条核对只能靠人读这本 PDF。** 这是 Phase 0 的主要工作量来源，不可自动化。
+结论：**86 条草稿的逐条核对只能靠人读这本 PDF。** 这是 Phase 0 的主要工作量来源，不可自动化。
 
 ## 强条清单
 

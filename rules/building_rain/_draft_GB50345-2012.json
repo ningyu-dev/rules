@@ -240,7 +240,7 @@
     "scope": "steel_factory_gutter",
     "content_type": "clause",
     "rule_type": "numeric_threshold",
-    "statement": "混凝土结构层宜采用结构找坡，坡度不应小于3%；当采用材料找坡时，宜采用质量轻、吸水率低和有一定强度的材料，坡度宜为2%。",
+    "statement": "混凝土结构层宜采用结构找坡，坡度不应小于3%。",
     "subject": "concrete_roof_finding_slope",
     "comparator": ">=",
     "value": 0.03,
@@ -272,6 +272,38 @@
     "intended_level": "clause",
     "normative_verb": "不应",
     "blocks_production": true
+  },
+  {
+    "rule_id": "GB50345-2012-4.3.1-material",
+    "standard": "GB 50345",
+    "standard_year": 2012,
+    "clause": "4.3.1",
+    "category": "building_rain",
+    "scope": "steel_factory_gutter",
+    "content_type": "clause",
+    "rule_type": "numeric_threshold",
+    "statement": "当采用材料找坡时，宜采用质量轻、吸水率低和有一定强度的材料，坡度宜为2%。",
+    "subject": "concrete_roof_material_slope",
+    "comparator": "==",
+    "value": 0.02,
+    "unit": "ratio",
+    "mandatory_level": "recommended",
+    "applies_to": {
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity"
+      ]
+    },
+    "requires_human": false,
+    "provenance": {
+      "page": 9,
+      "source_text": "4.3.1 混凝土结构层宜采用结构找坡，坡度不应小于3%；当采用材料找坡时，宜采用质量轻、吸水率低和有一定强度的材料，坡度宜为2%。",
+      "extracted_by": "manual",
+      "verified_by": null,
+      "verified_at": null
+    }
   },
   {
     "rule_id": "GB50345-2012-4.9.7",
