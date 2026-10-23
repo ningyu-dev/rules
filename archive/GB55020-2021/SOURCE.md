@@ -1,7 +1,20 @@
 # GB 55020 建筑给水排水与节水通用规范 · 原文归档
 
 > 本目录的 PDF **不进 git**（见仓库根 `.gitignore`）。
-> 本目录当前**没有正文 PDF**，原因见下。
+> 任何人按下列 URL 下载、用 `SHA256.txt` 比对，即可确认拿到的是同一份。
+> **下载来源必须记全**：只有直链而不知从哪个页面下的，等于无法复核。
+
+## 下载记录
+
+| 项 | 内容 |
+|---|---|
+| 下载时间 | 2026-10-10 |
+| 下载人 | 未记录（dl.ps1 批量下载，操作人未留痕） |
+| 下载方式 | dl.ps1 按台账 §1.1 直链批量下载（2026-10-10） |
+| **来源页面** | https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762458.html |
+| PDF 直链 | https://www.mohurd.gov.cn/api-gateway/jpaas-web-server/front/document/download?fileUrl=YW5UzzlvCwcM%2FNHHX%2FtT6BJ6yM%2FAU1LVtmOVIvNjcuqxaLMLAlBp0EDqzYTeRbwVN3fPCN5o2RyBkY47dg6rAzaCLAIbPWIvTDj72QvEaooUhci45Od3s91MVFev0l%2BP0f7ImFn0WAIZjaeEzqWJqw%3D%3D&fileName=%E5%BB%BA%E7%AD%91%E7%BB%99%E6%B0%B4%E6%8E%92%E6%B0%B4%E4%B8%8E%E8%8A%82%E6%B0%B4%E9%80%9A%E7%94%A8%E8%A7%84%E8%8C%83 |
+
+## 文件
 
 | 项 | 内容 |
 |---|---|
@@ -10,39 +23,15 @@
 | 公告号 | 2021 年第 171 号 |
 | 实施日期 | 2022-04-01 |
 | 公告页 | https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_762458.html |
-| 公告原文 | `announcement.html`（已归档，sha256 见 `announcement.sha256`） |
-| 正文 PDF | **未取得** |
-| 下载时间 | 未下载 |
-| 来源类型 | — |
-| 完整性 | — |
+| **来源类型** | **官方**（住房和城乡建设部） |
+| 文件 | `GB55020-2021.pdf` |
+| 大小 | 3,978,385 B |
+| **完整性** | 未核（无 PDF 工具，页数未知） |
+| SHA-256 | `d84b943144c51db7bbc8029493a39fe6a98358e81f19d5480da9f2459cea0112` |
 
-## 为什么没有正文
+## 用途边界
 
-2026-10-23 曾从达州市城管局网站下载一份 PDF（4.6 MB），但：
+官方发布件或正式出版文本。可作为条文出处。
 
-- 页数 **32 页**，而本规范全文应为 **81 页**（湖南省标准信息公共服务平台登记页数）
-- 即**节选件，不是全文**
-
-已删除。理由：一份 32 页的节选放在 `archive/` 里，下一个人会把它当全文用——这比没有更糟。
-
-住建部门户网站的附件由 JS 动态加载，静态页面拿不到直链，脚本无法直接下载。
-
-## 怎么补
-
-人工在浏览器打开公告页，点「附件下载」取得规范全文，然后：
-
-```bash
-python scripts/archive_pdf.py GB55020-2021 --from-local ~/Downloads/GB55020-2021.pdf \
-    --type 官方 --expected-pages 81
-```
-
-`--expected-pages 81` 会让脚本在页数不足时直接告警，避免再次把节选当全文。
-
-## 当前可用证据
-
-**公告原文已归档**，它足以支撑两件事：
-
-- 实施日期 2022-04-01
-- 「现行工程建设标准相关强制性条文同时废止」+「不一致的以本规范为准」的母子关系判据
-
-**不足以**支撑：逐条核对 4.5 节的条文数值——那需要全文。
+仍需注意：本文件只证明「拿到的是这一份」，**不证明条文数值已被核对**。
+录入规则库时 `provenance.page` 必须逐条填真实页码，`verified_by` 必须有值。
