@@ -62,3 +62,27 @@ jobs:
               sys.exit(1)
           print("通过：库内所有标准均已在信源表登记")
           PY
+
+      # 硬门禁：.gitignore 的注释与规则必须一致。
+      # 注释里写「过程性文档只留本地」，而规则只覆盖其中两类、证据链照样入库——
+      # 这种「注释写一套、规则做一套」会让后来人照注释去删读页记录。
+      # 注释与规则的一致性无法靠读注释保证，只能断言（D-011）。
+      # 用真实文件名做样本：git check-ignore 只做路径匹配，文件不在也能判。
+      - name: 忽略规则与文档分类一致
+        run: |
+          fail=0
+          for p in "docs/独立审查报告-20261022.md" "docs/公告四查记录-20261023.md"; do
+            if git check-ignore -q "$p"; then
+              echo "OK   本地保留（被忽略）：$p"
+            else
+              echo "FAIL 过程性文档应被忽略，实际未忽略：$p"; fail=1
+            fi
+          done
+          for p in "docs/GB50015-2019-读页记录.md" "docs/核对任务清单.md"; do
+            if git check-ignore -q "$p"; then
+              echo "FAIL 证据链被误忽略，条文数值将不可追溯：$p"; fail=1
+            else
+              echo "OK   入库（未忽略）：$p"
+            fi
+          done
+          exit $fail
