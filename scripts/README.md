@@ -15,7 +15,12 @@ python scripts/selftest_validate.py          # 证明 enum 校验真的在校验
 python scripts/selftest_injection.py         # 证明清单校验真的在校验
 python scripts/check_sources.py              # 信源登记与核对到期
 python scripts/migrate_lookup_tables.py      # lookup_table 临时结构迁移（一次性）
-python scripts/apply_source_check.py         # 公告四查结论回写（一次性）
+python scripts/apply_source_check.py         # 公告四查第一批回写（一次性）
+python scripts/apply_source_check_batch2.py  # 公告四查第二批回写（一次性）
+
+python scripts/build_abolished_list.py --apply   # 从官方附件生成已废止强条清单
+python scripts/check_strong_clause.py            # 库内是否引用了已废止的强条
+python scripts/selftest_strong_clause.py         # 证明上面这个检查真的在查
 
 python scripts/archive_announcements.py --apply          # 按登记表归档公告原文
 python scripts/archive_pdf.py <id> <URL> --type 官方     # 归档正文 PDF（git 忽略）
@@ -47,6 +52,11 @@ python scripts/audit_archive.py                          # 归档台账：正文
 | **维度一致** | 列轴长度 ≠ 数值行长度（E017）——附录 G 错位 43% 就是这条没人查 | error |
 | **结构约束** | `metrics` 为空、`minProperties` 不足、`anyOf` 全不满足（E018） | error |
 | 临时字段 | `_` 前缀字段存在于正式结构内，投产前须清除（W008） | warn |
+| **引用已废止强条** | 标 `strong_clause` 但条号在官方废止清单内（E100） | error |
+| **意图恢复已废止强条** | `pending.intended_level=strong_clause` 而该条号已废止（E101） | error |
+| **强条误标** | 标 `strong_clause` 但该标准强条全集已全部废止、本不在其中（E102） | error |
+
+E100~E102 由 `check_strong_clause.py` 输出，判据是 `sources/abolished_strong_clauses.json`。这三条对应项目归纳的 **C 类现行性缺陷（引已废止的强条）**——标准号、名称、年版全对，条文内容一字不差，**唯一错的是强制等级**，肉眼读不出来，只能靠条号比对。
 
 **最后五行是 2026-10-22 补的。** 在此之前脚本只做 `pattern` 与 `additionalProperties` 两类，不校验 `enum` —— 而 `mandatory_level` 唯一的机器可读约束就是 enum。结果是 `tag_blocking.py` 把字段名当哨兵值写进枚举字段，36 条规则变成非法取值，校验一路绿灯。见 `docs/DESIGN.md` D-011。
 
@@ -59,4 +69,7 @@ python scripts/audit_archive.py                          # 归档台账：正文
 ## 自检脚本为什么必需
 
 `validate.py` 通过只说明"已知的坑没再踩"，不说明它覆盖了 schema。`selftest_validate.py` 向草稿注入一个非法枚举值，断言必须新增**恰好 1 条** E011、且指向被注入的 rule_id；注入前后比对文件指纹，还原后计数回到基线。这是 D-010 的直接应用——**注入没生效时，校验会因为"本来就没问题"而报通过**。
+
+`selftest_strong_clause.py` 是同一模式，针对 E100/E101/E102 各注入一次。它存在的直接原因：`check_strong_clause.py` 第一版只归一化了规则一侧的标准号，清单键里还带空格，于是 **32 条一条没比**，输出「库内落在清单覆盖范围内的标准：无」——**看着是通过，实则空跑**。所以该检查器现在还额外做一道独立交叉核对：用「(标准号, 年份) 元组」另算一遍应比对的条数，与实际比对数不一致就返回 2，不许报通过。
+
 

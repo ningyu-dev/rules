@@ -1,0 +1,240 @@
+{
+  "_meta": {
+    "title": "已废止强制性条文清单",
+    "purpose": "给 validate / check_strong_clause 提供条号级判据：哪些条号已经不能再作强制性条文引用。",
+    "rule": "只登记官方公告（正文或公告附件）明确列出条号的情形。第三方标准平台标注的「部分作废」不作为依据——平台字段与公告原文冲突已有实例（GB 50788-2012 被标「部分被替代」，公告实为整部废止）。",
+    "distinction": "scope=strong_clause_status_only 表示标准本体现行、仅所列条号的强条属性废止。这与「整部废止」处置完全不同：前者照常引用标准，后者任何条文不得再引。",
+    "complete_strong_clause_set": "为 true 时表示该标准的强条全集就是本清单所列条号（且已全部废止），故库内该标准不得出现任何 strong_clause。",
+    "generated_by": "scripts/build_abolished_list.py",
+    "do_not_edit": "本文件由脚本生成，请勿手工修改。要改请改脚本或补官方附件后重跑。",
+    "announcements": [
+      {
+        "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+        "document": "GB 55020-2021 建筑给水排水与节水通用规范",
+        "effective": "2022-04-01",
+        "attachment_title": "废止的现行工程建设标准相关强制性条文",
+        "attachment_file": "archive/GB55020-2021/废止强条清单.docx",
+        "attachment_sha256": "c2e9c4eb5d63d7a78abc2207438c5d9325b2ec537b7bafee2b0c366ba0edc6a2",
+        "attachment_url": "https://www.mohurd.gov.cn/file/2021/20211012/cdd16de8eb9bf3a83a5d01f55acaa101.docx",
+        "retrieved": "2026-10-24",
+        "source_type": "官方",
+        "why_attachment": "公告正文只写「现行工程建设标准相关强制性条文同时废止」，不列条号；条号在附件 2。只看正文无法落到条号一级。"
+      }
+    ]
+  },
+  "abolished": [
+    {
+      "standard": "GB 50015",
+      "year": 2019,
+      "key": "GB 50015-2019",
+      "name": "建筑给水排水设计标准",
+      "clauses": [
+        "3.1.2",
+        "3.1.3",
+        "3.1.4",
+        "3.3.4",
+        "3.3.6",
+        "3.3.7",
+        "3.3.8",
+        "3.3.9",
+        "3.3.10",
+        "3.3.13",
+        "3.3.16",
+        "3.3.20",
+        "3.3.21",
+        "3.6.3",
+        "3.10.10",
+        "3.10.13",
+        "3.10.15",
+        "3.10.22",
+        "3.10.25",
+        "3.13.11",
+        "4.3.10",
+        "4.3.11",
+        "4.4.2",
+        "4.4.3",
+        "4.4.12",
+        "4.4.17",
+        "4.10.13",
+        "6.3.9",
+        "6.5.6",
+        "6.5.20"
+      ],
+      "count": 30,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": true,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "GB 50242",
+      "year": 2002,
+      "key": "GB 50242-2002",
+      "name": "建筑给水排水及采暖工程施工质量验收规范",
+      "clauses": [
+        "3.3.3",
+        "3.3.16",
+        "4.1.2",
+        "4.2.3",
+        "5.2.1",
+        "9.2.7",
+        "10.2.1"
+      ],
+      "count": 7,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "GB 50336",
+      "year": 2018,
+      "key": "GB 50336-2018",
+      "name": "建筑中水设计标准",
+      "clauses": [
+        "1.0.5",
+        "1.0.8",
+        "3.1.6",
+        "5.4.1",
+        "5.4.7",
+        "6.2.17",
+        "8.1.1",
+        "8.1.2",
+        "8.1.5",
+        "8.1.7"
+      ],
+      "count": 10,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "GB 50400",
+      "year": 2016,
+      "key": "GB 50400-2016",
+      "name": "建筑与小区雨水控制及利用工程技术规范",
+      "clauses": [
+        "1.0.5",
+        "4.1.6",
+        "5.1.4",
+        "7.3.1",
+        "7.3.4",
+        "7.3.9",
+        "12.0.4"
+      ],
+      "count": 7,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "GB 50555",
+      "year": 2010,
+      "key": "GB 50555-2010",
+      "name": "民用建筑节水设计标准",
+      "clauses": [
+        "4.1.5",
+        "4.2.1",
+        "5.1.2"
+      ],
+      "count": 3,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "CJJ 122",
+      "year": 2017,
+      "key": "CJJ 122-2017",
+      "name": "游泳池给水排水工程技术规程",
+      "clauses": [
+        "4.1.1",
+        "4.3.4",
+        "4.10.2",
+        "6.1.1",
+        "6.2.4",
+        "6.3.3",
+        "11.1.1",
+        "14.1.5",
+        "16.1.1",
+        "18.4.2"
+      ],
+      "count": 10,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "CJJ 140",
+      "year": 2010,
+      "key": "CJJ 140-2010",
+      "name": "二次供水工程技术规程",
+      "clauses": [
+        "3.0.2",
+        "3.0.8",
+        "4.0.1",
+        "6.4.4",
+        "10.1.11",
+        "11.3.6"
+      ],
+      "count": 6,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "CJJ 142",
+      "year": 2014,
+      "key": "CJJ 142-2014",
+      "name": "建筑屋面雨水排水系统技术规程",
+      "clauses": [
+        "3.1.2",
+        "3.1.9",
+        "3.4.5"
+      ],
+      "count": 3,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "CJJ 232",
+      "year": 2016,
+      "key": "CJJ 232-2016",
+      "name": "建筑同层排水工程技术规程",
+      "clauses": [
+        "3.1.9",
+        "4.1.6"
+      ],
+      "count": 2,
+      "abolished_by": "GB 55020-2021",
+      "announcement": "住房和城乡建设部公告 2021 年第 171 号",
+      "effective": "2022-04-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    }
+  ]
+}

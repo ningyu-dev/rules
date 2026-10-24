@@ -27,6 +27,22 @@ jobs:
       - name: 清单校验自检
         run: python scripts/selftest_injection.py
 
+      # 已废止强条清单自洽性：从归档的官方附件重新解析，断言
+      # 公告 171 号所列 30 条与附件 2 的 30 条逐项相同。
+      # 不加 --apply：CI 只校验、不写文件。
+      - name: 已废止强条清单自洽
+        run: python scripts/build_abolished_list.py
+
+      # 硬门禁：库内不得有「引用已废止强条」的条目（C 类现行性缺陷）。
+      # 这类缺陷肉眼读不出来——标准号、名称、年版全对，条文一字不差，
+      # 唯一错的是强制等级，只能靠条号比对。
+      - name: 库内是否引用已废止强条
+        run: python scripts/check_strong_clause.py
+
+      # 证明上面这个检查真的在查（它的第一版空跑过一次，报了「通过」）
+      - name: 强条检查自检
+        run: python scripts/selftest_strong_clause.py
+
       # 信源登记表结构：渠道引用、门类归属、状态取值、检索式是否齐全。
       # 用 --structure-only 而非默认模式：默认模式会因「109 本从未核对」
       # 返回 1，那是待办提示不是缺陷；让它阻断 CI，红色会变成背景色。
