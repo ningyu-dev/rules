@@ -847,13 +847,16 @@
       "in_scope": true,
       "status": "current",
       "name_verified": true,
-      "implemented": "2014-10-01",
-      "announcement_no": null,
+      "implemented": "2014-09-01",
+      "announcement_no": "住房和城乡建设部公告 第 349 号",
       "sources": [
         "mohurd_notice",
         "press"
       ],
-      "notes": "GB 50015-2019 5.2.37 明确指向。3.1.2/3.1.9/3.4.5 三条强条已自 2022-04-01 被 GB 55020 废止。若含斗间距数值，6 条工程经验可升级为条文。库内 0 条，是当前最大缺口。"
+      "notes": "GB 50015-2019 5.2.37 明确指向。强条 3.1.2、3.1.9、3.4.5 已自 2022-04-01 由 GB 55020-2021 附件 2 第 8 项废止强条属性（官方清单已核，标准本体现行、条文照引）。**换版预警**：住建部办公厅 2024-04-28 发布局部修订征求意见稿，修订内容含 87 型与虹吸雨水斗最大排水流量、天沟（集水槽）宽度与深度最小尺寸、雨水总径流雨量计算公式——正是本子域最依赖的几处数值。征求意见稿不得作依据，但须盯发布。库内 0 条，是当前最大缺口。",
+      "last_checked": "2026-10-24",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.ccsn.org.cn/News/ShowInfo.aspx?Guid=f275b2ce-0bd6-4199-bccf-d5a053543e64"
     },
     {
       "id": "GB50015-2019",
@@ -1149,15 +1152,18 @@
       "group": "E",
       "role": "pipe_system",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2011-10-01",
+      "announcement_no": "住房和城乡建设部公告 第 840 号",
       "sources": [
         "mohurd_notice",
         "std_samr"
       ],
-      "notes": "雨水立管用塑料管时的伸缩节与支架间距依据。"
+      "notes": "雨水立管用塑料管时的伸缩节与支架间距依据。推荐性行业标准（CJJ/T），无强条，故不在 GB 55020 废止清单内属正常。发布时废止 CJJ/T 29-98。evidence 为中国建筑工业出版社的原文影印页（转载，含公告原文）。",
+      "last_checked": "2026-10-24",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://ebook.chinabuilding.com.cn/zbooklib/bookpdf/probation?SiteID=1&bookID=56260"
     },
     {
       "id": "CJJ127-2009",
@@ -1166,14 +1172,18 @@
       "group": "E",
       "role": "pipe_system",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2009-09-01",
+      "announcement_no": "住房和城乡建设部公告 第 279 号",
       "sources": [
         "mohurd_notice",
         "std_samr"
-      ]
+      ],
+      "last_checked": "2026-10-24",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2009/art_17339_189322.html",
+      "notes": "雨水立管用金属管时的依据。强条 4.2.5、6.1.1（公告原文逐条列出），**不在** GB 55020-2021 附件 2 的 9 项废止清单内，强条属性仍有效。"
     },
     {
       "id": "CJJT98-2014",
@@ -1760,7 +1770,10 @@
       "sources": [
         "mohurd_doc"
       ],
-      "notes": "适用范围含工业厂房、仓库。屋面雨水属建筑给排水，适用本版；市政公用工程另有 2025 年版，两者不得混用。计算书深度要求在此。"
+      "notes": "适用范围含工业厂房、仓库。屋面雨水属建筑给排水，适用本版；市政公用工程另有 2025 年版（2013 年版已于 2025-10-01 废止），两者不得混用。计算书深度要求在此。官方页「废止日期」为空，现行有效；2016 版发布时废止 2008 年版。",
+      "last_checked": "2026-10-24",
+      "checked_by": "沈澄 给排水工程师",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2016/art_17339_229701.html"
     },
     {
       "id": "DEPTH-MUNI-2025",
