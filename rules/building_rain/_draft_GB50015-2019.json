@@ -220,13 +220,6 @@
     "value": 1.0,
     "unit": "ratio",
     "mandatory_level": "recommended",
-    "mandatory_level_pending": {
-      "_TEMPORARY": true,
-      "intended_level": "clause",
-      "normative_verb": "应按",
-      "reason": "条文使用「应」，属强制性表述，非「宜/可」的推荐级。schema 的 mandatory_level 枚举缺 clause 档（见 docs/规范依据规划.md §6.4），S-4 完成前暂以 recommended 承载，会被渲染为「告警，用户可确认后继续」。",
-      "blocks_production": true
-    },
     "applies_to": {
       "roof_material": [
         "metal",
@@ -244,10 +237,7 @@
       "extracted_by": "manual",
       "verified_by": null,
       "verified_at": null
-    },
-    "intended_level": "clause",
-    "normative_verb": "应按",
-    "blocks_production": true
+    }
   },
   {
     "rule_id": "GB50015-2019-5.2.7",

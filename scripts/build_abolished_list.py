@@ -13,11 +13,16 @@ GB 55020-2021 的公告正文只写「现行工程建设标准相关强制性条
 判定必须落到条号一级。这就是「三查查不出修改单」之外的第二类盲区：
 **公告查到了、措辞也读对了，但判据在附件里，附件没取。**
 
-**为什么只有 GB 50015-2019 标 complete_strong_clause_set**
-「该标准的强条全集是否等于本清单」是一个额外判断，不能默认成立。
-GB 50015-2019 可以确认：公告 2019 年第 171 号逐条列了 30 条强条，
-与本清单的 30 条逐项相同（见 verify 断言）。其余 8 项只知「这些条号被废止」，
-不知「是否还有别的强条没被废止」，因此不标 complete。
+**complete_strong_clause_set 只标能证实的标准**
+「该标准的强条全集是否等于本清单」不能默认成立。目前能证实的两项：
+- GB 50015-2019：公告 2019 年第 171 号逐条列 30 条强条，与 GB 55020 附件 2 的 30 条逐项相同；
+- GB 50014-2021：该标准发布公告逐条列 14 条强条，与 GB 55027-2022 公告正文废止的 14 条逐项相同。
+其余项只知「这些条号被废止」，不知「是否还有别的强条没被废止」，因此不标 complete。
+
+**第二个来源：GB 55027-2022 公告正文**
+GB 55020 的判据在附件里（正文不列条号）；GB 55027-2022 则相反——公告正文里逐条列出
+「一、《室外排水设计标准》GB 50014-2021第3.3.3、4.1.6、…条」。两种形态都要支持：
+判据以官方公告原文为准，能取正文就不必取附件，能取附件就不该只看正文。
 
 用法：
     python scripts/build_abolished_list.py            # 只报告
@@ -37,13 +42,15 @@ OUT = ROOT / "sources" / "abolished_strong_clauses.json"
 DOCX = ROOT / "archive/GB55020-2021/废止强条清单.docx"
 TXT = ROOT / "archive/GB55020-2021/废止强条清单.txt"
 ANNOUNCEMENT = ROOT / "archive/GB50015-2019/announcement.html"
+GB55027_ANNOUNCEMENT = ROOT / "archive/GB55027-2022/announcement.html"
+GB50014_ANNOUNCEMENT = ROOT / "archive/GB50014-2021/announcement.html"
 
 DOCX_URL = ("https://www.mohurd.gov.cn/file/2021/20211012/"
             "cdd16de8eb9bf3a83a5d01f55acaa101.docx")
 
 # 已知「强条全集 == 本清单」的标准，及其强条全集出处。
 # 依据：GB 50015-2019 公告 2019 年第 171 号逐条列出 30 条强条，与本清单逐项相同。
-COMPLETE_SET = {"GB 50015-2019"}
+COMPLETE_SET = {"GB 50015-2019", "GB 50014-2021"}
 
 ITEM_RE = re.compile(
     r"(\d+)\.《(.+?)》\s*([A-Z][A-Za-z0-9/ ]*?)-(\d{4})第(.+)条$")
@@ -100,6 +107,53 @@ def parse_items() -> list[dict]:
     return items
 
 
+def _announcement_text(path: pathlib.Path) -> str:
+    """公告 HTML -> 去标签纯文本（只用于解析公告正文里逐条列出的条号）。"""
+    import html
+
+    if not path.exists():
+        raise SystemExit(f"缺少已归档公告：{path}")
+    raw = path.read_text(encoding="utf-8", errors="replace")
+    body = re.sub(r"<script.*?</script>|<style.*?</style>", "", raw, flags=re.S)
+    return re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", body)))
+
+
+def gb55027_clauses_50014() -> list[str]:
+    """从 GB 55027-2022 公告正文抽 GB 50014-2021 被废止的条号。"""
+    txt = _announcement_text(GB55027_ANNOUNCEMENT)
+    m = re.search(r"《室外排水设计标准》\s*GB\s?50014-2021第([^。]+?)条", txt)
+    return CLAUSE_RE.findall(m.group(1)) if m else []
+
+
+def gb50014_announced_clauses() -> list[str]:
+    """从 GB 50014-2021 自己的发布公告抽强条清单（用于证明「全集」）。"""
+    txt = _announcement_text(GB50014_ANNOUNCEMENT)
+    m = re.search(r"其中，?第([^。]+?)条为强制性条文", txt)
+    return CLAUSE_RE.findall(m.group(1)) if m else []
+
+
+def parse_gb55027_item() -> dict:
+    """GB 55027-2022 公告正文中 GB 50014-2021 的废止条目。"""
+    clauses = gb55027_clauses_50014()
+    announced = gb50014_announced_clauses()
+    return {
+        "standard": "GB 50014",
+        "year": 2021,
+        "key": "GB 50014-2021",
+        "name": "室外排水设计标准",
+        "clauses": clauses,
+        "count": len(clauses),
+        "abolished_by": "GB 55027-2022",
+        "announcement": "住房和城乡建设部公告 2022 年第 45 号",
+        "effective": "2022-10-01",
+        "scope": "strong_clause_status_only",
+        "complete_strong_clause_set": (
+            bool(clauses) and sorted(set(clauses)) == sorted(set(announced))
+        ),
+        "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。",
+    }
+
+
 def announcement_clauses() -> list[str]:
     """从 GB 50015-2019 公告正文抽出强条条号，用于交叉核对。"""
     import html
@@ -113,6 +167,7 @@ def announcement_clauses() -> list[str]:
 
 def build() -> dict:
     items = parse_items()
+    items.append(parse_gb55027_item())
     return {
         "_meta": {
             "title": "已废止强制性条文清单",
@@ -144,6 +199,19 @@ def build() -> dict:
                     "why_attachment": "公告正文只写「现行工程建设标准相关强制性条文同时废止」，"
                                       "不列条号；条号在附件 2。只看正文无法落到条号一级。",
                 },
+                {
+                    "announcement": "住房和城乡建设部公告 2022 年第 45 号",
+                    "document": "GB 55027-2022 城乡排水工程项目规范",
+                    "effective": "2022-10-01",
+                    "attachment_title": "（无附件；条号在公告正文逐条列出）",
+                    "attachment_file": str(GB55027_ANNOUNCEMENT.relative_to(ROOT)),
+                    "attachment_sha256": sha256_of(GB55027_ANNOUNCEMENT),
+                    "attachment_url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765619.html",
+                    "retrieved": "2026-11-01",
+                    "source_type": "官方",
+                    "why_attachment": "该公告正文逐条列出被废止的条号（与 GB 55020 的附件形态相反），"
+                                      "故判据直接取自公告原文 HTML；附件为空不代表判据为空。",
+                },
             ],
         },
         "abolished": items,
@@ -154,12 +222,30 @@ def verify(data: dict) -> list[str]:
     """断言清单自身站得住，再写文件。"""
     problems: list[str] = []
     items = data["abolished"]
-    if len(items) != 9:
-        problems.append(f"项数应为 9，实际 {len(items)}")
+    if len(items) != 10:
+        problems.append(f"项数应为 10，实际 {len(items)}")
 
     total = sum(i["count"] for i in items)
-    if total != 78:
-        problems.append(f"条号合计应为 78，实际 {total}")
+    if total != 92:
+        problems.append(f"条号合计应为 92，实际 {total}")
+
+    # GB 50014-2021：GB 55027-2022 公告正文的废止清单 == 其发布公告的强条清单 == 本清单
+    gb14 = next((i for i in items if i["key"] == "GB 50014-2021"), None)
+    if not gb14:
+        problems.append("清单缺 GB 50014-2021 项")
+    else:
+        abo = gb55027_clauses_50014()
+        own = gb50014_announced_clauses()
+        if not abo:
+            problems.append("未能从 GB 55027-2022 公告正文抽出 GB 50014-2021 条号")
+        elif sorted(set(abo)) != sorted(set(gb14["clauses"])):
+            problems.append(
+                f"GB 55027-2022 公告（{len(abo)} 条）与清单（{gb14['count']} 条）不一致")
+        elif not own or sorted(set(own)) != sorted(set(abo)):
+            problems.append("GB 50014-2021 发布公告的强条清单与 GB 55027-2022 废止清单不一致，"
+                            "不能标 complete")
+        if gb14["count"] != 14:
+            problems.append(f"GB 50014-2021 应为 14 条，实际 {gb14['count']}")
 
     # 交叉核对：GB 50015-2019 的公告强条 == 本清单该标准条号
     gb = next((i for i in items if i["key"] == "GB 50015-2019"), None)
@@ -213,7 +299,8 @@ def main() -> int:
         return 1
 
     print("-" * 66)
-    print("自检通过：公告 171 号与附件 2 的 GB 50015-2019 条号逐项相同。")
+    print("自检通过：公告 171 号与附件 2 的 GB 50015-2019 条号逐项相同；")
+    print("          GB 55027-2022 公告正文与 GB 50014-2021 发布公告的 14 条强条逐项相同。")
 
     if not apply_mode:
         print("以上为报告。加 --apply 写入。")

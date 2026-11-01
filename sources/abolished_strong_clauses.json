@@ -19,6 +19,18 @@
         "retrieved": "2026-10-24",
         "source_type": "官方",
         "why_attachment": "公告正文只写「现行工程建设标准相关强制性条文同时废止」，不列条号；条号在附件 2。只看正文无法落到条号一级。"
+      },
+      {
+        "announcement": "住房和城乡建设部公告 2022 年第 45 号",
+        "document": "GB 55027-2022 城乡排水工程项目规范",
+        "effective": "2022-10-01",
+        "attachment_title": "（无附件；条号在公告正文逐条列出）",
+        "attachment_file": "archive/GB55027-2022/announcement.html",
+        "attachment_sha256": "602d6ad7960dc388b1ed175c7d5ea90663b91ba5acbe7d61023a6c6056068438",
+        "attachment_url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2022/art_17339_765619.html",
+        "retrieved": "2026-11-01",
+        "source_type": "官方",
+        "why_attachment": "该公告正文逐条列出被废止的条号（与 GB 55020 的附件形态相反），故判据直接取自公告原文 HTML；附件为空不代表判据为空。"
       }
     ]
   },
@@ -234,6 +246,35 @@
       "effective": "2022-04-01",
       "scope": "strong_clause_status_only",
       "complete_strong_clause_set": false,
+      "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
+    },
+    {
+      "standard": "GB 50014",
+      "year": 2021,
+      "key": "GB 50014-2021",
+      "name": "室外排水设计标准",
+      "clauses": [
+        "3.3.3",
+        "4.1.6",
+        "5.6.1",
+        "5.15.3",
+        "6.1.12",
+        "7.1.11",
+        "7.1.13",
+        "7.3.8",
+        "7.11.3",
+        "7.12.4",
+        "8.3.15",
+        "8.3.16",
+        "8.3.18",
+        "8.3.20"
+      ],
+      "count": 14,
+      "abolished_by": "GB 55027-2022",
+      "announcement": "住房和城乡建设部公告 2022 年第 45 号",
+      "effective": "2022-10-01",
+      "scope": "strong_clause_status_only",
+      "complete_strong_clause_set": true,
       "handling": "标准本体现行，条文照常引用；所列条号不得再作强制性条文引用。"
     }
   ]

@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""**历史注意（2026-11-01）**：本脚本的模态词检测是**子串匹配**（`应` in statement），会把「相应/对应」里的「应」误判成强制模态词——`GB50014-2021-5.2.10` 即因此被误标 pending。本脚本为一次性历史工具，**重跑前必须改成按词边界匹配**；误标已按读图结果修正。
+
 """为含「应/不应/严禁/不得」但被标为 recommended 的规则打阻断标记。
 
 背景：plumbing-rainwater-site-drainage 曾声明已加 mandatory_level_pending
