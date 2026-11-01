@@ -15,11 +15,14 @@
     "unit": "ratio",
     "mandatory_level": "mandatory_general_code",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 16,
       "source_text": "4.4.3 屋面排水坡度应根据屋顶结构形式、屋面基层类别、防水构造形式、材料性能及使用环境等条件确定,并应符合下列规定:1 屋面排水坡度应符合表4.4.3的规定;2 当屋面采用结构找坡时,其坡度不应小于3%;3 混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -42,8 +45,13 @@
     "unit": "ratio",
     "mandatory_level": "mandatory_general_code",
     "applies_to": {
-      "roof_material": ["concrete"],
-      "system": ["gravity", "siphonic"]
+      "roof_material": [
+        "concrete"
+      ],
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "exceptions": [
@@ -53,7 +61,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 16,
       "source_text": "4.4.3 ……3 混凝土屋面檐沟、天沟的纵向坡度不应小于1%。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -73,11 +81,14 @@
     "subject": "independent_roof_drainage_system",
     "mandatory_level": "mandatory_general_code",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 16,
       "source_text": "4.4.4 屋面应设置独立的雨水收集或排水系统。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -97,11 +108,14 @@
     "subject": "gutter_crossing_deformation_joint_prohibited",
     "mandatory_level": "mandatory_general_code",
     "applies_to": {
-      "system": ["gravity", "siphonic"]
+      "system": [
+        "gravity",
+        "siphonic"
+      ]
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 16,
       "source_text": "4.4.5 屋面工程防水构造设计应符合下列规定：……3 屋面雨水天沟、檐沟不应跨越变形缝,屋面变形缝泛水处的防水层应设附加层,防水层应铺贴或涂刷至变形缝挡墙顶面。高低跨变形缝在立墙泛水处,应采用有足够变形能力的材料和构造作密封处理。",
       "extracted_by": "manual",
       "verified_by": null,

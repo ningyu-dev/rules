@@ -35,7 +35,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 44,
       "source_text": "5.2.3 门式刚架轻型房屋的屋面坡度宜取1/8~1/20,在雨水较多的地区宜取其中的较大值。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -80,7 +80,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 45,
       "source_text": "5.2.4 门式刚架轻型房屋钢结构的温度区段长度,应符合下列规定:1 纵向温度区段不宜大于300m;2 横向温度区段不宜大于150m,当横向温度区段大于150m时,应考虑温度的影响;3 当有可靠依据时,温度区段长度可适当加大。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -122,7 +122,7 @@
     },
     "requires_human": true,
     "provenance": {
-      "page": 0,
+      "page": 45,
       "source_text": "5.2.4 ……2 横向温度区段不宜大于150m,当横向温度区段大于150m时,应考虑温度的影响。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -192,7 +192,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 91,
       "source_text": "11.1.11 屋面排水坡度不应小于表11.1.11的限值。表11.1.11 屋面排水坡度限值：连接方式 屋面排水坡度；直立缝锁边连接板 1/30；扣合式连接板及螺钉连接板 1/20。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -237,7 +237,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.1 天沟截面形式可采用矩形或梯形。外天沟可用彩色金属镀层钢板制作,钢板厚度不应小于0.45mm。内天沟宜用不锈钢材料制作,钢板厚度不宜小于1.0mm,采用其他材料时应做可靠防腐处理。普通钢板天沟的钢板厚度不应小于3.0mm。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -275,7 +275,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.1 内天沟宜用不锈钢材料制作,钢板厚度不宜小于1.0mm。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -317,7 +317,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.1 普通钢板天沟的钢板厚度不应小于3.0mm。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -359,7 +359,7 @@
     },
     "requires_human": true,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.2 天沟应符合下列构造要求：1 房屋的伸缩缝或沉降缝处的天沟应对应设置变形缝。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -401,7 +401,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.2 ……2 屋面板应延伸入天沟,当采用内天沟时,屋面板与天沟连接应采取密封措施。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -450,7 +450,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.2 ……3 内天沟应设置溢流口。溢流口顶低于天沟上檐50mm、100mm,当无法设置溢流口时,应适当增加落水管数量。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -494,7 +494,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 92,
       "source_text": "11.3.3 落水管的截面形式可采用圆形或方形截面,落水管材料可用金属镀层钢板,不锈钢,PVC等材料。集水盒与天沟应密封连接,落水管应与墙面结构或其他构件可靠连接。",
       "extracted_by": "manual",
       "verified_by": null,

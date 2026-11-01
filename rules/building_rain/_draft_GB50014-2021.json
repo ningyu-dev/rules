@@ -18,7 +18,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 13,
       "source_text": "4.1.6 当地区改建时,改建后相同设计重现期的径流量不得超过原径流量。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -83,7 +83,7 @@
     },
     "requires_human": true,
     "provenance": {
-      "page": 0,
+      "page": 14,
       "source_text": "4.1.9 设计暴雨强度应按下式计算：q=167A,(1 +CIgP) / (t大b)^n。式中：q 设计暴雨强度[L/(hm2s)];P 设计重现期(年);t 降雨历时(min);A1,C,b,n 参数,根据统计方法进行计算确定。具有20年以上自记雨量记录的地区,排水系统设计暴雨强度公式应采用年最大值法,并应按本标准附录B的规定编制。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -134,7 +134,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 14,
       "source_text": "4.1.11 雨水管渠的降雨历时应按下式计算。式中：t—降雨历时(min);t1—地面集水时间(min),应根据汇水距离、地形坡度和地面种类通过计算确定,宜采用5min 15min;t2—管渠内雨水流行时间(min)。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -170,7 +170,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 20,
       "source_text": "5.2.4 排水管渠的最大设计充满度和超高应符合下列规定：……2 雨水管道和合流管道应按满流计算。3 明渠超高不得小于0.2m。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -208,7 +208,7 @@
       }
     ],
     "provenance": {
-      "page": 0,
+      "page": 21,
       "source_text": "5.2.5 排水管道的最大设计流速宜符合下列规定：1 金属管道宜为10.0m/s;2 非金属管道宜为5.0m/s,经试验验证可适当提高。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -237,7 +237,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 21,
       "source_text": "5.2.5 ……2 非金属管道宜为5.0m/s,经试验验证可适当提高。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -273,7 +273,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 21,
       "source_text": "5.2.7 排水管渠的最小设计流速应符合下列规定:污水管道在设计充满度下应为0.6m/s;雨水管道和合流管道在满流时应为0.75m/s;明渠应为0.4m/s;设计流速不满足最小设计流速时,应增设防淤积或清淤措施。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -355,7 +355,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 22,
       "source_text": "5.2.10 排水管道的最小管径和相应最小设计坡度,宜按表5.2.10的规定取值。表5.2.10 最小管径和相应最小设计坡度：管道类别 最小管径(mm) 相应最小设计坡度；污水管、合流管 300 0.003；雨水管 300 塑料管 0.002,其他管 0.003；雨水口连接管 200 0.010；压力输泥管 150 —；重力输泥管 200 0.010。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -393,7 +393,7 @@
     },
     "requires_human": true,
     "provenance": {
-      "page": 0,
+      "page": 23,
       "source_text": "5.3.7 管顶最小覆土深度应根据管材强度、外部荷载、土壤冰冻深度和土壤性质等条件,结合当地埋管经验确定:人行道下宜为0.6m,车行道下宜为0.7m。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -433,7 +433,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 27,
       "source_text": "5.7.2 雨水口和雨水连接管流量应为雨水管渠设计重现期计算流量的1.5倍~3.0倍。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -464,7 +464,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 27,
       "source_text": "5.7.3 雨水口间距宜为25m~50m。连接管串联雨水口不宜超过3个。雨水口连接管长度不宜超过25m。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -500,7 +500,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 27,
       "source_text": "5.7.4 道路横坡坡度不应小于1.5%,平箅式雨水口的箅面标高应比周围路面标高低3cm~5cm,立箅式雨水口进水处路面标高应比周围路面标高低5cm。",
       "extracted_by": "manual",
       "verified_by": null,
@@ -536,7 +536,7 @@
     },
     "requires_human": false,
     "provenance": {
-      "page": 0,
+      "page": 28,
       "source_text": "5.9.2 出水口应采取防冲刷、消能、加固等措施,并设置警示标识。",
       "extracted_by": "manual",
       "verified_by": null,
