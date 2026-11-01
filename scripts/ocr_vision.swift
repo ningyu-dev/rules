@@ -65,6 +65,11 @@ guard let doc = PDFDocument(url: URL(fileURLWithPath: path)) else {
     FileHandle.standardError.write("cannot open pdf\n".data(using: .utf8)!); exit(1)
 }
 let total = doc.pageCount
+// 页范围上界夹到实际页数，避免 1-9999 这类调用为越界页输出大量 error 行
+pages = pages.filter { $0 >= 1 && $0 <= total }
+guard !pages.isEmpty else {
+    FileHandle.standardError.write("page range out of bounds (total \(total))\n".data(using: .utf8)!); exit(1)
+}
 for p in pages {
     guard p >= 1 && p <= total, let page = doc.page(at: p - 1), let cg = renderPage(page, dpi: dpi) else {
         print("{\"page\": \(p), \"error\": \"bad page\"}"); continue
