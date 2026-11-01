@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>
+                    最新公告
+ - 工标库</title>
+
+
+<link href="/std/css/base.css?t=20261026" rel="stylesheet" type="text/css" />
+
+<link href="/std/css/master.css?t=20261026" rel="stylesheet" type="text/css" />
+<link href="/std/plug-ins/font-awesome/css/font-awesome.min.css?t=20261026" rel="stylesheet" />
+<script type="text/javascript" src="/std/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="/std/plug-ins/SuperSlide/jquery.SuperSlide.2.1.3.js"></script>
+
+<script type="text/javascript" src="/std/js/web.js?t=20261026"></script>
+<script type="text/javascript" src="/std/js/jquery.tmpl.min.js"></script>
+<link href="/std/css/web.css?t=20261026" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/std/plug-ins/layer/layer.js"></script>
+<script type="text/javascript" src="/std/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="/std/js/sso.js"></script>
+<script type="text/javascript" src="/std/js/sockjs.min.js"></script>
+<script type="text/javascript" src="/std/js/showdown.js"></script>
+<script type="text/javascript" src="/std/js/lottie.min.js"></script>
+<meta name="sogou_site_verification" content="STkzyrXI7n" />    <style>
+        .noImg img{display:none;}
+       /* strong{display:none;}*/
+        .zbiaoti{
+            border-bottom: 1px dashed #e6e6e6;
+        }
+        .zbiaoti .timu{
+            font-size: 14px;
+            font-weight: bold;
+            color: #3a3a3a;
+            text-align: center;
+        }
+        .zbiaoti .laiyuan{
+            font-size: 12px;
+            color: #595858;
+            text-align: center;
+            padding: 15px 0px 10px 0px;
+        }
+        .zbiaoti .laiyuan small{
+            padding-left: 20px;
+        }
+        .znr{
+            line-height: 30px;
+            font-size: 12px;
+        }
+        .znr div{
+            font-size: 12px;
+            color: #2b2b2b;
+            padding: 10px 0px;
+        }
+        .noImg .title-text,.noImg .title-text p{
+            line-height: 35px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+        }
+        .noImg .title{
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .noImg .content-title {
+            width: 100%;
+            height: auto;
+            text-align: center;
+            color: #000;
+            padding-top: 38px;
+            border-bottom: 2px solid #d3d8de;
+        }
+        .noImg .editor-content {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+            overflow: hidden;
+            line-height: 30px;
+            padding: 0 0 40px;
+        }
+        .noImg .editor-content p {
+            line-height: 30px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        .noImg .editorContent-download {
+            width: 90%;
+            height: auto;
+            margin: 0 auto;
+            padding: 40px 0 0 128px;
+            box-sizing: border-box;
+            position: relative;
+            border-top: 1px dashed #d3d8de;
+        }
+        .noImg .editorContent-download .title {
+            position: absolute;
+            display: inline-block;
+            width: 128px;
+            top: 40px;
+            left: 0;
+            text-align: left;
+            color: #000;
+            font-size: 16px;
+        }
+        .noImg .editorContent-download ul li a {
+            font-size: 14px;
+            color: #006ad2;
+        }
+        .noImg .img-download{
+            display: none;
+        }
+        .centralFile-wrapper{
+            width: 100%;
+            height: auto;
+        }
+        .centralFile-wrapper .centralInfo-box{
+            width: 100%;
+            height: auto;
+            padding: 30px 60px;
+            background-color: #f7faff;
+            border: 1px solid #88b2e3;
+            margin-bottom: 40px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list{
+            height: auto;
+        }
+        .mb10{
+            margin-bottom: 10px;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list ul li{
+            width: 100%;
+            height: auto;
+            white-space: nowrap;
+            font-size: 0;
+            margin-top: 10px;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list ul li:first-child{
+            margin-top: 0 !important;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list ul li .title {
+            font-weight: bold;
+            width: 80px;
+            text-align: right;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list ul li .text{
+            white-space: normal;
+            text-align: justify;
+            text-indent: 0;
+            width: auto;
+            max-width: 680px;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list ul li .title, .centralFile-wrapper .centralInfo-box .info-list ul li .text {
+            display: inline-block;
+            vertical-align: top;
+            width: auto;
+            line-height: 20px;
+            font-size: 13px;
+            color: #42629a;
+            margin-bottom: 0;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list.info-left {
+            float: left;
+            width: 770px;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list{
+            height: auto;
+        }
+        .centralFile-wrapper .centralInfo-box .info-list.info-right{
+            float: right;
+            width: 300px;
+        }
+        .editorContent-box{
+            width: 100%;
+            height: auto;
+            border: 1px solid #d3d8de;
+        }
+        .editorContent-box .editorContent-top {
+            width: 90%;
+            margin: 0 auto;
+            height: auto;
+        }
+        .editorContent-box .editorContent-top .content-title{
+            width: 100%;
+            height: auto;
+            text-align: center;
+            color: #000;
+            padding-top: 38px;
+            border-bottom: 2px solid #d3d8de;
+        }
+        .editorContent-box .editorContent-top .content-title .title{
+            width: 100%;
+            height: auto;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .editorContent-box .editorContent-top .content-title .title .title-text{
+            line-height: 35px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+        }
+        .editorContent-box .editorContent-top .editorContent-info{
+            width: 100%;
+            height: auto;
+            padding-top: 20px;
+            padding-bottom: 30px;
+            text-align: center;
+        }
+        .editorContent-box .editor-content{
+            width: 100%;
+            height: auto;
+            padding: 0 60px 40px;
+            margin-top: 20px;
+            overflow: hidden;
+            font-size: 16px;
+            line-height: 30px;
+            box-sizing: border-box;
+            color: #000;
+        }
+        .editorContent-box .editor-content p{
+            line-height: 30px;
+            margin-top: 15px;
+        }
+        /**/
+        .wzleft{
+            width: 726px;
+            margin: auto;
+            border: 1px solid #e6e6e6;
+        }
+        .wzleft .znr{
+            width: 710px;
+            margin: auto;
+        }
+        .noImg{
+            min-height: calc(100vh - 451px);
+        }
+    </style>
+</head>
+
+<body>
+<link rel="stylesheet" href="/layuiadmin/layui/css/layui.css" media="all">
+<script src="/layuiadmin/layui/layui.js"></script>
+<style>
+    input::-webkit-input-placeholder{
+        font-size: 14px;
+        color: #aaa;
+    }
+    .top-other{
+        display: flex;
+        align-items: center;
+        height: 40px;
+        position: relative;
+    }
+
+    .service:hover .informa{
+        display: block;
+    }
+    .informa{
+        position: absolute;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 3;
+        top: 55px;
+        left: 50%;
+        display: none;
+        padding: 0 10px;
+        min-width: 134px;
+        box-sizing: border-box;
+        margin-left: -67px;
+    }
+    .informa li{
+        height: 42px;
+        line-height: 42px;
+        width: 100%;
+        border-bottom: 1px solid #F0F0F0;
+    }
+    .informa li:last-child {
+        border: none;
+    }
+    .informa li a{
+        color: #333333;
+        font-size: 14px;
+        text-align: center;
+        padding: 0 !important;
+        line-height: 42px;
+        white-space: nowrap;
+        height: auto;
+    }
+    .informa li:hover,.informa li a:hover{
+        background: none !important;
+    }
+    .informa li:hover a{
+        color: #DA251C;
+    }
+    .top-zsfw{
+        position: relative;
+        margin-right: 30px;
+        height: 100%;
+        line-height: 40px;
+    }
+    .top-zsfw a {
+        color: #333333;
+        font-size: 14px;
+        margin: 0;
+    }
+    .top-zsfw p{
+        width: 116px;
+        position: absolute;
+        top: 38px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        z-index: 9;
+        left: 0px;
+        padding: 10px 15px;
+        box-sizing: border-box;
+        display: none;
+    }
+    .top-zsfw p a{
+        display: block;
+        margin: 0;
+        text-align: center;
+        height: 30px;
+        line-height: 30px;
+        color: #1a1a1a;
+    }
+    .top-zsfw .topHover {
+        color: #4264A8;
+        font-weight: bold;
+    }
+    .top-zsfw .topHover img{
+        vertical-align: middle;
+        margin-right: 5px;
+        margin-bottom: 2px;
+    }
+    .purchase{
+        font-weight: bold;
+        color: #C97D33 !important;
+    }
+    .purchase img{
+        vertical-align: text-bottom;
+        margin-right: 5px;
+        margin-bottom: 1px;
+    }
+    .zsgm img{
+        width: 14px;
+        vertical-align: text-bottom;
+        margin-bottom: 1px;
+        margin-right: 5px;
+    }
+    .nav li a{
+        padding: 0 8px;
+    }
+    .c-grey {
+        color: #1a1a1a;
+        margin-right: 30px;
+    }
+    .c-grey:hover{
+        color: #1a5284;
+    }
+    .c-grey .institution-ul{
+        position: absolute;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        width: 100px;
+        left: 0px;
+        top: 38px;
+        display: none;
+    }
+    .c-grey:hover .institution-ul{
+        display: block;
+    }
+    .c-grey .institution-ul a{
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+        margin: 0;
+        display: block;
+        font-size: 14px;
+        color: #1a1a1a;
+    }
+    .c-grey .institution-ul a:hover,.top-zsfw p a:hover{
+        color: #1a5284;
+    }
+    .soinput{
+        position: relative;
+        z-index: 2;
+        background: none;
+        font-size: 16px;
+        box-sizing: border-box;
+        /* 输入框改为可折行：最多显示两行，超出竖向滚动 */
+        display: block;
+        width: 100%;
+        line-height: 22px;
+        height: 44px;
+        padding: 0;
+        border: 0;
+        resize: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        font-family: "微软雅黑", arial;
+        color: inherit;
+        transition: none;
+    }
+    .soinput::placeholder,
+    .soinput::-webkit-input-placeholder{
+        font-size: 16px;
+        color: #808080;
+    }
+    .layui-carousel{
+        position: absolute;
+        left: 190px;
+        top: 0;
+        color: #808080;
+    }
+    .header-search .layui-carousel p{
+        line-height: 60px;
+        background: #fff !important;
+        font-size: 18px;
+    }
+
+    .box-shadow{
+        background: linear-gradient(0deg, #FFFFFF 0%, #D0E3FF 100%);
+    }
+    .box-logo {
+        padding: 50px 0 30px 0;
+        text-align: center;
+    }
+    .xb-search .header-search{
+        display: flex;
+        justify-content: center;
+        padding-bottom: 30px;
+        background: #ffffff;
+    }
+    .box-top .w-box,.box-nav .w-box {
+        width: 1420px;
+    }
+    /* 仅作用于页头的纸书购买 / 手机版二维码弹窗，避免污染其他页面的 .terprop 弹窗 */
+    #zsgm-popup .popup-con.terprop,
+    #wx-popup .popup-con.terprop{
+        height: auto;
+        min-height: auto !important;
+    }
+    #wx-popup .popup-con.terprop{
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+    }
+    .terprop p{
+        color: #1D4A91;
+    }
+    #zsgm-popup:before,#wx-popup:before{
+        position: absolute;
+        content: url(/std/images/xb-tksj.png);
+        top: -12px;
+        z-index: 9;
+        left: 80px;
+    }
+    #zsgm-popup:before{
+        left: 60px;
+    }
+</style>
+<div class="box-shadow">
+    <div class="box-top w-warp">
+        <div class="w-box clearfix">
+            <div class="top-link fl">
+                <a href="/search/advance">高级检索</a>
+                <a href="/term">术语库</a>
+                <a href="/announce/all">公告</a>
+                                    <a href="/std/images/chuban.jpg?v=2" target="_blank">网络出版服务许可证：（署）网出证（京）第457号</a>
+            </div>
+            <div class="top-other fr">
+                <div class="top-zsfw">
+                    <a href="https://knowledge.gongbiaoku.com" target="_blank" class="topHover"><img src="/std/images/xb-zsfw.png">知识服务平台</a>
+                    <p>
+                        <a href="https://hongtu.gongbiaoku.com" target="_blank">宏图悦读</a>
+                        <a href="http://weike.jhpress.com/" target="_blank">发改社微课程</a>
+                    </p>
+                </div>
+                <a href="/center/vip" class="purchase"><img src="/std/images/xb-hygm.png">会员购买</a>
+
+                <a class="zsgm" href="javascript:;"><img src="/std/images/xb-zsgm.png">纸书购买</a>
+                <div id="zsgm-popup" class="login-popup popup" style="width: 100px;margin: 0 0 0 130px;left:85px;top:40px;">
+                    <div class="popup-con terprop">
+                        <div style="text-align: center">
+                            <img src="/std/img/zsgmsm.jpg" style="width: 100px">
+                        </div>
+
+                    </div>
+                </div>
+
+                <a class="wechat" href="javascript:;">手机版</a>
+
+                <div id="wx-popup" class="login-popup popup" style="width: 240px;margin: 0 0 0 170px;left:130px;top:40px;">
+                    <div class="popup-con terprop">
+                        <div style="text-align: center">
+                            <img src="/std/images/xcxewm.png" style="width: 100px">
+                            <p style="margin-top: 10px">工标库小程序</p>
+                        </div>
+                        <span style="width: 1px;height: 100px;background: #DBDEE4;"></span>
+                        <div style="text-align: center">
+                            <img src="/std/img/qrcode.jpg" style="width: 100px">
+                            <p style="margin-top: 10px">工标库公众号</p>
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- 未登录 -->
+                    <div class="login">
+                        <img src="/std/images/xb-yh.png" style="margin-right: 5px" />
+                        <div>
+                            <a href="javascript:toLoginPage()" style="color: #1D4A91;">登录 <span style="position: relative;top: -1px;color: #CCCCCC;">|</span> 注册</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-logo">
+        <a href="/" >
+            <img class="img-logo" src="/std/images/xb-logo.png?t=1">
+        </a>
+    </div>
+</div>
+
+<div class="xb-search">
+    <div class="header-search">
+        <div class="search-input css3" style="display: flex;justify-content: space-between;">
+            <div class="selectbox" id="change">
+                <div class="xlcd">
+                    <span id="value">
+                             标准规范
+                    </span></div>
+                <div class="option">
+                    <ul>
+                        <li><a href="javascript:changeSearchUrl('/search');" class="chose" data-value="标准规范">标准规范</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search?people=1');" class="chose" data-value="相关人">相关人</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search?ins=1');" class="chose" data-value="相关单位">相关单位</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search/item');" class="chose" data-value="全(条)文">全(条)文</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search/item?isCompulsory=1');" class="chose" data-value="强条">强条</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search/video/count');" class="chose" data-value="解读">解读</a></li>
+                        <li><a href="javascript:changeSearchUrl('/search/excel');" class="chose" data-value="实用表格">实用表格</a></li>
+                            <li><a href="javascript:changeSearchUrl('/search/pic');" class="chose" data-value="标准图集">标准图集</a></li>
+                            <li><a href="javascript:changeSearchUrl('/search/ebook');" class="chose" data-value="电子书">电子书</a></li>
+                            <li><a href="javascript:changeSearchUrl('/search/gbVideoGeneral');" class="chose" data-value="视频">视频</a></li>
+                            <li><a href="javascript:changeSearchUrl('/statute/list');" class="chose" data-value="法律法规">法律法规</a></li>
+                        <li><a href="javascript:changeSearchUrl('/announce/list');" class="chose" data-value="服务资讯">服务资讯</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div  style="padding: 10px 20px;flex: 1;position:relative;">
+                <div style="padding: 8px 0 10px 0">
+                    <textarea id="queryTop" name="txt" rows="1" class="soinput" maxlength="100"
+                              onkeydown="if(event.keyCode == '13' &amp;&amp; !event.isComposing){event.preventDefault();queryTop();}"
+                              placeholder="搜索 关键词 / 标准名 / 标准号"></textarea>
+                    <input type="hidden" id="zQuery" value="">
+                </div>
+                <div class="xb-search-bottom">
+                    <div style="display: flex;align-items: center">
+                        <div class="left-type">
+                            <p class="active">全库搜</p>
+                            <p>AI检索</p>
+                        </div>
+                        <div class="testing" style="display: none;"><span></span>合规检测</div>
+                        <a class="finding" href="/duplicate"  style="display: none;"><span></span>标准查重</a>
+                        <a class="reviser" href="/ai/editor" style="display: none;"><span></span>智能审校</a>
+                    </div>
+                    <div style="display: flex;align-items: center">
+                        <div class="upload-search" style="display: none;" onclick="location.href='/compliance'"><img src="/std/images/jsscwd.png" />上传文档</div>
+                        <button onclick="queryTop()">
+                            <img src="/std/images/aijt.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="box-keyword padding clearfix">
+                    <div class="keyword-l clearfix fl">
+                        <ul id="key-recommend" class="ul-keyword fl"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box-nav w-warp ">
+    <ul class="nav w-box" style="padding: 0 30px;box-sizing: border-box;display: flex;justify-content: space-between">
+        <li id="serItemNum" class="service" style="position:relative;">
+            <a  href="javascript:goWithQuery('/search?query=')"><i class="icon xb-icon-nav-04"></i>标准规范</a>
+            <ul class="informa">
+                <li><a href="javascript:goWithQuery('/search?query=')">标准规范</a></li>
+                <li><a href="javascript:goWithQuery('/search/item?query=')">全(条)文检索</a></li>
+                <li><a href="javascript:goWithQuery('/search/item?isCompulsory=1&query=')">强制性条文</a></li>
+                <li><a href="javascript:goWithQuery('/search/video/count?query=')">解读</a></li>
+                <li><a href="javascript:goWithQuery('/search/excel?query=')">实用表格</a></li>
+                <li><a href="javascript:goWithQuery('/search/pic?query=')">标准图集</a></li>
+            </ul>
+        </li>
+        <li><a  href="/cecs"><i class="icon xb-icon-nav-ce"></i>CECS专栏</a></li>
+            <li style="position:relative;" class="service" id="serBookNum">
+                <a  href="javascript:goWithQuery('/search/ebook?query=')"><i class="icon xb-icon-nav-09"></i>图书</a>
+                <ul class="informa">
+                    <li><a id="serLinkEbook" href="javascript:goWithQuery('/search/ebook?query=')">电子书</a></li>
+                    <li><a id="serLinkVideo" href="javascript:goWithQuery('/search/gbVideoGeneral?query=')">视频</a></li>
+                </ul>
+            </li>
+        <li style="position:relative;" class="service" id="serGongSum">
+            <a  href="/announce/all">
+                <i class="icon xb-icon-nav-06"></i>服务资讯
+            </a>
+           <ul class="informa">
+               <li><a href="javascript:goWithQuery('/announce/list?type=1&query=')" >最新公告</a></li>
+               <li><a href="javascript:goWithQuery('/announce/list?type=2&query=')" >政策发布</a></li>
+               <li><a href="javascript:goWithQuery('/announce/list?type=3&query=')" >征求意见</a></li>
+               <li><a href="javascript:goWithQuery('/announce/list?type=4&query=')" >CECS公告</a></li>
+           </ul>
+        </li>
+            <li id="serStatuesNum"><a  href="javascript:goWithQuery('/statute/list?query=')"><i class="icon xb-icon-nav-10"></i>法律法规</a></li>
+        <li id="serSuyuNum"><a  href="/term">
+                <i class="icon xb-icon-nav-07"></i>术语库</a>
+        </li>
+        <li style="position:relative;" class="service" id="serBianshen">
+            <a  href="/duplicate"><i class="icon xb-icon-nav-11"></i>标准查重</a>
+            <ul class="informa">
+                <li><a href="/duplicate">标准查重</a></li>
+                <li><a href="/ai/editor">智能审校</a></li>
+            </ul>
+        </li>
+        <li id="serComplianceNum"><a  href="/compliance"><i class="icon xb-icon-nav-hg"></i>合规检测</a></li>
+        <li><a  href="/introduction"><i class="icon xb-icon-nav-02"></i>会员中心</a></li>
+        <li><a  href="/plat"><i class="icon xb-icon-nav-08"></i>关于平台</a></li>
+    </ul>
+</div>
+
+<input type="hidden" id="search_url" value="/search">
+
+<input type="hidden" id="loginFlag" value="0">
+
+<script>
+/*
+ * 事件契约（标准问答服务 standardsAiChatUrl，服务端见 AiAskAct）：
+ *   event:reasoning {text}      进度旁白（工具调用之间的解释性文字）
+ *   event:tool      {name}      检索动作
+ *   event:answer    {content}   正文增量（markdown）
+ *   event:widget    {title,svg} 示意图：按到达位置内联到正文之间
+ *   event:ping                  保活心跳（忽略）
+ *   event:done / event:error {message[,upgrade]} / event:need_login
+ *
+ * aiAskInit(cfg) 返回 {ask(q), question()}；cfg：
+ *   url / param / from    接口地址、提问参数名（q / text）、渠道标记（pc / mobile）
+ *   root / ns             弹窗容器（关闭、折叠、链接兜底的查找范围）、链接兜底的命名空间
+ *   answer                回答区选择器
+ *   think                 思考区选择器；thinkWrap 折叠块（首条出现时才显示）
+ *   question              可选：顶部回显提问的选择器（移动端上方检索栏已显示，不配）
+ *   closeSel / foldSel    可选：关闭按钮、折叠标题（移动端没有，不配）
+ *   segClass              正文分段元素 class；waitHtml / waitSel 等待占位
+ *   linkTarget            true=正文链接加 target=_blank（PC）；false=交由 onLink（移动端）
+ *   onLink(href)          正文链接点击（移动端跳转，PC 传 window.open）
+ *   onWidget($card)       示意图卡片生成后（移动端绑定「点击查看大图」）；widgetTip 卡片内提示
+ *   onLogin()             未登录：PC 关弹窗并弹登录框，移动端跳登录页
+ *   onQuota()             次数用完时的升级会员弹窗
+ *   onSettled()           一轮结束（done / error / 请求失败）后回调（移动端据此写回答缓存）
+ */
+function aiAskInit(cfg) {
+    var converter = null;
+    var running = false;
+    var question = '';
+    var segs = [];        // 正文分段：[{el, text}]，示意图卡片按事件顺序插在分段之间
+    var segCur = -1;      // 当前流式输出的分段下标（-1 表示下一段文字另起）
+
+    function esc(text) {
+        if (text === null || text === undefined) return '';
+        return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function ansBox() { return $(cfg.answer); }
+    function thinkBox() { return $(cfg.think); }
+
+    // markdown 渲染；正文里的链接统一处理：裸链接（文字就是 URL）显示为「点击查看」
+    function toHtml(text) {
+        if (!converter && typeof showdown !== 'undefined') converter = new showdown.Converter({simplifiedAutoLink: true, tables: true});
+        var html = converter ? converter.makeHtml(text) : esc(text).replace(/\n/g, '<br/>');
+        return html.replace(/<a\s+href="([^"]+)"([^>]*)>([\s\S]*?)<\/a>/gi, function (m, href, attrs, text) {
+            var label = text.replace(/<[^>]+>/g, '').trim();
+            var bare = label === href || label.replace(/&amp;/g, '&') === href.replace(/&amp;/g, '&');
+            var extra = cfg.linkTarget && !/target\s*=/.test(attrs) ? ' target="_blank" rel="noopener"' : '';
+            return '<a href="' + href + '"' + attrs + extra + '>' + (bare ? '点击查看' : text) + '</a>';
+        });
+    }
+
+    // 思考区：追加一行后滚到底部，折叠态即显示最新一行；首条出现时才显示整块
+    function log(text) {
+        var box = thinkBox();
+        box.append('<p><span class="dot"></span>' + esc(text) + '</p>');
+        box.closest(cfg.thinkWrap).show();
+        var el = box[0];
+        if (el) el.scrollTop = el.scrollHeight;
+    }
+
+    function showWait() {
+        if (cfg.waitHtml) ansBox().append(cfg.waitHtml);
+    }
+
+    function hideWait() {
+        ansBox().find(cfg.waitSel).remove();
+    }
+
+    // 当前正文分段：没有活动分段时，在已有内容（文字 / 示意图）末尾另起一段
+    function seg() {
+        if (segCur < 0) {
+            var el = $('<div class="' + cfg.segClass + '"></div>');
+            ansBox().append(el);
+            segs.push({el: el, text: ''});
+            segCur = segs.length - 1;
+        }
+        return segs[segCur];
+    }
+
+    // 正文增量：写入当前分段（流式重渲染 markdown）
+    function appendAnswer(delta) {
+        hideWait();
+        var s = seg();
+        s.text += delta;
+        s.el.html(toHtml(s.text));
+    }
+
+    // SVG 示意图卡片（标准问答服务生成；服务端已清洗，前端再做一次轻量校验）
+    function addWidget(title, svg) {
+        if (!svg || /<script|<foreignObject|on\w+\s*=/i.test(svg)) return;
+        hideWait();
+        var $card = $('<div class="stdWidget"></div>');
+        if (title) $card.append($('<div class="wt"></div>').text(title));
+        $card.append($('<div class="wb"></div>').html(svg));
+        if (cfg.widgetTip) $card.append(cfg.widgetTip);
+        if (cfg.onWidget) cfg.onWidget($card);
+        ansBox().append($card);
+        segCur = -1;   // 图后文字另起一段
+    }
+
+    // 开局重置：清空思考区与回答区，收起折叠态，顶部回显问题，显示等待占位
+    function reset() {
+        segs = [];
+        segCur = -1;
+        thinkBox().html('').removeClass('open');
+        $(cfg.thinkWrap).removeClass('open').hide();
+        $(cfg.root + " .thinkFold").removeClass('rotate');
+        ansBox().html('');   // 上一轮的正文与示意图卡片一并清掉
+        if (cfg.question) $(cfg.question).text(question);
+        showWait();
+    }
+
+    function handleEvent(raw) {
+        var event = '';
+        var data = '';
+        var lines = raw.split('\n');
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            if (line.indexOf('event:') === 0) event = line.substring(6).trim();
+            else if (line.indexOf('data:') === 0) data += line.substring(5).trim();
+        }
+        if (!data) return;
+        var json;
+        try { json = JSON.parse(data); } catch (e) { return; }
+        if (event === 'answer') {
+            appendAnswer(json.content || '');
+        } else if (event === 'reasoning') {
+            log(json.text || '');
+        } else if (event === 'widget') {
+            addWidget(json.title, json.svg);
+        } else if (event === 'tool') {
+            log('检索动作：' + (json.name || ''));
+        } else if (event === 'need_login') {
+            // 未登录（含会话失效）：PC 关弹窗并弹登录框，移动端跳登录页
+            running = false;
+            cfg.onLogin();
+        } else if (event === 'error') {
+            appendAnswer('\n\n> ' + (json.message || ''));
+            // 非付费用户次数用完：弹「升级会员」（与阅读页无权限时同一个弹窗）
+            if (json.upgrade === 'Y' && cfg.onQuota) cfg.onQuota();
+            if (cfg.onSettled) cfg.onSettled();
+        } else if (event === 'done') {
+            hideWait();
+            if (cfg.onSettled) cfg.onSettled();
+        }
+    }
+
+    // 提交问题并流式展示
+    function ask(q) {
+        if (!q || running) return;
+        running = true;
+        question = q;
+        reset();
+
+        fetch(cfg.url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            body: cfg.param + '=' + encodeURIComponent(q) + '&from=' + cfg.from
+        }).then(function (res) {
+            if (!res.ok) throw new Error('HTTP ' + res.status);
+            // 支持流式读取；老内核不支持 ReadableStream 时退化为一次性解析
+            if (!res.body || !res.body.getReader) {
+                return res.text().then(function (text) {
+                    var parts = text.split('\n\n');
+                    for (var i = 0; i < parts.length; i++) {
+                        if (parts[i].trim()) handleEvent(parts[i]);
+                    }
+                    hideWait();
+                    running = false;
+                });
+            }
+            var reader = res.body.getReader();
+            var decoder = new TextDecoder('utf-8');
+            var buffer = '';
+            function pump() {
+                return reader.read().then(function (result) {
+                    if (result.done) {
+                        if (buffer.trim()) handleEvent(buffer);
+                        hideWait();
+                        running = false;
+                        return;
+                    }
+                    buffer += decoder.decode(result.value, {stream: true});
+                    var index;
+                    while ((index = buffer.indexOf('\n\n')) >= 0) {
+                        handleEvent(buffer.substring(0, index));
+                        buffer = buffer.substring(index + 2);
+                    }
+                    return pump();
+                });
+            }
+            return pump();
+        }).catch(function (err) {
+            appendAnswer('\n\n> 请求失败：' + err.message);
+            log('异常：' + err.message);
+            running = false;
+            if (cfg.onSettled) cfg.onSettled();
+        });
+    }
+
+    if (cfg.closeSel) {
+        // 关闭弹窗
+        $(cfg.closeSel).click(function () {
+            $(cfg.root).hide();
+        });
+    }
+    if (cfg.foldSel) {
+        // 折叠 / 展开思考区：默认只显示一行，点击标题展开全部
+        $(cfg.foldSel).click(function () {
+            $(this).find(".thinkFold").toggleClass("rotate");
+            $(cfg.think).toggleClass("open");
+        });
+    }
+    if (cfg.onLink) {
+        // 兜底：正文里的链接统一由 onLink 接管（PC 新窗口；移动端走小程序/站内跳转）。
+        // linkify 只认 <a href="..."> 这种写法，AI 若直接给出单引号 / 属性顺序不同的锚点会漏掉，
+        // 漏掉就会把弹窗所在的页面整个跳走（对话和弹窗都没了）
+        $(document).off("click." + cfg.ns).on("click." + cfg.ns, cfg.answer + " a[href]", function (e) {
+            var href = $(this).attr("href");
+            if (!href || href.indexOf("javascript:") === 0 || href.charAt(0) === "#") return;
+            if (cfg.linkTarget && ($(this).attr("target") || "").toLowerCase() === "_blank") return;
+            e.preventDefault();
+            cfg.onLink(href);
+        });
+    }
+
+    return {
+        ask: ask,
+        question: function () { return question; }
+    };
+}
+</script>
+<div class="aiServe" style="display: none">
+    <div class="serveCont">
+        <div class="serveClose"><img src="/std/images/close-icon.png" /></div>
+        <div class="serve-title">
+            <img src="/std/images/xbAi.png" style="margin-right: 12px" />工标库AI服务<img src="/std/images/xbStar.png" style="margin-top: -27px;" />
+        </div>
+        <div class="partCont">
+            <div class="rag-question"></div>
+            <div class="thinkReply" style="display: none">
+                <div class="thinkTitle">
+                    <p><img src="/std/images/xbAisk.png">深度思考</p>
+                    <div class="thinkFold"><img src="/std/images/aiFold.png"></div>
+                </div>
+                <div class="thinkResult"></div>
+            </div>
+            <div class="particulars"></div>
+            <div id="rag-upgrade" style="display: none"><a href="/center/vip">去升级<img src="/std/images/hgjr.png"></a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== AI检索：对接标准问答服务（standardsAiChatUrl，事件 reasoning / tool / answer / widget / done / error / need_login） =====
+    var ragDialog = aiAskInit({
+        url: '/dh/ai/rag/chat',
+        param: 'q',
+        from: 'pc',
+        root: '.aiServe',
+        ns: 'aiLinkGuard',
+        answer: '.aiServe .partCont .particulars',
+        think: '.aiServe .thinkReply .thinkResult',
+        thinkWrap: '.thinkReply',
+        question: '.aiServe .partCont .rag-question',
+        closeSel: '.aiServe .serveClose',
+        foldSel: '.aiServe .thinkTitle',
+        segClass: 'rag-seg',
+        waitHtml: '<div class="rag-thinking"><span class="rag-spin"></span>正在生成回答…</div>',
+        waitSel: '.rag-thinking',
+        linkTarget: true,   // 正文链接一律新窗口打开
+        onLink: function (href) { window.open(href, '_blank', 'noopener'); },
+        onLogin: function () {
+            // 未登录（含会话失效）：关闭弹窗并弹出登录框
+            $(".aiServe").hide();
+            if (typeof footLogin === 'function') footLogin();
+        },
+        onQuota: function () {
+            // 非付费用户次数用完：弹「升级会员」（与阅读页无权限时同一个弹窗）
+            if (typeof noAuth === 'function') {
+                $("#rag-upgrade").show()
+            };
+        }
+    });
+
+    // 发起一次 AI 检索（检索框 / AI 按钮调用）
+    function aiRagAsk(q) {
+        ragDialog.ask(q);
+    }
+</script>
+<div class="complianceAi" style="display: none">
+    <div class="serveCont">
+        <div class="complianceClose"><img src="/std/images/close-icon.png" /></div>
+        <div class="serve-title">
+            <img src="/std/images/xbhgai.png" style="margin-right: 12px" />合规检测<img src="/std/images/xbStar.png" style="margin-top: -27px;" />
+        </div>
+        <div class="partCont">
+            <div class="rag-question"></div>
+            <div class="thinkReply" style="display: none">
+                <div class="thinkTitle">
+                    <p><img src="/std/images/tuili.png">推理过程</p>
+                    <div class="thinkFold"><img src="/std/images/aiFold.png"></div>
+                </div>
+                <div class="thinkResult"></div>
+            </div>
+            <div class="particulars"></div>
+            <div id="rag-upgrade" style="display: none"><a href="/center/vip">去升级<img src="/std/images/hgjr.png"></a></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== 合规检测：对接标准问答服务（standardsAiChatUrl），事件契约与 AI检索 完全一致 =====
+    var cmpDialog = aiAskInit({
+        url: '/compliance/ask/stream',
+        param: 'text',
+        from: 'pc',
+        root: '.complianceAi',
+        ns: 'cmpLinkGuard',
+        answer: '.complianceAi .partCont .particulars',
+        think: '.complianceAi .thinkReply .thinkResult',
+        thinkWrap: '.thinkReply',
+        question: '.complianceAi .partCont .rag-question',
+        closeSel: '.complianceAi .complianceClose',
+        foldSel: '.complianceAi .thinkTitle',
+        segClass: 'cmp-seg',
+        // 等待占位与 AI检索 同一套结构与样式，只是文案不同
+        waitHtml: '<div class="rag-thinking"><span class="rag-spin"></span>正在检查…</div>',
+        waitSel: '.rag-thinking',
+        linkTarget: true,   // 正文链接一律新窗口打开
+        onLink: function (href) { window.open(href, '_blank', 'noopener'); },
+        onLogin: function () {
+            // 未登录（含会话失效）：关闭弹窗并弹出登录框
+            $(".complianceAi").hide();
+            if (typeof footLogin === 'function') footLogin();
+        },
+        onQuota: function () {
+            // 非付费用户次数用完：弹「升级会员」（与阅读页无权限时同一个弹窗）
+            if (typeof noAuth === 'function') {
+                $("#rag-upgrade").show()
+            }
+        }
+    });
+
+    // 发起一次合规检测（检索框切换到「合规检测」后调用）
+    function complianceAsk(text) {
+        cmpDialog.ask(text);
+    }
+</script>
+
+<script>
+    //输入框提示词滚动
+ /*   layui.use(['carousel', 'jquery'], function(){
+        var carousel = layui.carousel;
+        var $ = layui.jquery;
+
+        // 初始化轮播
+        var inst = carousel.render({
+            elem: '#placeholder-text',  // 容器ID
+            width: '650px',
+            height: '60px',
+            anim: 'updown',   // 上下滚动
+            arrow: 'none',    // 隐藏箭头
+            indicator: 'none',
+            autoplay: true,   // 自动播放
+            interval: 5000    // 2秒切换一次
+        });
+
+        // 获取输入框和轮播元素
+        var $input = $('#queryTop');
+        var $carousel = $('#placeholder-text');
+
+        // 检查输入框状态的函数
+        function checkInputState() {
+            if ($input.val().trim() !== '' || $input.is(':focus')) {
+                $carousel.hide();
+            } else {
+                $carousel.show();
+            }
+        }
+
+        // 绑定事件
+        $input.on({
+            'focus': checkInputState,
+            'blur': checkInputState,
+            'input': checkInputState
+        });
+
+        // 初始检查
+        checkInputState();
+    });*/
+
+    $(".top-other .zsgm").hover(
+        function() {
+            $("#zsgm-popup").stop(true, true).fadeIn();
+        },
+        function() {
+            $("#zsgm-popup").stop(true, true).fadeOut();
+        }
+    );
+
+    $(".top-other .wechat").hover(
+        function() {
+            $("#wx-popup").stop(true, true).fadeIn();
+        },
+        function() {
+            $("#wx-popup").stop(true, true).fadeOut();
+        }
+    );
+
+    function changeSearchUrl(url){
+        $("#search_url").val(url)
+        // 提示语只有三种，统一由当前模式决定，不随检索类型变化
+        updateSearchPlaceholder()
+    }
+
+    function branchLogout(){
+        $.get("/branch/logout", {}, function (data) {
+            location.reload();
+        });
+    }
+
+    // 输入字数上限：与后端 TextLimitUtil.MAX_INPUT_LENGTH 同口径（UTF-16 code unit，即 String.length）
+    var INPUT_MAX_LENGTH = 100;
+
+    // 未登录时自动弹出登录框；返回 true 表示已登录、可继续
+    function requireLogin(){
+        if ($("#loginFlag").val() === '1') return true;
+        if (typeof footLogin === 'function') {
+            footLogin();
+        } else {
+            location.href = '/login?returnUrl=' + encodeURIComponent(location.pathname + location.search);
+        }
+        return false;
+    }
+
+    function queryTop(){
+        // 提交前兜底截断；正常情况输入框已被 maxlength / input 守卫限制在 100 以内
+        var val = ($("#queryTop").val() || '').slice(0, INPUT_MAX_LENGTH);
+        var query = val.trim();
+
+        // 模式三：合规检测 —— 输入内容后点击检索，弹出合规检测弹窗并调用合规检查
+        if ($(".testing").hasClass('active')) {
+            if (query === '') { $("#queryTop").focus(); return; }
+            if (!requireLogin()) return;   // 未登录：弹出登录框
+            $(".aiServe").hide();
+            $(".complianceAi").show();
+            complianceAsk(query);
+            return;
+        }
+
+        // 模式二：AI检索 —— 点击检索弹出 AI 检索弹窗，并调用知识库RAG流式问答
+        if ($(".left-type p.active").text().trim() === 'AI检索') {
+            if (query === '') { $("#queryTop").focus(); return; }
+            if (!requireLogin()) return;   // 未登录：弹出登录框
+            $(".complianceAi").hide();
+            $(".aiServe").show();
+            aiRagAsk(query);
+            return;
+        }
+
+        // 模式一：全库搜 —— 带检索词跳转检索页
+        if($("#search_url").val().indexOf("?") != -1){
+            location.href=$("#search_url").val()+'&query='+encodeURIComponent(val)
+        }else{
+            location.href=$("#search_url").val()+'?query='+encodeURIComponent(val)
+        }
+    }
+
+
+
+    // 根据当前模式更新搜索框提示语
+    function updateSearchPlaceholder(){
+        var placeholder = '搜索 关键词 / 标准名 / 标准号';
+        if ($(".testing").hasClass('active')) {
+            placeholder = '对标准相关文本进行智能审查，自动识别文本中的不合规内容、引用错误等（100字以内）';
+        } else if ($(".left-type p.active").text().trim() === 'AI检索') {
+            placeholder = 'AI智能检索 请输入您的问题';
+        }
+        $("#queryTop").attr('placeholder', placeholder);
+    }
+
+    function queryRe(re){
+        if($("#search_url").val().indexOf("?") != -1){
+            location.href=$("#search_url").val()+'&query='+encodeURI(re);
+        }else{
+            location.href=$("#search_url").val()+'?query='+encodeURI(re);
+        }
+    }
+
+    $(function(){
+        //ai检索按钮
+        $("#searchMenu").click(function (){
+            if (!requireLogin()) return;
+            var val = ($("#queryTop").val() || '').slice(0, INPUT_MAX_LENGTH);
+            var query = val.trim();
+            $(".aiServe").show();
+            aiRagAsk(query);
+        })
+        // textarea内容判断
+        checkContent();
+        $('#queryTop').on('input', checkContent);
+        function checkContent() {
+            if ($('#queryTop').val().trim() !== '') {
+                $('.search-input button').css({'background-color':'#1a5284','cursor':'pointer'});
+            } else {
+                $('.search-input button').css({'background-color': '#87a3d0','cursor':'no-drop'});
+            }
+        }
+
+        // 输入字数上限（100）：maxlength 已能拦住大部分情况，这里再覆盖粘贴/拖拽等；
+        // 中文输入法组字期间（isComposing）不打断，组字结束后由下一次 input 事件截断
+        $("#queryTop").on('input', function (e) {
+            if (e.originalEvent && e.originalEvent.isComposing) return;
+            if (this.value.length > INPUT_MAX_LENGTH) {
+                this.value = this.value.slice(0, INPUT_MAX_LENGTH);
+            }
+        });
+        $("#queryTop").keyup(function () {
+            let query = this.value;
+            if(query===undefined || query===''){
+                $(".box-keyword").css({"display":"none"});
+            }else{
+                if($("#search_url").val()=='/search' && $(".left-type p.active").text().trim() === '全库搜'){
+                    $.ajax({
+                        url:"/search/recommend/contains",
+                        data:{
+                            query:query
+                        },
+                        success:function(res){
+                            $("#key-recommend").html('')
+                            let arr = res.data;
+                            console.log(arr.length)
+                            for(let i in arr){
+                                let t = arr[i].replace(query,'<span class="c-red">'+query+'</span>')
+                                $("#key-recommend").append("<li onclick='queryRe(\""+arr[i]+"\")'>"+t+"</li>")
+                            }
+                            if(arr.length>0){
+                                $(".box-keyword").css({"display":"block"});
+                            }
+                            if(arr.length===0){
+                                $(".box-keyword").css({"display":"none"});
+                            }
+                        }
+                    })
+                }
+            }
+        });
+    });
+    $(".top-zsfw").mouseenter(function (){
+        $(".top-zsfw p").show()
+    }).mouseleave(function (){
+        $(".top-zsfw p").hide()
+    })
+
+    $(".xlcd").click(function (){
+        $(".box-keyword").css({"display":"none"});
+    })
+
+    var inputElement = document.getElementById('queryTop');
+    inputElement.addEventListener('blur', function() {
+        // 当 input 失去焦点时执行的函数
+        setTimeout(function() {
+            $('.box-keyword').hide();
+        }, 150);
+    });
+
+    // 切换「全库搜 / AI检索」：合规检测仅在 AI检索 下出现
+    $(".left-type p").click(function (){
+        $(this).addClass('active').siblings().removeClass('active')
+        let text = $(this).text()
+        if (text === 'AI检索'){
+            $(".box-keyword").css({"display":"none"});
+            $(".selectbox").hide()
+            $(".testing").removeClass('active').show()
+            $(".finding").show()
+            $(".reviser").show()
+            $(".upload-search").hide()
+        } else {
+            $(".selectbox").show()
+            $(".finding").hide()
+            $(".reviser").hide()
+            $(".testing").removeClass('active').hide()
+            $(".upload-search").hide()
+        }
+        updateSearchPlaceholder()
+    })
+
+    $(".testing").click(function (){
+        $(this).toggleClass('active')
+        if ($(this).hasClass('active')){
+            $(".upload-search").show()
+        } else {
+            $(".upload-search").hide()
+        }
+        updateSearchPlaceholder()
+    })
+
+    // 初始化搜索框提示语（默认全库搜）
+    updateSearchPlaceholder()
+</script>
+<div class="mbx w-box">
+    <a href="/">首页</a>
+    <font>></font><span class="pointer" onclick="location.href='/announce/all'">公告列表</span>
+    <font>></font><span class="pointer" onclick="location.href='/announce/list?type=1'">
+            最新公告
+    </span>
+</div>
+
+<div style="width: 1280px;margin: 0 auto;margin-bottom: 60px" class="noImg" id="announceContent">
+    
+                            <span id="ID_ucShow_UcNewsView1_lbContent"><P>
+<TABLE id=table1 cellSpacing=0 cellPadding=0 width="100%" border=0>
+<TBODY>
+<TR>
+<TD>
+<P align=center><B><FONT color=#ff0000 size=6><BR>中华人民共和国住房和城乡建设部</FONT></B></P>
+<P align=center><BR><B><FONT color=#ff0000 size=6>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 告</FONT></B></P>
+<P align=center><BR><BR><B><FONT size=4>第 840 号</FONT></B></P>
+<HR color=#ff0000>
+</TD></TR>
+<TR>
+<TD>
+<P align=center>　</P>
+<P align=center><FONT style="FONT-SIZE: 16pt" size=3><STRONG>关于发布行业标准《建筑排水塑料管道工程技术规程》的公告</STRONG></FONT></P>
+<P align=center>　</P></TD></TR>
+<TR>
+<TD style="LINE-HEIGHT: 300%">
+<P><FONT style="FONT-SIZE: 13pt">&nbsp;&nbsp;&nbsp;&nbsp;现批准《建筑排水塑料管道工程技术规程》为行业标准，编号为CJJ/T29-2010，自2011年10月1日起实施。原《建筑排水硬聚氯乙烯管道工程技术规程》</FONT><FONT style="FONT-SIZE: 13pt">CJJ/T29-98同时废止。 <BR>&nbsp;&nbsp;&nbsp; 本规程由我部标准定额研究所组织中国建筑工业出版社出版发行。<BR><BR><BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 二○一○年十二月十日</FONT><BR>　　</P></TD></TR></TBODY></TABLE></P></span>
+                        
+    </table>
+    </table>
+</div>
+<script>
+    $(document).ready(function(){
+        $("a:contains(【查看标准全文】)").hide();
+        
+        // 关键字高亮功能
+    });
+    
+    // 安全的关键字高亮函数
+    function highlightKeywords(containerSelector, keyword) {
+        if (!keyword || keyword.trim() === '') return;
+        
+        const container = $(containerSelector);
+        if (container.length === 0) return;
+        
+        try {
+            // 收集所有文本节点
+            const textNodes = [];
+            
+            function collectTextNodes(node) {
+                if (node.nodeType === 3) { // 文本节点
+                    textNodes.push(node);
+                } else if (node.nodeType === 1 && node.childNodes && !/(SCRIPT|STYLE)/i.test(node.tagName)) {
+                    for (let i = 0; i < node.childNodes.length; i++) {
+                        collectTextNodes(node.childNodes[i]);
+                    }
+                }
+            }
+            
+            collectTextNodes(container[0]);
+            
+            // 对每个文本节点进行高亮处理
+            textNodes.forEach(function(node) {
+                const text = node.nodeValue;
+                if (text && text.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+                    const wrapper = document.createElement('span');
+                    // 使用split和join的方式避免正则表达式问题
+                    const parts = text.split(new RegExp('(' + keyword.replace(/[\\^$*+?.()|[\]{}]/g, '\\$&') + ')', 'gi'));
+                    const fragment = document.createDocumentFragment();
+                    
+                    parts.forEach(function(part, index) {
+                        if (index % 2 === 1) { // 匹配的部分
+                            const em = document.createElement('em');
+                            em.style.backgroundColor = 'yellow';
+                            em.style.fontStyle = 'normal';
+                            em.textContent = part;
+                            fragment.appendChild(em);
+                        } else if (part) { // 非匹配部分
+                            fragment.appendChild(document.createTextNode(part));
+                        }
+                    });
+                    
+                    node.parentNode.replaceChild(fragment, node);
+                }
+            });
+        } catch (e) {
+            console.log('高亮关键字时出错:', e);
+        }
+    }
+</script>
+
+<div class="box-footer clearfix">
+    <div class="footer-r">
+        <a href="javascript:feedBack()" title="留言反馈"><img src="/std/images/xb-lyfk.png">留言反馈</a>
+        <a href="/connect" title="联系我们"><img src="/std/images/xb-lxwm.png">联系我们</a>
+        <a href="/help" title="帮助中心"><img src="/std/images/xb-bzzx.png">帮助中心</a>
+    </div>
+    <div class="w-box footer-cont">
+        <div class="footer-l">
+            <ul>
+                <li>主办：<a href="https://www.ndrc.gov.cn/fzggw/wzslxdw/201402/t20140213_951914.html" target="_blank" style="cursor: pointer;color: white">中国发展改革出版社</a></li>
+                <li>
+                    合作共建单位：<a href="http://www.cecs.org.cn" target="_blank" style="cursor: pointer;color: white">中国工程建设标准化协会</a>
+                    <a href="/std/images/chuban.jpg?v=2" target="_blank" style="cursor: pointer;color: white;margin-left: 30px">网络出版服务许可证：（署）网出证（京）第457号</a>
+                </li>
+                <li style="cursor: pointer"><x onclick="openUrl('http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010202009407')"><img src="/std/images/gongan.png">&nbsp;京公网安备&nbsp;11010202009407号</x>&nbsp;&nbsp;&nbsp;&nbsp;<x onclick="openUrl('https://beian.miit.gov.cn/')">京ICP备05021380号-5&nbsp;&nbsp;&nbsp;&nbsp;ICP 许可证编号 : 京B2-20262562</x></li>
+            </ul>
+        </div>
+        <div class="footer-ewm">
+            <ul class="clearfix">
+                <li>
+                    <a href="javascript:;">
+                        <div class="img" style="margin: 0 auto;">
+                            <img src="/std/images/gbk.png" >
+                        </div>
+                        <p>
+                            工标库移动端
+                        </p>
+                    </a>
+                    <div class="bigEwm css3">
+                        <div class="img">
+                            <img src="/std/images/gbk.png" >
+                        </div>
+                        <p>
+                            工标库移动端
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="img">
+                            <img src="/std/images/wkc.png" >
+                        </div>
+                        <p>
+                            发改社微课程
+                        </p>
+                    </a>
+                    <div class="bigEwm css3">
+                        <div class="img">
+                            <img src="/std/images/wkc.png" >
+                        </div>
+                        <p>
+                            发改社微课程
+                        </p>
+                    </div>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="img">
+                            <img src="/std/images/htyd.jpg" >
+                        </div>
+                        <p>
+                            宏图悦读
+                        </p>
+                    </a>
+                    <div class="bigEwm css3">
+                        <div class="img">
+                            <img src="/std/images/htyd.jpg" >
+                        </div>
+                        <p>
+                            宏图悦读
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+<!-- 弹窗3 -->
+<div class="backGround" onclick="$('.note-popup,.backGround,.text-popup,.img-popup,.ewm-popup,.add-popup,.popup').hide();" ></div>
+<div class="ewm-popup login-popup">
+    <div class="popup-title clearfix">
+        <a class="close-popup" href="javascript:;" onclick="$('.ewm-popup,.backGround').hide();"></a>
+    </div>
+    <div class="popup-con">
+        <d id="ewm2"></d>
+        <span>扫码分享</span>
+        <p id="foo"></p>
+        <a href="javascript:void(0)" class="copyBtn fuzhi" data-clipboard-action="copy"  data-clipboard-target="#foo">复制链接</a>
+    </div>
+</div>
+
+<div id="login-popup" class="login-popup popup" style="position: fixed">
+    <div class="popup-title clearfix">
+        <a class="close-popup" href="javascript:;" onclick="$('.login-popup,.backGround').hide();"></a>
+    </div>
+    <div class="popup-con terprop">
+        <div class="noaccessVip">
+            <p>登录会员账号，解锁更多资源</p>
+            <div class="noaccessTips">新用户注册<span style="color: #F41E1E;font-weight: bold;">免费</span>获取一周<span onclick="$('#checkMore-modal,.checkMoreBackGround').show()" style="color: #8B501E;cursor:pointer;font-weight: bold;">高级会员</span>权限</div>
+            <button class="go-log btn-blue" type="button" onclick="footLogin()">登录</button>
+            <div class="vipTips" onclick="$('#checkMore-modal,.checkMoreBackGround').show()">了解会员></div>
+        </div>
+    </div>
+</div>
+
+<div id="sign-login-popup" class="login-popup popup" style="position: fixed">
+    <input type="hidden" id="returnUrl1" class="sign-re-input">
+    <input type="hidden" value=""  id="unionid1">
+    <div class="popup-con">
+         <form action="">
+           <div class="box-login">
+               <div class="bd">
+                    <div class="log-type" style="display: none">
+                        <div class="goRes"><span>还没有账号？去<a href="/register">注册</a></span></div>
+                        <div class="login-title">密码登录</div>
+                        <span style="margin-top:10px;color:red; position: absolute;top: 65px;" id="errorMsg1"></span>
+                        <input name="phone" type="text" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength=11 id="phone1" placeholder="请输入手机号">
+                        <input name="pwd" type="password" id="password1" placeholder="请输入密码">
+                        <div class="text clearfix">
+                            <a class="fl" href="/forgetPwd">忘记密码？</a>
+                        </div>
+                        <button class="button btn-blue css3" type="button" onclick="footDoLogin();">登 录</button>
+                    </div>
+                    <div class="log-type" style="display: none">
+                        <div class="login-title" style="margin: 40px 0 15px 0">验证码登录</div>
+                        <span style="margin-top:10px;color:red;position: absolute;top: 45px;" id="errorCodeMsg1"></span>
+                        <input name="phone" id="mobile1" type="text" onkeyup="value=value.replace(/[^\d]/g,'')" maxlength=11 placeholder="请输入手机号">
+                        <div class="yzm clearfix">
+                            <input name="code" id="code_input1" type="text" placeholder="输入验证码">
+                            <img id="imgCode1" src="" onclick="footGetImgCode()">
+                        </div>
+                        <div class="yzm clearfix"><input name="code" id="js_input1" type="text" placeholder="输入验证码"><a class="fr" href="javascript:;">发送验证码</a></div>
+                        <button class="button btn-blue css3" type="button" onclick="footCommitPhoneLogin();">登 录</button>
+                    </div>
+                   <div class="log-type">
+                       <p style="margin: 30px 0;display: flex;align-items: center;justify-content: center;font-size: 18px;">
+                           <img src="/std/images/icon-wechat.png" style="margin: 0 10px 0 0;"/><span style="color: #4d4d4d;margin-right: 5px">微信</span>扫码登录（注册）
+                       </p>
+                       <!-- 修改后 -->
+                       <div style="align-items: center">
+                           <div id="modal-qrcode" style="border: 1px solid #E6E6E6;width: 230px;height: 230px;margin: auto;" onclick="footGetWxLoginImgCode()"></div>
+                       </div>
+                       <br>
+                   </div>
+                </div>
+                <div class="jumpTab">
+                    <div class="jumpTabFlex jumpTabFoot">
+                        <p style="display: none">
+                            <img src="/std/images/icon-wechat.png">
+                            微信登录
+                        </p>
+                        <p id="phoneLoginLi">
+                            <img src="/std/images/dlyzm.png">
+                            验证码
+                        </p>
+                        <p>
+                            <img src="/std/images/dlmm.png">
+                            账号密码登录
+                        </p>
+                    </div>
+                </div>
+               <div style="text-align: center;color: #A6A6A6;margin-top: 20px;">未注册手机验证后自动登录</div>
+               <div style="text-align: center;color: #A6A6A6;">登录即表示已阅读并同意<font class="c-red" style="cursor: pointer;" onclick="window.open('/agreement')">《用户协议》</font></div>
+           </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="force-login-popup" class="login-popup popup" style="position: fixed">
+    <div class="popup-title clearfix">
+        <a class="close-popup" href="javascript:;" onclick="$('.login-popup,.backGround').hide();"></a>
+    </div>
+    <div class="popup-con terprop">
+        <div class="text">
+            登录以查看更多内容
+        </div>
+        <div class="buttons">
+            <a class="button" href="javascript:footLogin();">登录</a>&nbsp;&nbsp;
+            <a class="button grey" onclick="$('.login-popup,.backGround').hide();" href="javascript:;">取消</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="auth-popup" class="login-popup popup" style="position: fixed">
+    <div class="popup-title clearfix">
+        <a class="close-popup" href="javascript:;" onclick="$('.login-popup,.backGround').hide();"></a>
+    </div>
+    <div class="popup-con">
+        <div class="text">
+            <p>暂无权限</p>
+            <p>升级本库会员，立享海量资源</p>
+        </div>
+        <div class="buttons">
+            <a class="button" href="/center/vip">升级会员</a>&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+
+
+
+<!-- 添加收藏弹窗 -->
+<div class="mangage-popup add-popup login-popup" id="add-popup">
+    <div class="popup-title clearfix">
+        <h3 class="fl">选择收藏夹</h3>
+        <a class="close-popup" href="javascript:;" onclick="$('.add-popup,.backGround').hide();"></a>
+    </div>
+    <div class="popup-con">
+        <div class="addfavorites"><a class="c-blue2" href="/center/collect">管理收藏夹</a></div>
+        <ul class="fav-name"></ul>
+        <button class="btn-blue css3" onclick="tosaveCollect();" type="button">确定</button>
+    </div>
+</div>
+<script type="text/javascript" src="/std/js/wxLogin.js"></script>
+<script type="text/javascript" src="/std/js/qrcode.min.js"></script>
+<script type="text/javascript" src="/std/js/clipboard.min.js"></script>
+<script type="text/template" id="fav-name_sc">
+    {{each list}}
+    {{if $value.id!="-1"}}
+    <li id="fa_na_li_{{= $value.id}}" class="changeColl pointer" xid="{{= $value.id}}">
+        <h4><span></span>{{= $value.title}}</h4>
+    </li>
+    {{/if}}
+    {{/each}}
+</script>
+<script>
+    $(".jumpTabFoot p").click(function (){
+        $(this).hide().siblings().show()
+        var index = $(this).index()
+        if (index === 0){
+            $("#sign-login-popup .bd .log-type:eq(2)").show().siblings().hide()
+        } else if (index === 1){
+            $("#sign-login-popup .bd .log-type:eq(1)").show().siblings().hide()
+        } else if (index === 2){
+            $("#sign-login-popup .bd .log-type:eq(0)").show().siblings().hide()
+        }
+    })
+    //检索用跳转
+    function goWithQuery(url){
+        location.href=url;
+    }
+
+    //留言反馈
+    function feedBack() {
+        layer.open({
+            type: 2
+            ,title: '留言反馈'
+            ,content: '/feedback'
+            ,area: ['550px', '500px']
+            ,btn: ['确定', '取消']
+            ,yes: function(index, layero){
+                //点击确认触发 iframe 内容中的按钮提交
+                var submit = layero.find('iframe').contents().find("#layuiadmin-app-form-submit");
+                submit.click();
+            }
+        });
+    }
+
+    function openUrl(url){
+        window.open(url)
+    }
+
+    function wxCode(){
+        $("#wx-popup,.backGround").fadeIn("fast");
+    }
+
+    function toLogin(){
+        /*$("#login-popup,.backGround").fadeIn("fast");*/
+        footLogin()
+    }
+
+    function noAuth(){
+        /*$("#auth-popup,.backGround").fadeIn("fast");*/
+        try{
+            readBuyVipD()
+        }catch (e){
+            $("#auth-popup,.backGround").fadeIn("fast");
+        }
+    }
+
+    let footer_login_inv;
+    function footLogin(){
+        $(".login-popup").hide()
+        $("#sign-login-popup,.backGround").fadeIn("fast");
+        let url = window.location.href;
+        url = url.replace('https://','');
+        url = url.replace('http://','');
+        url = url.replace(window.location.host,'')
+        $(".sign-re-input").val(url);
+        // 每隔1秒执行一次
+        footer_login_inv = setInterval(footCheckLoginStatus, 1000);
+    }
+
+    function footLogout(){
+        let url = window.location.href;
+        url = url.replace('https://','');
+        url = url.replace('http://','');
+        url = url.replace(window.location.host,'')
+        if(url.indexOf("center")>-1){
+            url = "/";
+        }
+        location.href='/logout?returnUrl='+url;
+    }
+
+    function toLoginPage(){
+        let url = window.location.href;
+        url = url.replace('https://','');
+        url = url.replace('http://','');
+        url = encodeURIComponent(url.replace(window.location.host,''))
+        location.href='/login?returnUrl='+url;
+    }
+
+    $('.backGround').click(function (){
+        $('#sign-login-popup, .backGround').hide()
+        setTimeout(() => {
+            clearInterval(footer_login_inv);
+        }, 30000)
+    })
+
+
+    window.onload = function(){
+        var clipboard = new Clipboard('.copyBtn').on('success', function(e) {
+            var e = e || window.event;
+            layer.msg('复制成功');
+            $('.ewm-popup,.backGround').hide();
+        }).on('error', function(e) { alert('复制失败了，请尝试选中链接并复制！');});
+    }
+
+    function toShare(uuid,type){
+        $.ajax({
+            type: "post",
+            url: "/api/share",
+            data: {
+                "uuid":uuid,
+                "shareType":type
+            },
+            success: function(res){
+                if(res.status=="success"){
+                    $("#ewm2").html("");
+                    var qrcode = new QRCode(document.getElementById("ewm2"), {
+                        width : 136,
+                        height : 136
+                    });
+                    qrcode.makeCode(res.message);
+                    $("#foo").html(res.message);
+                    $(".backGround,.ewm-popup").show();
+                }else{
+                    if(res.needLogin=="Y"){
+                        toLogin();
+                    }else{
+                        Xalert(res.message);
+                    }
+                }
+            }
+        });
+    }
+
+    $(".backGround").click(function (){
+        $(".login-popup").hide()
+    })
+
+
+  function footDoLogin(){
+        var phone = $("#phone1").val();
+        var pwd = $("#password1").val();
+        var unionid = $("#unionid1").val();
+        if(phone===undefined || phone===''){
+            $("#errorMsg1").html("请填写手机号");
+            return;
+        }
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            $("#errorMsg1").html("请填写正确的手机号");
+            return;
+        }
+
+        if(pwd===undefined || pwd===''){
+            $("#errorMsg1").html("请填写密码");
+            return;
+        }
+
+        if(pwd.length<6){
+            $("#errorMsg1").html("请填写正确的密码");
+            return;
+        }
+
+        $.ajax({
+            url:"/doLogin",
+            dataType:"json",
+            data:{
+                phone:phone,pwd:pwd,unionid:unionid
+            },success:function(data){
+                if(data=="success"){
+                    var returnUrl=$("#returnUrl1").val();
+                    if(returnUrl!=""&&returnUrl!=undefined){
+                        location.href=returnUrl;
+                    }else{
+                        location.href="/";
+                    }
+                }else if(data=="error"){
+                    $("#errorMsg1").html("用户名或密码错误");
+                }
+            }
+        })
+    }
+    //验证码获得焦点隐藏错误信息
+    $("#code_input1").on('focus', function() {
+        $("#errorCodeMsg1").html('')
+    })
+    function footGenerateUUID() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+    var loginUuid1 = footGenerateUUID();
+    //获取图形验证码
+    $(document).ready(function(){
+        footGetImgCode()
+        var qrcode1 = new QRCode(document.getElementById("modal-qrcode"), {
+            width: 205,
+            height: 205
+        });
+        qrcode1.makeCode('https://www.gongbiaoku.com/mobile/wlogin/'+loginUuid1)
+    })
+    var footImgUuid ;
+    function footGetImgCode(){
+        $.ajax({
+            url:"/captcha_image",
+            dataType:"json",
+            success:function(res){
+                if(res.status==="success"){
+                    $("#imgCode1").attr('src','data:image/png;base64,' +  res.img)
+                    footImgUuid = res.uuid
+                }
+                if(res.status=="error"){
+
+                }
+            }
+        })
+    }
+
+    //验证码倒计时
+    var second1=60;
+    var timer1;
+    $("#sign-login-popup .yzm .fr").click(function(){
+        if($(this).hasClass("on")){
+            return;
+        }
+
+        var that=$(this);
+        var phone = $("#mobile1").val();
+        if(phone===undefined || phone===''){
+            $('#errorCodeMsg1').html('手机号不能为空');
+            return;
+        }
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            $('#errorCodeMsg1').html('请填写正确的手机号');
+            return;
+        }
+        var imgVal = $("#code_input1").val()
+        if (imgVal===undefined || imgVal===''){
+            $('#errorCodeMsg1').html('请填写图片验证码');
+            return;
+        }
+        $(this).addClass("on");
+        footGetCode()
+    });
+    function footGetCode(){
+        var phone = $("#mobile1").val();
+        var imgVal = $("#code_input1").val();
+        if(phone===undefined || phone===''){
+            $('#errorCodeMsg1').html('手机号不能为空');
+            return;
+        }
+        if (imgVal===undefined || imgVal===''){
+            $('#errorCodeMsg1').html('请填写图片验证码');
+            return;
+        }
+        $.ajax({
+            url:"/sendCode",
+            data:{
+                phone:phone,
+                uuid:footImgUuid,
+                imageCode: imgVal,
+            },
+            success:function(data){
+                if(data==="success"){
+                    $('#errorCodeMsg1').html('');
+                    var second1=60;
+                    var timer1;
+                    timer1=setInterval(function(){
+                        second1--;
+                        $(".yzm .fr").html(second1+"&nbsp;秒");
+                        if(second1==0){
+                            clearInterval(timer1);
+                            $(".yzm .fr").html("发送验证码");
+                            second1=60;
+                            $(".yzm .fr").removeClass("on");
+                        }
+                    },1000)
+                    layer.msg("验证码已发送");
+                }
+                if (data=="code_error"){
+                    $('#errorCodeMsg1').html('图片验证码错误');
+                    $(".yzm .fr").removeClass("on");
+                    footGetImgCode()
+                }
+                if(data=="error"){
+                    footGetImgCode()
+                    $('#errorCodeMsg1').html('验证码发送失败');
+                    $(".yzm .fr").removeClass("on");
+                }
+            }
+        })
+
+    }
+    function footCommitPhoneLogin() {
+        var phone = $("#mobile1").val();
+        var code = $("#js_input1").val();
+        var unionid = $("#unionid1").val();
+
+        if(phone===undefined || phone===''){
+            $("#errorCodeMsg1").html("请填写手机号");
+            return;
+        }
+
+        if(!(/^1[3456789]\d{9}$/.test(phone))){
+            $("#errorCodeMsg1").html("请填写正确的手机号");
+            return;
+        }
+
+        if(code===undefined || code===''){
+            $("#errorCodeMsg1").html("请填写验证码");
+            return;
+        }
+
+        if(!(/^\d{6}$/.test(code))){
+            $("#errorCodeMsg1").html("请填写正确的验证码");
+            return;
+        }
+
+        $.ajax({
+            url:"/commitPhone",
+            dataType:"json",
+            data:{
+                phone:phone,code:code,unionid:unionid
+            },success:function(data){
+                if(data==="fail"){
+                    $("#errorCodeMsg1").html("验证码错误");
+                }
+                if(data==="success"){
+                    var returnUrl=$("#returnUrl1").val();
+                    if(returnUrl!=""&&returnUrl!=undefined){
+                        location.href=returnUrl;
+                    }else{
+                        location.href="/";
+                    }
+                }
+
+            }
+        })
+
+    }
+    function footGetWxLoginImgCode() {
+        // 重新加载页面刷新二维码
+        location.reload();
+    }
+    // 获取URL参数
+    var footUrlParams = new URLSearchParams(window.location.search);
+    // 获取参数值
+    var footReturnUrl = footUrlParams.get('returnUrl');
+
+    // 定时查询当前uuid是否登录
+    function footCheckLoginStatus() {
+        $.ajax({
+            url: "/check_login",
+            dataType: "json",
+            data: {
+                uuid: loginUuid1
+            },
+            success: function (res) {
+                if (res.status === "success") {
+                    console.log(footReturnUrl)
+                    if(footReturnUrl==null||footReturnUrl==="")
+                        footReturnUrl="/";
+                    location.href = footReturnUrl;
+                }
+                if (res.status === "error") {
+                    console.log("error")
+                }
+            }
+        })
+    }
+
+</script>
+<script>
+    const fpPromise = import('/std/js/fingerprint.js')
+        .then(FingerprintJS => FingerprintJS.load())
+    fpPromise
+        .then(fp => fp.get())
+        .then(result => {
+            const visitorId = result.visitorId
+            console.log(visitorId)
+            $.cookie('fgp', visitorId, { expires: 30 });
+        })
+        .catch(error => console.error(error))
+</script>
+<script>
+    $("body").on("click", '.changeColl', function() {
+        $(this).addClass("on");
+        $(this).parents(".read-l").find(".box-catalog").show();
+        $(this).siblings().removeClass("on").parents(".read-l").find(".left-note").hide();
+    });
+    function closeCollect(){
+        $('.add-popup,.backGround').hide();
+    }
+
+    function initAddCollect(){
+            toLogin();
+    }
+</script>
+<style>
+    .lhalertDialog{z-index: 999999999999999;position: fixed; left:0; right:0; top:0; bottom:0; background:rgba(0, 0, 0, .12);display: none}
+    .lhalertDialog .lhalert{position: fixed; width:371px; background:white; border-radius:6px; -webkit-border-radius:6px; -moz-border-radius:6px; -ms-border-radius:6px; left:50%; top:50%; margin-left:-185px; margin-top:-115px; padding-top:46px;
+        padding-bottom:37px;text-align: center;}
+    .lhalertDialog .lhalert .p1{font-size:16px; color:#333333; line-height:54px; padding:0 57px; height:93px;}
+    .lhalertDialog .lhalert .p1 a{color:#1a5284;}
+    .lhalertDialog .lhalert .p1 a:hover{color:#da251c;}
+    .lhalertDialog .lhalert .btns{padding:0 35px; overflow: hidden; text-align:center;}
+    .lhalertDialog .lhalert .btns a{display: inline-block; width:130px; height:40px; line-height:40px; text-align: center; background:#1a5284; color:white; font-size:14px; margin:0 8px; border-radius:6px; -webkit-border-radius:6px;
+        -moz-border-radius:6px; -ms-border-radius:6px;}
+    .lhalertDialog .lhalert .btns a:hover{background:#235989;}
+    .lhalert_close{position: absolute; right:11px; top:11px; width:20px; height:20px; background:url(/std/images/icon-close3.png) no-repeat center center;}
+    .lhalert_close:hover{background:url(/std/images/icon-close3-h.png) no-repeat center center;}
+    .layer-msg{z-index: 999999999999999;position: fixed;padding: 12px 25px;text-align: center;font-size: 14px;line-height: 24px;word-break: break-all;box-shadow: 1px 1px 50px rgba(0,0,0,.4); -webkit-box-shadow: 1px 1px 50px rgba(0,0,0,.4); -moz-box-shadow: 1px 1px 50px rgba(0,0,0,.4);
+        -ms-box-shadow: 1px 1px 50px rgba(0,0,0,.4);min-width: 100px;background-color: #000;background-color: rgba(0,0,0,.6); color:white; left:50%; top:50%; margin-top:-24px;  display: none;
+        box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; transform: translateX(-50%); -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -ms-transform: translateX(-50%);}
+</style>
+<div class="lhalertDialog">
+    <div class="lhalert">
+        <p class="p1"><span class="lhte" style="display: inline-block;line-height: 26px;vertical-align: middle;"></span></p>
+        <p class="btns">
+            <a href="javascript:;">确定</a>
+            <a href="javascript:;" id="cancleAlert" style="display: none;">取消</a>
+        </p>
+        <a href="javascript:;" class="lhalert_close"></a>
+    </div>
+</div>
+
+<div class="layer-msg"></div>
+<script>
+    function Xalert(text,showCancle){
+        if(showCancle==1){
+            $("#cancleAlert").show();
+        }else{
+            $("#cancleAlert").hide();
+        }
+        $(".lhte").html(text);
+        $(".lhalertDialog").fadeIn("fast");
+    }
+    $(".lhalertDialog,.lhalert_close,.lhalert .btns a").click(function(){
+        $('.lhalertDialog').hide();
+    });
+    $(".lhalert").click(function(){
+        window.event? window.event.cancelBubble = true : e.stopPropagation();
+    });
+
+    function Lalert(text){
+        $(".layer-msg").html(text);
+        $(".layer-msg").fadeIn("fast");
+        setTimeout(function(){
+            $(".layer-msg").fadeOut("fast");
+        },1500)
+    }
+
+</script><style>
+    .vipModal{
+        position: fixed;
+        width: 750px;
+        z-index: 2;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: calc(100vh - 15%);
+        display: none;
+    }
+    .vipBackGround,.wbuyBackGround,.checkMoreBackGround{
+        position: fixed;
+        height: 100%;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        background-color: #000000;
+        z-index: 1;
+        -moz-opacity: 0.2;
+        opacity: .2;
+        display: none;
+    }
+    .relatedHeight {
+        max-height: 100%;
+        overflow-y: auto;
+        background: #ffffff;
+        border-radius: 20px 20px 0px 0px
+    }
+    .bifEwm{
+        position: absolute;
+        padding: 10px;
+        box-shadow: 0 0 16px 0 rgba(20, 20, 20, .1);
+        top: -200px;
+        left: -30px;
+        z-index: 3;
+        background: #fff;
+        display: none;
+        text-indent: 0;
+    }
+    .bifEwm img{
+        width: 181px;
+        max-width: 181px;
+        margin-bottom: 0;
+        padding-right: 0 !important;
+    }
+    .firm:hover .bifEwm{
+        display: block;
+    }
+</style>
+<div class="checkMoreBackGround"></div>
+<!-- 查看更多-->
+<div id="checkMore-modal" class="checkMore-popup">
+    <div class="popup-title clearfix">
+        <a class="close-popup" href="javascript:;"></a>
+    </div>
+    <div class="per-details vipModal-details">
+        <table border="1" cellspacing="0" cellpadding="0">
+            <thead>
+            <tr>
+                <th style="background: #F6EFE2;">功能项目</th>
+                <th style="background: #E8E1D5;">注册用户</th>
+                <th style="background: linear-gradient(0deg, #D39863 0%, #EEC493 100%);">普通会员</th>
+                <th style="color: #F1D1AF;background: linear-gradient(0deg, #242A2F 0%, #6B7178 100%);">高级会员/企业版</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>计划版标准阅读</td>
+                <td>仅限国标条文</td>
+                <td>库内全部标准</td>
+                <td>库内全部标准</td>
+            </tr>
+            <tr>
+                <td>AI智能检索</td>
+                <td><img src="/std/images/dui.png"></td>
+                <td><img src="/std/images/dui.png"></td>
+                <td><img src="/std/images/dui.png"></td>
+            </tr>
+            <tr>
+                <td>标准关联查询</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>强制性条文聚合</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>标准资源对比</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>术语查询</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>知识库管理</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>服务资讯查看</td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>原版标准阅读</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>条文说明阅读</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>标准文字复制(200字/次)</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td>100次/月</td>
+                <td>不限</td>
+            </tr>
+            <tr>
+                <td>标准追踪</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>行业定制</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>实用表格下载(仅PC端)</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>电子书与视频</td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hycuo.png"></td>
+                <td><img src="/std/images/hydui.png"></td>
+            </tr>
+            <tr>
+                <td>专家解读视频</td>
+                <td>免费视频</td>
+                <td>免费视频</td>
+                <td>全部视频</td>
+            </tr>
+            <tr>
+                <td>标准查重(审校)</td>
+                <td><img src="/std/images/cha.png"></td>
+                <td><img src="/std/images/cha.png"></td>
+                <td>企业版定制</td>
+            </tr>
+            <tr>
+                <td>数字阅读终端</td>
+                <td><img src="/std/images/cha.png"></td>
+                <td><img src="/std/images/cha.png"></td>
+                <td>企业版定制</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $(function() {
+        //关闭查看更多
+        $("#checkMore-modal .close-popup").click(function (){
+            $("body").removeClass("fixed");
+            $(".close-popup").parent().parent().hide();
+            $(".checkMoreBackGround").hide();
+            readBuyVipD()
+        })
+        $(".checkMoreBackGround").click(function (){
+            $(this).hide();
+            $("#checkMore-modal").hide()
+            readBuyVipD()
+        })
+    })
+</script><script>
+    (function(){
+        var el = document.createElement("script");
+        el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?efc8afe15884d2f241c2707d2f5ea29cfefab30ca3706e6f65991c2fe53cd027fd5c4a3974f9cd3eeb674bde712b4782cc4f323247d55c2ed2efd47b7c83521adc648ee828d46e7d3689a9c59fd080f6";
+        el.id = "ttzz";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(el, s);
+    })(window)
+</script>
+</body>
+
+
+</html>
