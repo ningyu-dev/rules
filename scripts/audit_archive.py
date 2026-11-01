@@ -5,11 +5,13 @@
     PDF 本身被 .gitignore 排除，git 里看不到它。于是「这本规范到底有没有
     正文、从哪下的」在版本库里完全没有痕迹——除非把记录做成可检查的对象。
 
-审计四条：
+审计五条：
   1. 每个 archive/<标准>/ 必须有 SOURCE.md（没有记录 = 不知道出处）
   2. 有 PDF 就必须有 SHA256.txt，且哈希要对得上（否则不是同一份）
   3. 有 PDF 就必须记「来源页面」与「下载时间」；只记直链等于无法复核入口
   4. 「完整性」标为不完整的，单独列出——节选件不能当全文用
+  5. 公告副本 announcement.html 与 announcement.sha256 必须成对且哈希一致
+     （2026-11-01 在这里发现 GB50015-2019 的记录与文件对不上）
 
 用法：
     python scripts/audit_archive.py
@@ -79,6 +81,7 @@ def main() -> int:
         return 2
 
     problems: list[str] = []
+    missing_announcements: list[str] = []
     rows = []
 
     for d in dirs:
@@ -119,6 +122,26 @@ def main() -> int:
             # PDF 不进 git，clone 到新机器上本来就没有。本地有无是运行时
             # 状态，不是台账缺陷——只如实显示，不报错。
 
+        # 公告副本在 git 里，一致性必须查。GB50015-2019 的哈希记录与
+        # 文件对不上（记录的是另一次抓取），此前没有任何检查会报。
+        ann_html = d / "announcement.html"
+        ann_sha = d / "announcement.sha256"
+        if ann_html.exists() and ann_sha.exists():
+            recorded_ann = ann_sha.read_text(encoding="utf-8").split()[0]
+            real_ann = sha256_of(ann_html)
+            if real_ann != recorded_ann:
+                problems.append(
+                    f"{sid}: 公告副本哈希与 announcement.sha256 不一致"
+                    f"（记录 {recorded_ann[:12]}…，实算 {real_ann[:12]}…）"
+                )
+        elif ann_html.exists() or ann_sha.exists():
+            problems.append(
+                f"{sid}: 公告副本必须成对存在（html={ann_html.exists()}，"
+                f"sha256={ann_sha.exists()}）"
+            )
+        else:
+            missing_announcements.append(sid)
+
         rows.append((sid, state, source_type or "-", source_page or "-",
                      dl_time or "-", integrity or "-"))
 
@@ -136,6 +159,13 @@ def main() -> int:
     print(f"共 {len(rows)} 本：本地有 PDF {with_pdf} 本，本地无 PDF {len(rows) - with_pdf} 本")
     print("口径：本地运行时状态，按 archive/<id>/*.pdf 是否存在计；该状态不写入版本库。")
 
+    if missing_announcements:
+        print(
+            f"未归档公告原文：{len(missing_announcements)} 本 —— "
+            + "、".join(missing_announcements)
+        )
+        print("  （公告原文供强条清单机械比对；缺它不阻断台账，但四查证据不完整）")
+
     if problems:
         print("-" * 100)
         print(f"问题 {len(problems)} 项：")
@@ -145,7 +175,7 @@ def main() -> int:
         # 本项目已经在「校验通过 ≠ 正确」上栽过多次。
         return 1
 
-    print("\n全部合规：有正文的都记了来源页面、下载时间与哈希。")
+    print("\n全部合规：有正文的都记了来源页面、下载时间与哈希；公告副本与哈希记录一致。")
     return 0
 
 

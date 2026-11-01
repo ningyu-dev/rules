@@ -6,8 +6,9 @@
     而且体积小（十几 KB），可以进 git、可以机械比对。
   - 规范正文 PDF 动辄几十 MB，放工作区、由 .gitignore 忽略，靠 SHA256 保证可信。
 
-本脚本只写 announcement.html 与 announcement.sha256；SOURCE.md 由
-scripts/write_source_md.py 生成（需要人工补来源类型等判断）。
+本脚本只写 announcement.html 与 announcement.sha256。SOURCE.md 不在本脚本职责内：
+可以用 `scripts/archive_pdf.py <id> --stub` 生成骨架，或人工维护（GB50015-2019 那份
+就是手工补的，含恢复记录与动态字段说明，**不要**用 archive_pdf.py 的下载模式覆盖它）。
 
 用法：
     python scripts/archive_announcements.py            # 只报告

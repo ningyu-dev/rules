@@ -9,12 +9,11 @@
 | 项 | 内容 |
 |---|---|
 | 来源页面 | https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html |
-| PDF 直链 | 公告页「附件下载」入口（住建部门户网站，JS 动态加载） |
-| 下载方式 | 人工浏览器下载 |
-| 下载时间 | 2026-10-10 |
-| 下载人 | 未记录 |
+| PDF 直链 | https://www.mohurd.gov.cn/api-gateway/jpaas-web-server/front/document/download?fileUrl=YW5UzzlvCwcM%2FNHHX%2FtT6BIDW1mu%2FVz1hfKyVec2gYpBBJTdvelnp0b5IetpLFzMhv2Wrc2eTDjHo6CIy0wckA12pbSqRxLg%2BOR9ckz8EIuNcRygukNZ9lToURHCB37s12MeiHkNc6bg82BTpL7mSDlzVKNc%2B5DH8cWNBP3JTytbQ%2FC65yA%2FP5%2F306JZSmmhWy5Sq9BEpdnK%2BFdqXR45zZnohvA4j2FyXeqEStKTtqr48%2F0tL0DDJV77dhbr%2Fbi%2FjibjQbPalOTzm3r1NJjhTg%3D%3D&fileName=%E5%BB%BA%E7%AD%91%E7%BB%99%E6%B0%B4%E6%8E%92%E6%B0%B4%E8%AE%BE%E8%AE%A1%E6%A0%87%E5%87%86 |
+| 下载方式 | 从公告页 HTML 的 `href` 直接取直链后 `curl` 下载（该链接是静态 href，**不是** JS 动态加载，2026-11-01 更正） |
+| 下载时间 | 2026-11-01（恢复；首次下载 2026-10-10） |
+| 下载人 | 主理人（会话内由 AI 助手执行） |
 | 来源类型 | 官方 |
-| 正文 PDF | **缺失**（记录存在，见下方「文件缺失」） |
 | 完整性 | 179 页扫描件，无文字层（见「文件性质」） |
 
 | 项 | 内容 |
@@ -41,29 +40,54 @@
 | 日期 | 来源 | 文件 | 大小 | 校验 |
 |---|---|---|---|---|
 | 2026-10-10 | 住建部公告页附件下载链接 | GB50015-2019.pdf | 95,575,025 字节 | PDF 1.6 |
-| 2026-10-10 | `https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html` | announcement.html | 14,079 字节 | SHA-256 `3b26fc34132cf259ad1c582d7b3a3cc9415c8e8ef741e08380648c3fa9fd849f`（见 `announcement.sha256`） |
+| 2026-10-22 | `https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html` | announcement.html | 14,064 字节 | SHA-256 `527019d583464a8c615cf190d1eca15dd28ae85d49f2f42bd3ceee108154d9f4`（见 `announcement.sha256`） |
+| 2026-10-23 | 同页（仅用于内容核对，**未入库**） | — | 14,079 字节 | 该次抓取曾记 SHA-256 `3b26fc34…`；页面含动态字段，逐字节哈希不可跨次复现，见「公告副本与动态字段」 |
+| 2026-11-01 | 公告页 HTML 内静态直链（`api-gateway/.../document/download`） | GB50015-2019.pdf | 95,575,025 字节 | SHA-256 `ff6952f30c3024b69609c4bde00a15c666c082b59bbff2c835033f943b74fbae`，与 2026-10-10 记录一致 |
 
 SHA-256（PDF）：`ff6952f30c3024b69609c4bde00a15c666c082b59bbff2c835033f943b74fbae`
 （见 `SHA256.txt`）
 
-## 文件缺失（2026-10-23 发现）
+## 正文恢复（2026-11-01）
 
-本目录**当前没有 `GB50015-2019.pdf`**，但记录里有 2026-10-10 的下载流水与哈希。
+`archive/GB50015-2019/` 曾长期只有公告与哈希、没有正文（2026-10-23 发现）。
+2026-11-01 已恢复：公告页 HTML 里本来就带着附件直链，直接 `curl` 取回，
+95,575,025 字节，SHA-256 与 2026-10-10 的记录逐字节一致。
 
-原因：**PDF 被 `.gitignore` 排除，工作区一旦从 git 重建，本地文件不会回来**。这是「正文留本地、哈希进仓库」这个策略的固有代价，不是数据丢失事故——文件随时可按公告页重下，并用 `SHA256.txt` 验明正身。
+**操作事实（更正一条错误结论）**：此前认为「公告附件由 JS 动态加载、静态页里没有直链、必须人工浏览器下载」——**这条是错的**。2026-10-22 归档的 `announcement.html` 里就有 `href="/api-gateway/jpaas-web-server/front/document/download?fileUrl=…&fileName=…"`，补上域名即可直接下载，不需要浏览器。
 
-恢复方法：
+恢复步骤（脚本可复现）：
 
 ```bash
-# 浏览器打开公告页 → 附件下载 → 得到 PDF，然后
-python scripts/archive_pdf.py GB50015-2019 --from-local <文件> \
-    --type 官方 --source-page https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html \
-    --expected-pages 179
-# 校验
+# 1) 取公告页 HTML
+curl -sSL 'https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2019/art_17339_242990.html' -o /tmp/ann.html
+# 2) 从 HTML 取 href="/api-gateway/...document/download?fileUrl=...&fileName=..."，前面补 https://www.mohurd.gov.cn
+# 3) 下载后放入本目录，用既有哈希校验（**不要**用 --from-local：它会重写本文件）
 python scripts/archive_pdf.py GB50015-2019 --check
 ```
 
-**推论（写给后来的人）**：换机器或重新 clone 后，`archive/` 下的 PDF 一个都不会有。别把「目录存在」当成「正文在」——先跑 `python scripts/audit_archive.py` 看一眼台账。
+**不要用 `archive_pdf.py` 的 `--from-local` 或直链模式覆盖本文件**：那两种模式会调用
+`write_source_md()` 重写 `SOURCE.md`，把上面这些手工补的更正记录冲掉。下载到
+`archive/GB50015-2019/GB50015-2019.pdf` 后只跑 `--check` 即可。
+
+**推论（写给后来的人）**：换机器或重新 clone 后，`archive/` 下的 PDF 一个都不会有
+（被 `.gitignore` 排除）。别把「目录存在」当成「正文在」——先跑
+`python scripts/audit_archive.py` 看台账。恢复时按 `SOURCE.md` 的「PDF 直链」重下，
+用 `SHA256.txt` 验明正身。
+
+## 公告副本与动态字段（2026-11-01 澄清）
+
+入库的 `announcement.html` 是 **2026-10-22 抓取**的 14,064 字节页面，其 SHA-256 为
+`527019d58346…`；`announcement.sha256` 原先记的是 `3b26fc34…`（2026-10-23 另一次抓取，
+那次没有入库），**记录与文件对不上，属证据链断点**，现已在 `announcement.sha256` 中
+改回本副本自身的哈希。
+
+公告页含两处动态内容，每次抓取字节都不同，因此**逐字节哈希不可跨次复现**：
+
+- `<meta name="MakeTime" content="…">`（页面渲染时间）
+- `var authorizedReadUnitId = "…"`（随机请求 id）
+
+所以公告的跨次校验不靠字节哈希，而靠内容：`fetch_mandatory_clauses.py --check`
+每次现抓公告页、重新提取强条清单再比对。2026-11-01 复核结果：30 条一致，退出码 0。
 
 
 ## ⚠️ 强条清单的证据链（含一次失败记录）
@@ -77,7 +101,7 @@ python scripts/archive_pdf.py GB50015-2019 --check
 现已修复两处：
 
 1. **脚本**：来源可追溯（`FetchResult.source`），回退时输出「本地副本与文档自洽，不证明与官方公告一致」并返回**退出码 2（未验证）**，与「一致（0）」严格区分。
-2. **副本**：已用真实抓取内容替换。真实页面 **14,079 字节**，含 77 处 `<script>`、15 处 `<style>`、5 处 `layui` 框架引用、分享组件；强条句式匹配成功，提取 **30 条**，第 5 章无强条。
+2. **副本**：工作区里的 `announcement.html` 是 **2026-10-22** 的真实抓取（14,064 字节，含 77 处 `<script>`、15 处 `<style>`、5 处 `layui` 框架引用、分享组件；强条句式匹配成功，提取 **30 条**，第 5 章无强条）。**「已用 2026-10-23 的 14,079 字节抓取替换」与实际不符**——那次抓取没有入库，见「公告副本与动态字段」。
 
 ### 当前证据等级：已验证
 

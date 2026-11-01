@@ -102,3 +102,10 @@ jobs:
             fi
           done
           exit $fail
+
+      # 归档台账：git 里那部分证据必须自洽。
+      # PDF 不进 git，CI 里「本地无 PDF」不算缺陷；能查的是 SOURCE.md 字段齐全，
+      # 以及公告副本与 announcement.sha256 一致。这条是 2026-11-01 加的：
+      # GB50015-2019 的公告哈希记录与入库文件对不上，此前没有任何检查会报。
+      - name: 归档台账与公告副本一致
+        run: python scripts/audit_archive.py

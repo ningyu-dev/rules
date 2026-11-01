@@ -312,6 +312,28 @@ def check_pending_consistency(rule: dict, path: str, rep: Report) -> None:
                       "但顶层未标 safety_critical"))
 
 
+def check_safety_flag(rule: dict, path: str, rep: Report) -> None:
+    """安全关键旗标必须可复核：镜像齐全 + 写明失效后果。
+
+    2026-11-01 发现两条只有顶层 `safety_critical: true`、待定级对象里没有镜像、
+    也没有 `safety_reason`（GB50014-2021-5.3.7、GB50015-2019-5.2.15）。
+    旗标没有依据就判断不了它是否真的安全关键，派工时可能被当成「可确认跳过」；
+    反过来，没有旗标的条目也可能在人工核对时被漏掉。两个方向都必须看得见。
+    """
+    if rule.get("safety_critical") is not True:
+        return
+    pend = rule.get("mandatory_level_pending")
+    missing = []
+    if not isinstance(pend, dict) or pend.get("safety_critical") is not True:
+        missing.append("mandatory_level_pending 内缺 safety_critical")
+    if not str(rule.get("safety_reason") or "").strip():
+        missing.append("safety_reason 为空")
+    if missing:
+        rep.add(Issue("warn", "W010", path,
+                      "safety_critical=true 但" + "、".join(missing)
+                      + "：安全关键判定不可复核（补依据或撤旗标）"))
+
+
 def check_version(rule: dict, path: str, rep: Report) -> None:
     year = rule.get("standard_year")
     if year is None:
@@ -525,6 +547,7 @@ def main() -> int:
         check_mandatory_level_consistency(rule, path, rep)
         check_lookup_table(rule, path, rep)
         check_pending_consistency(rule, path, rep)
+        check_safety_flag(rule, path, rep)
         check_requires_human_flag(rule, path, rep)
         check_blocking_marked(rule, path, rep)
         check_schema_patterns(rule, path, rep, schema, undefined_seen)

@@ -27,7 +27,7 @@ python scripts/archive_pdf.py <id> <URL> --type 官方     # 归档正文 PDF（
 python scripts/archive_pdf.py <id> --from-local <文件>   # 人工下载后归档
 python scripts/archive_pdf.py <id> --stub                # 未取得正文时也写记录
 python scripts/archive_pdf.py <id> --check               # 校验本地 PDF 与哈希一致
-python scripts/audit_archive.py                          # 归档台账：正文从哪来、是否完整
+python scripts/audit_archive.py                          # 归档台账 + 公告副本哈希一致性
 ```
 
 ## 检查项
@@ -52,6 +52,7 @@ python scripts/audit_archive.py                          # 归档台账：正文
 | **维度一致** | 列轴长度 ≠ 数值行长度（E017）——附录 G 错位 43% 就是这条没人查 | error |
 | **结构约束** | `metrics` 为空、`minProperties` 不足、`anyOf` 全不满足（E018） | error |
 | 临时字段 | `_` 前缀字段存在于正式结构内，投产前须清除（W008） | warn |
+| **安全关键缺依据** | `safety_critical: true` 但 `safety_reason` 为空，或缺 `mandatory_level_pending` 内镜像（W010） | warn |
 | **引用已废止强条** | 标 `strong_clause` 但条号在官方废止清单内（E100） | error |
 | **意图恢复已废止强条** | `pending.intended_level=strong_clause` 而该条号已废止（E101） | error |
 | **强条误标** | 标 `strong_clause` 但该标准强条全集已全部废止、本不在其中（E102） | error |
@@ -72,4 +73,22 @@ E100~E102 由 `check_strong_clause.py` 输出，判据是 `sources/abolished_str
 
 `selftest_strong_clause.py` 是同一模式，针对 E100/E101/E102 各注入一次。它存在的直接原因：`check_strong_clause.py` 第一版只归一化了规则一侧的标准号，清单键里还带空格，于是 **32 条一条没比**，输出「库内落在清单覆盖范围内的标准：无」——**看着是通过，实则空跑**。所以该检查器现在还额外做一道独立交叉核对：用「(标准号, 年份) 元组」另算一遍应比对的条数，与实际比对数不一致就返回 2，不许报通过。
 
+## 归档台账（audit_archive.py）
 
+跑 `python scripts/audit_archive.py` 查三类东西：
+
+1. 每个 `archive/<标准>/` 是否有 `SOURCE.md`；
+2. 有 PDF 就必须有 `SHA256.txt` 且哈希对得上，来源页面 / 下载时间 / 来源类型齐全；
+3. **公告副本 `announcement.html` 与 `announcement.sha256` 必须成对、且哈希一致。**
+
+第 3 条是 2026-11-01 加的。当时发现 `archive/GB50015-2019/` 的 `announcement.sha256` 记的是
+另一次抓取的哈希，和入库的 `announcement.html` 对不上——而此前没有任何检查会报，全靠人工比对。
+同类断点只要没人看就一直在，所以接进 CI（`.github/workflows/check.yml`「归档台账与公告副本一致」）。
+
+注意两点：
+
+- **本地无 PDF 不算缺陷。** PDF 被 `.gitignore` 排除，CI 和新 clone 的机器本来就没有，
+  脚本只如实显示「本地无」，不报错；`--strict` 才会把无正文算问题（人工检查用）。
+- **公告副本哈希只证明「副本没被改动」。** 住建部公告页含动态字段（`MakeTime`、
+  `authorizedReadUnitId`），逐字节哈希不可跨次复现；判断公告有没有变要用内容比对
+  （`fetch_mandatory_clauses.py --check`），不能拿哈希不等当「公告变了」。
