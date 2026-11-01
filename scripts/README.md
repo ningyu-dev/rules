@@ -28,6 +28,8 @@ python scripts/archive_pdf.py <id> --from-local <文件>   # 人工下载后归�
 python scripts/archive_pdf.py <id> --stub                # 未取得正文时也写记录
 python scripts/archive_pdf.py <id> --check               # 校验本地 PDF 与哈希一致
 python scripts/audit_archive.py                          # 归档台账 + 公告副本哈希一致性
+
+python3 scripts/ocr_pages.py <pdf> <输出目录> [页范围] [dpi]  # 扫描件 OCR 定位（macOS Vision，端侧）
 ```
 
 ## 检查项
@@ -72,6 +74,21 @@ E100~E102 由 `check_strong_clause.py` 输出，判据是 `sources/abolished_str
 `validate.py` 通过只说明"已知的坑没再踩"，不说明它覆盖了 schema。`selftest_validate.py` 向草稿注入一个非法枚举值，断言必须新增**恰好 1 条** E011、且指向被注入的 rule_id；注入前后比对文件指纹，还原后计数回到基线。这是 D-010 的直接应用——**注入没生效时，校验会因为"本来就没问题"而报通过**。
 
 `selftest_strong_clause.py` 是同一模式，针对 E100/E101/E102 各注入一次。它存在的直接原因：`check_strong_clause.py` 第一版只归一化了规则一侧的标准号，清单键里还带空格，于是 **32 条一条没比**，输出「库内落在清单覆盖范围内的标准：无」——**看着是通过，实则空跑**。所以该检查器现在还额外做一道独立交叉核对：用「(标准号, 年份) 元组」另算一遍应比对的条数，与实际比对数不一致就返回 2，不许报通过。
+
+## OCR 定位（ocr_pages.py / ocr_vision.swift）
+
+扫描件没有文字层，但需要「条文在哪一页」才能回填 `provenance.page`、做全文检索。
+用 macOS 自带的 PDFKit + Vision 端侧识别，无需安装第三方库：
+
+```bash
+python3 scripts/ocr_pages.py archive/GB55020-2021/GB55020-2021.pdf tmp/ocr/text/GB55020-2021 1-28
+# -> tmp/ocr/text/GB55020-2021/pages.jsonl + page_NNN.txt
+```
+
+**这不是核对工具。** OCR 会错且不报错（`8.30`→`3.30` 同型失败），只能用于定位与初读；
+数值、表格、公式必须对照页面图像逐条复核，`verified_by` 仍须工程师签字。
+页脚偏移（PDF 页 → 印刷页）必须实核；GB 50015 自检 30/30 条页码一致。
+完整口径、偏移表与实测结果见 `docs/OCR读页流程.md`。
 
 ## 归档台账（audit_archive.py）
 
