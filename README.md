@@ -103,7 +103,7 @@ RAG 在本项目中的定位降级为：辅助工程师查阅规范原文，**�
 - 这 30 条的**强条属性已自 2022-04-01 起全部废止**，依据是 GB 55020-2021 公告**附件 2**（已取到官方 `.docx` 并逐条解析，存于 `archive/GB55020-2021/废止强条清单.docx`）。附件所列 30 条与公告 171 号所列 30 条**逐项相同**——一条不多、一条不少，故该标准**无残留强条**。
 - 两者都属「废止」而非「修订」，**不改变条文数值**。
 
-清单已结构化为 `sources/abolished_strong_clauses.json`（9 项 / 78 条，由 `scripts/build_abolished_list.py` 从官方附件生成，条号不经人手），并由 `scripts/check_strong_clause.py` 在每次校验时比对库内条目的强制等级——**「引用已废止的强条」这类肉眼读不出的缺陷，现在能自动发现**。
+清单已结构化为 `sources/abolished_strong_clauses.json`（10 项 / 92 条：GB 55020 附件 2 的 9 项 / 78 条 + GB 55027 公告正文的 GB 50014-2021 14 条；由 `scripts/build_abolished_list.py` 从官方公告/附件生成，条号不经人手），并由 `scripts/check_strong_clause.py` 在每次校验时比对库内条目的强制等级——**「引用已废止的强条」这类肉眼读不出的缺陷，现在能自动发现**。
 
 
 系统必须能回答两个问题：
@@ -142,7 +142,7 @@ rules/building_rain/     # 按子系统分目录的规则草稿（_draft_*.json�
 schema/rule.schema.json  # 规则 schema，单一事实来源
 scripts/                 # 校验、归档、自检脚本，清单见 scripts/README.md
 sources/standards.json   # 信源与现行性登记表（111 本）
-sources/abolished_strong_clauses.json  # 已废止强条清单（9 项 / 78 条）
+sources/abolished_strong_clauses.json  # 已废止强条清单（10 项 / 92 条）
 tmp/                     # 本地临时目录（脚本草稿、中间产物），git 忽略
 ```
 
