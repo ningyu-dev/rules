@@ -265,7 +265,8 @@
         "mohurd_notice",
         "mohurd_doc"
       ],
-      "notes": "4.2.8 不上人屋面活荷载 0.5 kN/m²，取消 GB 50009 的 0.3 例外。公告原文已核。"
+      "notes": "4.2.8 不上人屋面活荷载 0.5 kN/m²，取消 GB 50009 的 0.3 例外。公告原文已核。",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761192.html"
     },
     {
       "id": "GB55002-2021",
@@ -277,11 +278,15 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2022-01-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 2021 年第 61 号",
       "sources": [
         "mohurd_notice",
         "mohurd_doc"
-      ]
+      ],
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761174.html",
+      "checked_by": "沈澄 给排水工程师",
+      "notes": "2026-11-01 四查：公告 2021 年第 61 号（发文 2021-04-09，实施 2022-01-01）；公告附件为静态直链，附件 2《废止的现行工程建设标准相关强制性条文》已归档（archive/GB55002-2021/废止强条清单.doc）。未发现 /XG。"
     },
     {
       "id": "GB55003-2021",
@@ -293,11 +298,15 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2022-01-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 2021 年第 62 号",
       "sources": [
         "mohurd_notice",
         "mohurd_doc"
-      ]
+      ],
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761185.html",
+      "checked_by": "沈澄 给排水工程师",
+      "notes": "2026-11-01 四查：公告 2021 年第 62 号（实施 2022-01-01）；该公告页附件序与 GB55002 相反（附件 1 为废止强条清单、附件 2 为正文），已按实际内容归档。未发现 /XG。"
     },
     {
       "id": "GB55006-2021",
@@ -309,12 +318,13 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2022-01-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 2021 年第 69 号",
       "sources": [
         "mohurd_notice",
         "mohurd_doc"
       ],
-      "notes": "与 GB 51022 为母子关系，须双依据同引。"
+      "notes": "与 GB 51022 为母子关系，须双依据同引。",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2021/art_17339_761191.html"
     },
     {
       "id": "GB55008-2021",
@@ -799,12 +809,13 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2017-07-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 第 1330 号",
       "sources": [
         "mohurd_notice",
         "press"
       ],
-      "notes": "边界在溢流与回用设施衔接处，回用水质由水效方承接。"
+      "notes": "边界在溢流与回用设施衔接处，回用水质由水效方承接。",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2017/art_17339_231085.html"
     },
     {
       "id": "GBT51345-2018",
@@ -853,7 +864,7 @@
         "mohurd_notice",
         "press"
       ],
-      "notes": "GB 50015-2019 5.2.37 明确指向。强条 3.1.2、3.1.9、3.4.5 已自 2022-04-01 由 GB 55020-2021 附件 2 第 8 项废止强条属性（官方清单已核，标准本体现行、条文照引）。**换版预警**：住建部办公厅 2024-04-28 发布局部修订征求意见稿，修订内容含 87 型与虹吸雨水斗最大排水流量、天沟（集水槽）宽度与深度最小尺寸、雨水总径流雨量计算公式——正是本子域最依赖的几处数值。征求意见稿不得作依据，但须盯发布。库内 0 条，是当前最大缺口。",
+      "notes": "GB 50015-2019 5.2.37 明确指向。强条 3.1.2、3.1.9、3.4.5 已自 2022-04-01 由 GB 55020-2021 附件 2 第 8 项废止强条属性（官方清单已核，标准本体现行、条文照引）。**换版预警**：住建部办公厅 2024-04-28 发布局部修订征求意见稿，修订内容含 87 型与虹吸雨水斗最大排水流量、天沟（集水槽）宽度与深度最小尺寸、雨水总径流雨量计算公式——正是本子域最依赖的几处数值。征求意见稿不得作依据，但须盯发布。库内 0 条，是当前最大缺口。 2026-11-01 归档：官方公告页在现行门户文件库未收录（标题/文号检索均无，同库相邻年份公告都在）；evidence 为 ccsn 转载页、正文为金泰达法规库转载扫描件（91 页）——均不得作为条文出处，官方件须正式出版文本（见 archive/CJJ142-2014/SOURCE.md）。",
       "last_checked": "2026-10-24",
       "checked_by": "沈澄 给排水工程师",
       "evidence": "https://www.ccsn.org.cn/News/ShowInfo.aspx?Guid=f275b2ce-0bd6-4199-bccf-d5a053543e64"
@@ -1160,7 +1171,7 @@
         "mohurd_notice",
         "std_samr"
       ],
-      "notes": "雨水立管用塑料管时的伸缩节与支架间距依据。推荐性行业标准（CJJ/T），无强条，故不在 GB 55020 废止清单内属正常。发布时废止 CJJ/T 29-98。evidence 为中国建筑工业出版社的原文影印页（转载，含公告原文）。",
+      "notes": "雨水立管用塑料管时的伸缩节与支架间距依据。推荐性行业标准（CJJ/T），无强条，故不在 GB 55020 废止清单内属正常。发布时废止 CJJ/T 29-98。evidence 为中国建筑工业出版社的原文影印页（转载，含公告原文）。 2026-11-01 归档：无官方公告页（evidence 为出版社试读页，仅目录）；正文取工标库转载扫描件（39 页，封面已核），官方正文须正式出版文本。**换版预警：2026-08-26 住建部发布《建筑排水塑料管道工程技术标准（修订征求意见稿）》，标准名与内容或将换版，征求意见稿不得作依据。**",
       "last_checked": "2026-10-24",
       "checked_by": "沈澄 给排水工程师",
       "evidence": "https://ebook.chinabuilding.com.cn/zbooklib/bookpdf/probation?SiteID=1&bookID=56260"
@@ -1183,7 +1194,7 @@
       "last_checked": "2026-10-24",
       "checked_by": "沈澄 给排水工程师",
       "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2009/art_17339_189322.html",
-      "notes": "雨水立管用金属管时的依据。强条 4.2.5、6.1.1（公告原文逐条列出），**不在** GB 55020-2021 附件 2 的 9 项废止清单内，强条属性仍有效。"
+      "notes": "雨水立管用金属管时的依据。强条 4.2.5、6.1.1（公告原文逐条列出），**不在** GB 55020-2021 附件 2 的 9 项废止清单内，强条属性仍有效。 2026-11-01 归档：官方公告页无正文附件；正文取金泰达法规库转载扫描件（52 页，封面已核），不得作为条文出处（见 archive/CJJ127-2009/SOURCE.md）。"
     },
     {
       "id": "CJJT98-2014",
@@ -1390,14 +1401,17 @@
       "group": "G",
       "role": "product",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2017-03-01",
+      "announcement_no": "国家标准公告 2016 年第 7 号",
       "sources": [
         "std_samr"
       ],
-      "notes": "附录 G 铸铁管管径轴的规格来源。"
+      "notes": "附录 G 铸铁管管径轴的规格来源。 2026-11-01 四查：国家标准公告 2016 年第 7 号（2016-04-25，实施 2017-03-01），无官方公开正文（采标 ISO 6594，版权限制）。**换版预警：GB/T 12772-2026（国家标准公告 2026 年第 23 号，2026-05-25）自 2026-12-01 实施并全部代替本版**——2026-12-01 之后签约的工程不得再引本版。",
+      "last_checked": "2026-11-01",
+      "evidence": "http://std.sacinfo.org.cn/gnoc/queryInfo?id=3AC29B16AD443128DA224E55D9FA60BA",
+      "checked_by": "沈澄 给排水工程师"
     },
     {
       "id": "GBT5836-2018",
@@ -1406,14 +1420,17 @@
       "group": "G",
       "role": "product",
       "in_scope": true,
-      "status": "presumed",
-      "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "status": "current",
+      "name_verified": false,
+      "implemented": "2019-07-01",
+      "announcement_no": "国家标准公告 2018 年第 17 号",
       "sources": [
         "std_samr"
       ],
-      "notes": "分 1/2 两部分，引用须给分部分号。"
+      "notes": "分 1/2 两部分，引用须给分部分号。 2026-11-01 四查：国家标准公告 2018 年第 17 号（实施 2019-07-01）；无官方公开正文。**官方是两部分：GB/T 5836.1-2018《建筑排水用硬聚氯乙烯（PVC-U）管材》与 GB/T 5836.2-2018《…管件》**——登记表的合并编号/名称「管材及管件」无官方出处，引用须给分部分号；拆条待办（见待补证清单 B-10）。",
+      "last_checked": "2026-11-01",
+      "evidence": "http://std.sacinfo.org.cn/gnoc/queryInfo?id=390047B3C5CB17EAB3676A41A37EC927",
+      "checked_by": "沈澄 给排水工程师"
     },
     {
       "id": "GBT13663-2018",
@@ -1467,14 +1484,17 @@
       "group": "G",
       "role": "product",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
+      "implemented": "2010-02-01",
       "announcement_no": null,
       "sources": [
         "std_samr"
       ],
-      "notes": "承载等级与车行道下的选用依据。"
+      "notes": "承载等级与车行道下的选用依据。 2026-11-01 四查：国家标准公告 2009-06-26 历史批次（平台未编号）清单第 365 项，实施 2010-02-01；std.samr 详情页发布日期 2009-05-27 与批次日差近一月，官方未解释，按原样记录。无官方公开正文。",
+      "last_checked": "2026-11-01",
+      "evidence": "http://std.sacinfo.org.cn/gnoc/queryInfo?id=BFA472C0F1D4E5A0F52C1AB7855BA3CF",
+      "checked_by": "沈澄 给排水工程师"
     },
     {
       "id": "CJT511-2017",
@@ -1483,13 +1503,17 @@
       "group": "G",
       "role": "product",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2017-09-01",
+      "announcement_no": "住房和城乡建设部公告 第 1500 号",
       "sources": [
         "std_samr"
-      ]
+      ],
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2017/art_17339_231447.html",
+      "checked_by": "沈澄 给排水工程师",
+      "notes": "2026-11-01 四查：公告 第 1500 号（2017-03-20，实施 2017-09-01），整部废止 CJ/T 3012-1993；公告页无附件、无公开正文。"
     },
     {
       "id": "CJT233-2006",
@@ -1498,13 +1522,17 @@
       "group": "G",
       "role": "product",
       "in_scope": true,
-      "status": "presumed",
+      "status": "abolished",
       "name_verified": true,
       "implemented": null,
       "announcement_no": null,
       "sources": [
         "std_samr"
-      ]
+      ],
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2016/art_17339_229383.html",
+      "checked_by": "沈澄 给排水工程师",
+      "notes": "2026-11-01 四查：**已被 CJ/T 233-2016 整部废止**（公告 第 1233 号，2016-08-08 发布，2017-02-01 实施；原文「原《建筑小区排水用塑料检查井》CJ/T233-2006同时废止」）。登记 id 与年份须换为 CJT233-2016；换版前库内不得再引 2006 版条文（见待补证清单 B-10）。"
     },
     {
       "id": "GB50242-2002",
@@ -1650,12 +1678,13 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2012-10-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 第 1405 号",
       "sources": [
         "mohurd_notice",
         "press"
       ],
-      "notes": "表 5.3.1 注 1 的 0.3 kN/m² 与 GB 55001-2021 4.2.8 的 0.5 冲突，按强制优先取 0.5。库内 0 条，只留接口。"
+      "notes": "表 5.3.1 注 1 的 0.3 kN/m² 与 GB 55001-2021 4.2.8 的 0.5 冲突，按强制优先取 0.5。库内 0 条，只留接口。",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2012/art_17339_210754.html"
     },
     {
       "id": "GBT50106-2010",
@@ -1664,15 +1693,15 @@
       "group": "J",
       "role": "drafting",
       "in_scope": true,
-      "status": "current",
-      "name_verified": true,
+      "status": "pending_verify",
+      "name_verified": false,
       "implemented": "2011-03-01",
       "announcement_no": null,
       "sources": [
         "mohurd_notice",
         "ndls"
       ],
-      "notes": "出 DXF 缺此依据。标高符号类型（管中心/管内底/管顶）是施工图最高频低级错误。库内 0 条。"
+      "notes": "出 DXF 缺此依据。标高符号类型（管中心/管内底/管顶）是施工图最高频低级错误。库内 0 条。 2026-11-01 四查：**未定位到官方发布公告**。已试渠道：住建部标准公告栏目 198 条（2022-04-12～2026-09-23）、文件库标题/文号/发文日期检索（2010-08-18 单日及前后各月；当天有第 748 号、独缺 746 号）、openstd（明确不收录工程建设标准）、std.samr（不收录 GB/T 50xxx）、站内检索 API（不可用）。编号/名称/日期一律未核，不得录条文（见待补证清单 B-11）。"
     },
     {
       "id": "GBT50001-2017",
@@ -1681,14 +1710,18 @@
       "group": "J",
       "role": "drafting",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2018-05-01",
+      "announcement_no": "住房和城乡建设部公告 第 1695 号",
       "sources": [
         "mohurd_notice",
         "press"
-      ]
+      ],
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2018/art_17339_234638.html",
+      "checked_by": "沈澄 给排水工程师",
+      "notes": "2026-11-01 四查：公告 第 1695 号（2017-09-27，实施 2018-05-01），整部废止 GB/T 50001-2010；公告附件正文 PDF 已归档（archive/GBT50001-2017/）。"
     },
     {
       "id": "GB50981-2014",
@@ -1700,12 +1733,15 @@
       "status": "current",
       "name_verified": true,
       "implemented": "2015-08-01",
-      "announcement_no": null,
+      "announcement_no": "住房和城乡建设部公告 第 585 号",
       "sources": [
         "mohurd_notice",
         "press"
       ],
-      "notes": "1.0.4 强条（6 度及以上必须做抗震设计）。量化设防范围在 3.1.6 条文说明里，按 D-004 不得作校验依据 → 只能 requires_human。给排水列举只到「生活给水、消防」，屋面雨水是否纳入按「悬吊管道重力 >1.8kN」判断。库内 0 条。"
+      "notes": "1.0.4 强条（6 度及以上必须做抗震设计）。量化设防范围在 3.1.6 条文说明里，按 D-004 不得作校验依据 → 只能 requires_human。给排水列举只到「生活给水、消防」，屋面雨水是否纳入按「悬吊管道重力 >1.8kN」判断。库内 0 条。 2026-11-01 四查：公告 第 585 号（2014-10-09，实施 2015-08-01），正文 PDF 已归档。**强条口径：1.0.4 / 5.1.4 / 7.4.6 三条强条已由 GB 55002-2021 公告附件 2 第 4 项废止（自 2022-01-01）**——标准本体现行、条文仍可引，强制力现来自 GB 55002-2021，不得再按原强条等级引用。",
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2015/art_17339_224264.html",
+      "checked_by": "沈澄 给排水工程师"
     },
     {
       "id": "GB50057-2010",
@@ -1714,15 +1750,18 @@
       "group": "J",
       "role": "electrical",
       "in_scope": true,
-      "status": "presumed",
+      "status": "current",
       "name_verified": true,
-      "implemented": null,
-      "announcement_no": null,
+      "implemented": "2011-10-01",
+      "announcement_no": "住房和城乡建设部公告 第 824 号",
       "sources": [
         "mohurd_notice",
         "press"
       ],
-      "notes": "金属屋面/金属天沟接闪与等电位。转交接口目前无电气方向。"
+      "notes": "金属屋面/金属天沟接闪与等电位。转交接口目前无电气方向。 2026-11-01 四查：公告 第 824 号（2010-11-03，实施 2011-10-01），正文列 14 条(款)强条，整部废止 2000 年版；公告页无附件、门户无公开 PDF。GB 55024-2022 公告（2022 年第 50 号）的废止清单不含 GB 50057，故其强条未被废止；与 GB 55024-2022 抵触处以通规为准（双依据同引）。",
+      "last_checked": "2026-11-01",
+      "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2011/art_17339_202151.html",
+      "checked_by": "沈澄 给排水工程师"
     },
     {
       "id": "GB50314-2015",
@@ -1770,7 +1809,7 @@
       "sources": [
         "mohurd_doc"
       ],
-      "notes": "适用范围含工业厂房、仓库。屋面雨水属建筑给排水，适用本版；市政公用工程另有 2025 年版（2013 年版已于 2025-10-01 废止），两者不得混用。计算书深度要求在此。官方页「废止日期」为空，现行有效；2016 版发布时废止 2008 年版。",
+      "notes": "适用范围含工业厂房、仓库。屋面雨水属建筑给排水，适用本版；市政公用工程另有 2025 年版（2013 年版已于 2025-10-01 废止），两者不得混用。计算书深度要求在此。官方页「废止日期」为空，现行有效；2016 版发布时废止 2008 年版。 2026-11-01 归档：官方正文附件为 Word `.doc`（704,496 B，SHA-256 `a055e81d…`，94 页），未转 PDF（转制件不是官方件）；本目录无 PDF 直链（见 archive/DEPTH-2016/SOURCE.md）。",
       "last_checked": "2026-10-24",
       "checked_by": "沈澄 给排水工程师",
       "evidence": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2016/art_17339_229701.html"
